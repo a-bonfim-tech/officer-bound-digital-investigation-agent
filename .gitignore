@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Editor and temporary files
+.vscode/
+.idea/
+*.swp
+*.tmp
