@@ -1,11 +1,17 @@
 # 1. Complete Final Content of `MASTER_DOCUMENTATION_CONSTITUTION.md`
 
+<!-- OBDIA-HISTORICAL-EXECUTION-RECORD-V1 -->
+> [!IMPORTANT]
+> **Historical consolidation execution record — non-normative.**
+> This file preserves the execution package that produced the documentation-governance baseline. It embeds a historical copy of `OBDIA-CONST-001` for audit traceability.
+> The sole authoritative Constitution is `docs/governance/MASTER_DOCUMENTATION_CONSTITUTION.md`. The embedded metadata and content below do not define a second normative document and shall not be used as an authoritative source.
+
 # MASTER DOCUMENTATION CONSTITUTION
 
 | Metadata Field | Value |
 |---|---|
 | **Document Title** | Master Documentation Constitution |
-| **Document ID** | OBDIA-CONST-001 |
+| **Embedded Document ID** | `OBDIA-CONST-001` |
 | **Version** | 1.0.0 |
 | **Status** | Approved Constitutional Baseline |
 | **Classification** | Supreme Documentation Governance |
