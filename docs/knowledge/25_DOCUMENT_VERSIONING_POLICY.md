@@ -4,7 +4,7 @@
 |---|---|
 | **Document ID** | OBDIA-VER-001 |
 | **Title** | Document Versioning Policy |
-| **Version** | 1.0.0 |
+| **Version** | 1.0.1 |
 | **Status** | Draft |
 | **Classification** | Normative |
 | **Authority** | Project Founder |
@@ -13,7 +13,7 @@
 | **Effective Date** | Not applicable while Draft |
 | **Purpose** | Define mandatory semantic versioning, lifecycle independence, dependency compatibility, coordinated change, baseline manifests, release and artifact versioning, revision history, supersession, rollback, migration, integrity, validation and traceability requirements for OBDIA governed artifacts. |
 | **Scope** | Normative and informative documents, Knowledge Pack 01–30, Constitution, ADRs, diagrams, policies, schemas, policy bundles, source code, implementations, models, prompts, connectors, tests, evidence packages, repository baselines, releases, tags and archived versions. |
-| **Dependencies** | `01_CANONICAL_PROJECT_DEFINITION.md`; `MASTER_DOCUMENTATION_CONSTITUTION.md`; `09_GOVERNANCE_MODEL.md`; `10_ADR_POLICY.md`; `11_DOCUMENTATION_STANDARD.md`; `13_REPOSITORY_STATE_MODEL.md`; `14_TERMINOLOGY_AND_NAMING.md`; `15_RELEASE_AND_PUBLICATION_POLICY.md`; `18_EVIDENCE_MODEL.md`; `22_TESTING_STANDARD.md`; `23_DIAGRAM_STANDARD.md`; `24_GITHUB_REPOSITORY_STANDARD.md`; forward dependencies `26_AI_RISK_REGISTER.md`, `27_RISK_ASSESSMENT_METHOD.md`, `28_EXCEPTION_MANAGEMENT_POLICY.md`, `29_CHANGE_CONTROL_POLICY.md` and `30_COMPLIANCE_MAPPING_POLICY.md` |
+| **Dependencies** | `01_CANONICAL_PROJECT_DEFINITION.md`; `MASTER_DOCUMENTATION_CONSTITUTION.md`; `09_GOVERNANCE_MODEL.md`; `10_ADR_POLICY.md`; `11_DOCUMENTATION_STANDARD.md`; `13_REPOSITORY_STATE_MODEL.md`; `14_TERMINOLOGY_AND_NAMING.md`; `15_RELEASE_AND_PUBLICATION_POLICY.md`; `18_EVIDENCE_MODEL.md`; `22_TESTING_STANDARD.md`; `23_DIAGRAM_STANDARD.md`; `24_GITHUB_REPOSITORY_STANDARD.md`; forward dependencies `26_AI_RISK_REGISTER.md`, `27_RESEARCH_BACKLOG.md`, `28_ASSUMPTIONS_REGISTER.md`, `29_DECISION_LOG_POLICY.md` and `30_COMPLIANCE_MAPPING_BASELINE.md` |
 | **Normative References** | `OBDIA-CANON-001`; `OBDIA-CONST-001`; `OBDIA-GOV-001`; `OBDIA-ADR-001`; `OBDIA-DOC-001`; `OBDIA-STATE-001`; `OBDIA-NAME-001`; `OBDIA-REL-001`; `OBDIA-EVID-001`; `OBDIA-TEST-001`; `OBDIA-DIAG-001`; `OBDIA-GH-001` |
 | **Cross-References** | Documents 26–30; accepted ADRs; document metadata; revision histories; dependency declarations; baseline manifests; release manifests; repository tags; validation packages; risk, exception and change records |
 | **Assumptions** | OBDIA artifacts evolve through controlled, attributable and reviewable changes while preserving immutable identifiers and historical versions. |
@@ -1367,3 +1367,4 @@ Version 1.0.0 consolidates the two existing Document Versioning Policy variants 
 | Version | Date | Status | Authority / Owner | Change |
 |---|---|---|---|---|
 | 1.0.0 | 2026-08-06 | Draft | Documentation Authority; approval reserved to Project Founder | Constitutional consolidation of both legacy versioning policies: preserved all original fields and major-change review; made semantic versioning mandatory; added complete compatibility, baseline, manifest, release, rollback, validation and traceability governance. |
+| 1.0.1 | 2026-08-06 | Draft | Documentation Authority; approval reserved to Project Founder | Reconciled obsolete forward-dependency filenames with the final canonical Knowledge Pack 01–30 filenames; no requirement text, authority, lifecycle status, implementation state or validation claim changed. |

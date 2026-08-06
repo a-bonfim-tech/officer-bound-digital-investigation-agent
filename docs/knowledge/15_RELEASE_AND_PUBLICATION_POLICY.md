@@ -4,7 +4,7 @@
 |---|---|
 | **Document ID** | OBDIA-REL-001 |
 | **Title** | Release and Publication Policy |
-| **Version** | 1.0.0 |
+| **Version** | 1.0.1 |
 | **Status** | Draft |
 | **Classification** | Normative |
 | **Authority** | Project Founder |
@@ -13,7 +13,7 @@
 | **Effective Date** | Not applicable while Draft |
 | **Purpose** | Define the release mechanics, evidence, manifests, integrity controls, approvals, version and tag handling, channels, corrections, withdrawal, supersession and archival required before any OBDIA artifact is distributed or represented as published. |
 | **Scope** | Private and public releases, release candidates, source and documentation bundles, diagrams, demonstrations, laboratory packages, generated artifacts, tags, changelogs, manifests, validation evidence, corrections, withdrawals and archives within Knowledge Pack 01–30. |
-| **Dependencies** | `01_CANONICAL_PROJECT_DEFINITION.md`; `MASTER_DOCUMENTATION_CONSTITUTION.md`; `03_RESEARCH_AND_SOURCE_POLICY.md`; `04_PORTFOLIO_AND_PUBLICATION_POLICY.md`; `09_GOVERNANCE_MODEL.md`; `11_DOCUMENTATION_STANDARD.md`; `12_IMPLEMENTATION_POLICY.md`; `13_REPOSITORY_STATE_MODEL.md`; `14_TERMINOLOGY_AND_NAMING.md`; forward dependencies `22_TESTING_STANDARD.md`, `24_REPOSITORY_STRUCTURE_STANDARD.md`, `25_DOCUMENT_VERSIONING_POLICY.md` and `30_COMPLIANCE_MAPPING_POLICY.md` |
+| **Dependencies** | `01_CANONICAL_PROJECT_DEFINITION.md`; `MASTER_DOCUMENTATION_CONSTITUTION.md`; `03_RESEARCH_AND_SOURCE_POLICY.md`; `04_PORTFOLIO_AND_PUBLICATION_POLICY.md`; `09_GOVERNANCE_MODEL.md`; `11_DOCUMENTATION_STANDARD.md`; `12_IMPLEMENTATION_POLICY.md`; `13_REPOSITORY_STATE_MODEL.md`; `14_TERMINOLOGY_AND_NAMING.md`; forward dependencies `22_TESTING_STANDARD.md`, `24_GITHUB_REPOSITORY_STANDARD.md`, `25_DOCUMENT_VERSIONING_POLICY.md` and `30_COMPLIANCE_MAPPING_BASELINE.md` |
 | **Normative References** | `OBDIA-CANON-001`; `OBDIA-CONST-001`; `OBDIA-RES-001`; `OBDIA-PUB-001`; `OBDIA-GOV-001`; `OBDIA-DOC-001`; `OBDIA-IMP-001`; `OBDIA-STATE-001`; `OBDIA-NAME-001` |
 | **Cross-References** | Documents 16–30; accepted ADRs; threat models; release manifests; validation records; risk and exception records; correction, withdrawal, supersession and archive records |
 | **Assumptions** | The repository is an independent research and engineering project. Public distribution is optional and shall occur only after an explicit release decision for an exact artifact set. |
@@ -494,3 +494,4 @@ Version 1.0.0 consolidates the existing Release and Publication Policy without e
 | Version | Date | Status | Authority / Owner | Change |
 |---|---|---|---|---|
 | 1.0.0 | 2026-08-05 | Draft | Release Reviewer; approval reserved to Project Founder | Constitutional consolidation of the original release checklist: preserved all original controls and implementation-transparency rule; added complete release mechanics, evidence, integrity, correction, withdrawal, supersession, archival, validation and change control. |
+| 1.0.1 | 2026-08-06 | Draft | Release Reviewer; approval reserved to Project Founder | Reconciled obsolete forward-dependency filenames with the final canonical Knowledge Pack 01–30 filenames; no requirement text, authority, lifecycle status, implementation state or validation claim changed. |
