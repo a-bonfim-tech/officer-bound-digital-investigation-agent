@@ -4,7 +4,7 @@
 |---|---|
 | **Document ID** | OBDIA-SEC-001 |
 | **Title** | Security Architecture Baseline |
-| **Version** | 1.0.0 |
+| **Version** | 1.0.1 |
 | **Status** | Draft |
 | **Classification** | Normative |
 | **Authority** | Project Founder |
@@ -13,7 +13,7 @@
 | **Effective Date** | Not applicable while Draft |
 | **Purpose** | Establish mandatory security architecture objectives, domains, boundaries, controls, ownership, failure behavior, containment, validation and traceability for OBDIA. |
 | **Scope** | Governance, identity, delegation, authorization, model and runtime, connectors and tools, storage, network, evidence, audit, monitoring, supply chain, implementation, testing, release and controlled research environments within Knowledge Pack 01–30. |
-| **Dependencies** | `01_CANONICAL_PROJECT_DEFINITION.md`; `MASTER_DOCUMENTATION_CONSTITUTION.md`; `05_ARCHITECTURE_PRINCIPLES.md`; `06_IDENTITY_AND_DELEGATION_MODEL.md`; `07_THREAT_MODEL_BASELINE.md`; `08_TRUST_MODEL.md`; `09_GOVERNANCE_MODEL.md`; `10_ADR_POLICY.md`; `11_DOCUMENTATION_STANDARD.md`; `12_IMPLEMENTATION_POLICY.md`; `13_REPOSITORY_STATE_MODEL.md`; `14_TERMINOLOGY_AND_NAMING.md`; `15_RELEASE_AND_PUBLICATION_POLICY.md`; forward dependencies `17_AUTHORIZATION_MODEL.md`, `18_EVIDENCE_MODEL.md`, `19_AGENT_LIFECYCLE_MODEL.md`, `20_CONNECTOR_SECURITY_POLICY.md`, `22_TESTING_STANDARD.md`, `26_AI_RISK_REGISTER.md` and `30_COMPLIANCE_MAPPING_POLICY.md` |
+| **Dependencies** | `01_CANONICAL_PROJECT_DEFINITION.md`; `MASTER_DOCUMENTATION_CONSTITUTION.md`; `05_ARCHITECTURE_PRINCIPLES.md`; `06_IDENTITY_AND_DELEGATION_MODEL.md`; `07_THREAT_MODEL_BASELINE.md`; `08_TRUST_MODEL.md`; `09_GOVERNANCE_MODEL.md`; `10_ADR_POLICY.md`; `11_DOCUMENTATION_STANDARD.md`; `12_IMPLEMENTATION_POLICY.md`; `13_REPOSITORY_STATE_MODEL.md`; `14_TERMINOLOGY_AND_NAMING.md`; `15_RELEASE_AND_PUBLICATION_POLICY.md`; forward dependencies `17_AUTHORIZATION_MODEL.md`, `18_EVIDENCE_MODEL.md`, `19_AGENT_LIFECYCLE_MODEL.md`, `20_CONNECTOR_SECURITY_POLICY.md`, `22_TESTING_STANDARD.md`, `26_AI_RISK_REGISTER.md` and `30_COMPLIANCE_MAPPING_BASELINE.md` |
 | **Normative References** | `OBDIA-CANON-001`; `OBDIA-CONST-001`; `OBDIA-ARCH-001`; `OBDIA-ID-001`; `OBDIA-TM-001`; `OBDIA-TRUST-001`; `OBDIA-GOV-001`; `OBDIA-ADR-001`; `OBDIA-DOC-001`; `OBDIA-IMP-001`; `OBDIA-STATE-001`; `OBDIA-NAME-001`; `OBDIA-REL-001` |
 | **Cross-References** | Documents 17–30; accepted ADRs; threat models; authorization policies; evidence records; risk and exception records; implementation, validation, incident and release evidence |
 | **Assumptions** | The project is an independent defensive research architecture using synthetic, simulated, testnet, mock, local-laboratory, lawful public, archived-authorized or otherwise explicitly authorized resources. |
@@ -617,3 +617,4 @@ Version 1.0.0 consolidates the two existing Security Architecture Baseline varia
 | Version | Date | Status | Authority / Owner | Change |
 |---|---|---|---|---|
 | 1.0.0 | 2026-08-05 | Draft | Security Reviewer; approval reserved to Project Founder | Constitutional consolidation of both legacy baselines: preserved all domains and mandatory controls; resolved conflicting status; added enforceable security architecture, validation, containment, risk and traceability requirements. |
+| 1.0.1 | 2026-08-06 | Draft | Security Reviewer; approval reserved to Project Founder | Reconciled obsolete forward-dependency filenames with the final canonical Knowledge Pack 01–30 filenames; no requirement text, authority, lifecycle status, implementation state or validation claim changed. |

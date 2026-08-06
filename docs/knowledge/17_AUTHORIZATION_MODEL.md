@@ -4,7 +4,7 @@
 |---|---|
 | **Document ID** | OBDIA-AUTH-001 |
 | **Title** | Authorization Model |
-| **Version** | 1.0.0 |
+| **Version** | 1.0.1 |
 | **Status** | Draft |
 | **Classification** | Normative |
 | **Authority** | Project Founder |
@@ -13,7 +13,7 @@
 | **Effective Date** | Not applicable while Draft |
 | **Purpose** | Define the authoritative OBDIA authorization object, contextual inputs, policy-decision and enforcement responsibilities, evaluation sequence, decision outcomes, human-approval triggers, obligations, revocation, failure behavior, audit evidence and validation requirements. |
 | **Scope** | Human officers, institutionally issued agents, workloads, sessions, tools, connectors, models, data, evidence, repositories, administrative operations and controlled research environments within Knowledge Pack 01–30. |
-| **Dependencies** | `01_CANONICAL_PROJECT_DEFINITION.md`; `MASTER_DOCUMENTATION_CONSTITUTION.md`; `05_ARCHITECTURE_PRINCIPLES.md`; `06_IDENTITY_AND_DELEGATION_MODEL.md`; `07_THREAT_MODEL_BASELINE.md`; `08_TRUST_MODEL.md`; `09_GOVERNANCE_MODEL.md`; `10_ADR_POLICY.md`; `11_DOCUMENTATION_STANDARD.md`; `12_IMPLEMENTATION_POLICY.md`; `13_REPOSITORY_STATE_MODEL.md`; `14_TERMINOLOGY_AND_NAMING.md`; `16_SECURITY_ARCHITECTURE_BASELINE.md`; forward dependencies `18_EVIDENCE_MODEL.md`, `19_AGENT_LIFECYCLE_MODEL.md`, `20_CONNECTOR_SECURITY_POLICY.md`, `22_TESTING_STANDARD.md`, `26_AI_RISK_REGISTER.md` and `30_COMPLIANCE_MAPPING_POLICY.md` |
+| **Dependencies** | `01_CANONICAL_PROJECT_DEFINITION.md`; `MASTER_DOCUMENTATION_CONSTITUTION.md`; `05_ARCHITECTURE_PRINCIPLES.md`; `06_IDENTITY_AND_DELEGATION_MODEL.md`; `07_THREAT_MODEL_BASELINE.md`; `08_TRUST_MODEL.md`; `09_GOVERNANCE_MODEL.md`; `10_ADR_POLICY.md`; `11_DOCUMENTATION_STANDARD.md`; `12_IMPLEMENTATION_POLICY.md`; `13_REPOSITORY_STATE_MODEL.md`; `14_TERMINOLOGY_AND_NAMING.md`; `16_SECURITY_ARCHITECTURE_BASELINE.md`; forward dependencies `18_EVIDENCE_MODEL.md`, `19_AGENT_LIFECYCLE_MODEL.md`, `20_CONNECTOR_SECURITY_POLICY.md`, `22_TESTING_STANDARD.md`, `26_AI_RISK_REGISTER.md` and `30_COMPLIANCE_MAPPING_BASELINE.md` |
 | **Normative References** | `OBDIA-CANON-001`; `OBDIA-CONST-001`; `OBDIA-ARCH-001`; `OBDIA-ID-001`; `OBDIA-TM-001`; `OBDIA-TRUST-001`; `OBDIA-GOV-001`; `OBDIA-ADR-001`; `OBDIA-DOC-001`; `OBDIA-IMP-001`; `OBDIA-STATE-001`; `OBDIA-NAME-001`; `OBDIA-SEC-001` |
 | **Cross-References** | Documents 18–30; accepted ADRs; policy bundles; delegation artifacts; identity, trust, risk, evidence, audit, implementation, testing, incident and release records |
 | **Assumptions** | Authorization is evaluated for explicitly identified operations using current identity, delegation, policy, trust and contextual evidence. No operation is authorized merely because it is technically possible or requested by a model. |
@@ -854,3 +854,4 @@ Version 1.0.0 consolidates the two existing Authorization Model variants without
 | Version | Date | Status | Authority / Owner | Change |
 |---|---|---|---|---|
 | 1.0.0 | 2026-08-05 | Draft | Security Reviewer; approval reserved to Project Founder | Constitutional consolidation of both legacy authorization outlines: preserved all decision inputs, explicit/revocable/auditable behavior and default deny; added complete authorization object, components, evaluation, enforcement, approval, revocation, audit, failure, testing and traceability requirements. |
+| 1.0.1 | 2026-08-06 | Draft | Security Reviewer; approval reserved to Project Founder | Reconciled obsolete forward-dependency filenames with the final canonical Knowledge Pack 01–30 filenames; no requirement text, authority, lifecycle status, implementation state or validation claim changed. |

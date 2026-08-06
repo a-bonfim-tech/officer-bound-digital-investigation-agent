@@ -4,7 +4,7 @@
 |---|---|
 | **Document ID** | OBDIA-EVID-001 |
 | **Title** | Evidence Model |
-| **Version** | 1.0.0 |
+| **Version** | 1.0.1 |
 | **Status** | Draft |
 | **Classification** | Normative |
 | **Authority** | Project Founder |
@@ -13,7 +13,7 @@
 | **Effective Date** | Not applicable while Draft |
 | **Purpose** | Define the authoritative OBDIA evidence object, event, provenance, integrity, custody, derivation, access, export, retention, correction, quarantine, validation and audit requirements. |
 | **Scope** | Digital evidence, source records, acquired artifacts, derived artifacts, analytical outputs, collection events, custody events, verification events, transformations, exports, evidence packages, storage, access, retention and controlled demonstrations within Knowledge Pack 01–30. |
-| **Dependencies** | `01_CANONICAL_PROJECT_DEFINITION.md`; `MASTER_DOCUMENTATION_CONSTITUTION.md`; `02_PROJECT_GLOSSARY.md`; `05_ARCHITECTURE_PRINCIPLES.md`; `06_IDENTITY_AND_DELEGATION_MODEL.md`; `07_THREAT_MODEL_BASELINE.md`; `08_TRUST_MODEL.md`; `09_GOVERNANCE_MODEL.md`; `10_ADR_POLICY.md`; `11_DOCUMENTATION_STANDARD.md`; `12_IMPLEMENTATION_POLICY.md`; `13_REPOSITORY_STATE_MODEL.md`; `14_TERMINOLOGY_AND_NAMING.md`; `16_SECURITY_ARCHITECTURE_BASELINE.md`; `17_AUTHORIZATION_MODEL.md`; forward dependencies `19_AGENT_LIFECYCLE_MODEL.md`, `20_CONNECTOR_SECURITY_POLICY.md`, `22_TESTING_STANDARD.md`, `23_DIAGRAM_STANDARD.md`, `24_REPOSITORY_STRUCTURE_STANDARD.md`, `25_DOCUMENT_VERSIONING_POLICY.md`, `26_AI_RISK_REGISTER.md`, `27_RISK_ASSESSMENT_METHOD.md`, `28_EXCEPTION_MANAGEMENT_POLICY.md`, `29_CHANGE_CONTROL_POLICY.md` and `30_COMPLIANCE_MAPPING_POLICY.md` |
+| **Dependencies** | `01_CANONICAL_PROJECT_DEFINITION.md`; `MASTER_DOCUMENTATION_CONSTITUTION.md`; `02_PROJECT_GLOSSARY.md`; `05_ARCHITECTURE_PRINCIPLES.md`; `06_IDENTITY_AND_DELEGATION_MODEL.md`; `07_THREAT_MODEL_BASELINE.md`; `08_TRUST_MODEL.md`; `09_GOVERNANCE_MODEL.md`; `10_ADR_POLICY.md`; `11_DOCUMENTATION_STANDARD.md`; `12_IMPLEMENTATION_POLICY.md`; `13_REPOSITORY_STATE_MODEL.md`; `14_TERMINOLOGY_AND_NAMING.md`; `16_SECURITY_ARCHITECTURE_BASELINE.md`; `17_AUTHORIZATION_MODEL.md`; forward dependencies `19_AGENT_LIFECYCLE_MODEL.md`, `20_CONNECTOR_SECURITY_POLICY.md`, `22_TESTING_STANDARD.md`, `23_DIAGRAM_STANDARD.md`, `24_GITHUB_REPOSITORY_STANDARD.md`, `25_DOCUMENT_VERSIONING_POLICY.md`, `26_AI_RISK_REGISTER.md`, `27_RESEARCH_BACKLOG.md`, `28_ASSUMPTIONS_REGISTER.md`, `29_DECISION_LOG_POLICY.md` and `30_COMPLIANCE_MAPPING_BASELINE.md` |
 | **Normative References** | `OBDIA-CANON-001`; `OBDIA-CONST-001`; `OBDIA-GLOSS-001`; `OBDIA-ARCH-001`; `OBDIA-ID-001`; `OBDIA-TM-001`; `OBDIA-TRUST-001`; `OBDIA-GOV-001`; `OBDIA-ADR-001`; `OBDIA-DOC-001`; `OBDIA-IMP-001`; `OBDIA-STATE-001`; `OBDIA-NAME-001`; `OBDIA-SEC-001`; `OBDIA-AUTH-001` |
 | **Cross-References** | Documents 19–30; accepted ADRs; authorization decisions; connector records; acquisition records; custody records; storage records; validation packages; incident, risk, exception, change and release records |
 | **Assumptions** | Evidence handling in this repository is demonstrated through synthetic, simulated, testnet, mock, local-laboratory, lawful public, archived-authorized or otherwise explicitly authorized resources. |
@@ -1197,3 +1197,4 @@ Version 1.0.0 consolidates the two existing Evidence Model variants without expa
 | Version | Date | Status | Authority / Owner | Change |
 |---|---|---|---|---|
 | 1.0.0 | 2026-08-05 | Draft | Security Reviewer; approval reserved to Project Founder | Constitutional consolidation of both legacy evidence outlines: preserved all original fields; clarified confidence; added complete object, event, provenance, integrity, custody, derivation, access, export, retention, quarantine, validation and traceability requirements. |
+| 1.0.1 | 2026-08-06 | Draft | Security Reviewer; approval reserved to Project Founder | Reconciled obsolete forward-dependency filenames with the final canonical Knowledge Pack 01–30 filenames; no requirement text, authority, lifecycle status, implementation state or validation claim changed. |
