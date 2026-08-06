@@ -1,0 +1,354 @@
+# Candidate.2 Wave 1 Cycle Review Preparation
+
+| Field | Value |
+|---|---|
+| Repository commit | `406d53c38811f7be6e9143513f2f37d7e17e0414` |
+| Repository tree | `c8cd0682bab2f7c60d5125e918193bf728d021da` |
+| Review wave | `W1-CYCLE-REVIEW` |
+| Priority | `P1` |
+| Cycle components | `2` |
+| Human review items | `247` |
+| Human disposition | **REQUIRED** |
+| Baseline freeze | **BLOCKED** |
+
+## Review Boundary
+
+This preparation package identifies the cycle-related review population. It does not approve, reject or resolve any dependency.
+
+## SEM-CYCLE-01
+
+Review items: `5`
+
+### Members
+
+- `OBDIA-GLOSS-001`
+- `OBDIA-PUB-001`
+- `OBDIA-RES-001`
+
+### Paths
+
+- `docs/knowledge/02_PROJECT_GLOSSARY.md`
+- `docs/knowledge/03_RESEARCH_AND_SOURCE_POLICY.md`
+- `docs/knowledge/04_PORTFOLIO_AND_PUBLICATION_POLICY.md`
+
+### Review Items
+
+| Review ID | Source | Relation | Target | Direction | Disposition |
+|---|---|---|---|---|---|
+| `SEM-EDGE-0004` | `OBDIA-GLOSS-001` | Dependencies; Normative References | `OBDIA-RES-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0007` | `OBDIA-RES-001` | Dependencies; Normative References | `OBDIA-GLOSS-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0008` | `OBDIA-RES-001` | Cross-References | `OBDIA-PUB-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0011` | `OBDIA-PUB-001` | Dependencies; Normative References | `OBDIA-GLOSS-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0012` | `OBDIA-PUB-001` | Dependencies; Normative References | `OBDIA-RES-001` | BACKWARD | PENDING HUMAN REVIEW |
+
+## SEM-CYCLE-02
+
+Review items: `242`
+
+### Members
+
+- `OBDIA-AGENT-001`
+- `OBDIA-ASM-001`
+- `OBDIA-AUTH-001`
+- `OBDIA-CODE-001`
+- `OBDIA-COMP-001`
+- `OBDIA-CONN-001`
+- `OBDIA-DEC-001`
+- `OBDIA-DIAG-001`
+- `OBDIA-EVID-001`
+- `OBDIA-GH-001`
+- `OBDIA-IMP-001`
+- `OBDIA-NAME-001`
+- `OBDIA-REL-001`
+- `OBDIA-RISK-001`
+- `OBDIA-RSCH-001`
+- `OBDIA-SEC-001`
+- `OBDIA-STATE-001`
+- `OBDIA-TEST-001`
+- `OBDIA-VER-001`
+
+### Paths
+
+- `docs/knowledge/12_IMPLEMENTATION_POLICY.md`
+- `docs/knowledge/13_REPOSITORY_STATE_MODEL.md`
+- `docs/knowledge/14_TERMINOLOGY_AND_NAMING.md`
+- `docs/knowledge/15_RELEASE_AND_PUBLICATION_POLICY.md`
+- `docs/knowledge/16_SECURITY_ARCHITECTURE_BASELINE.md`
+- `docs/knowledge/17_AUTHORIZATION_MODEL.md`
+- `docs/knowledge/18_EVIDENCE_MODEL.md`
+- `docs/knowledge/19_AGENT_LIFECYCLE_MODEL.md`
+- `docs/knowledge/20_CONNECTOR_SECURITY_POLICY.md`
+- `docs/knowledge/21_SECURE_CODING_STANDARD.md`
+- `docs/knowledge/22_TESTING_STANDARD.md`
+- `docs/knowledge/23_DIAGRAM_STANDARD.md`
+- `docs/knowledge/24_GITHUB_REPOSITORY_STANDARD.md`
+- `docs/knowledge/25_DOCUMENT_VERSIONING_POLICY.md`
+- `docs/knowledge/26_AI_RISK_REGISTER.md`
+- `docs/knowledge/27_RESEARCH_BACKLOG.md`
+- `docs/knowledge/28_ASSUMPTIONS_REGISTER.md`
+- `docs/knowledge/29_DECISION_LOG_POLICY.md`
+- `docs/knowledge/30_COMPLIANCE_MAPPING_BASELINE.md`
+
+### Review Items
+
+| Review ID | Source | Relation | Target | Direction | Disposition |
+|---|---|---|---|---|---|
+| `SEM-EDGE-0072` | `OBDIA-IMP-001` | Dependencies | `OBDIA-SEC-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0073` | `OBDIA-IMP-001` | Dependencies | `OBDIA-AUTH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0074` | `OBDIA-IMP-001` | Dependencies | `OBDIA-EVID-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0075` | `OBDIA-IMP-001` | Dependencies | `OBDIA-CONN-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0080` | `OBDIA-STATE-001` | Dependencies | `OBDIA-VER-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0086` | `OBDIA-NAME-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0087` | `OBDIA-NAME-001` | Dependencies | `OBDIA-VER-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0094` | `OBDIA-REL-001` | Dependencies; Normative References | `OBDIA-IMP-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0095` | `OBDIA-REL-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0096` | `OBDIA-REL-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0097` | `OBDIA-REL-001` | Dependencies | `OBDIA-TEST-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0098` | `OBDIA-REL-001` | Dependencies | `OBDIA-GH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0099` | `OBDIA-REL-001` | Dependencies | `OBDIA-VER-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0100` | `OBDIA-REL-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0110` | `OBDIA-SEC-001` | Dependencies; Normative References | `OBDIA-IMP-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0111` | `OBDIA-SEC-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0112` | `OBDIA-SEC-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0113` | `OBDIA-SEC-001` | Dependencies; Normative References | `OBDIA-REL-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0114` | `OBDIA-SEC-001` | Dependencies | `OBDIA-AUTH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0115` | `OBDIA-SEC-001` | Dependencies | `OBDIA-EVID-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0116` | `OBDIA-SEC-001` | Dependencies | `OBDIA-AGENT-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0117` | `OBDIA-SEC-001` | Dependencies | `OBDIA-CONN-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0118` | `OBDIA-SEC-001` | Dependencies | `OBDIA-TEST-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0119` | `OBDIA-SEC-001` | Dependencies | `OBDIA-RISK-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0120` | `OBDIA-SEC-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0130` | `OBDIA-AUTH-001` | Dependencies; Normative References | `OBDIA-IMP-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0131` | `OBDIA-AUTH-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0132` | `OBDIA-AUTH-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0133` | `OBDIA-AUTH-001` | Dependencies; Normative References | `OBDIA-SEC-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0134` | `OBDIA-AUTH-001` | Dependencies | `OBDIA-EVID-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0135` | `OBDIA-AUTH-001` | Dependencies | `OBDIA-AGENT-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0136` | `OBDIA-AUTH-001` | Dependencies | `OBDIA-CONN-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0137` | `OBDIA-AUTH-001` | Dependencies | `OBDIA-TEST-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0138` | `OBDIA-AUTH-001` | Dependencies | `OBDIA-RISK-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0139` | `OBDIA-AUTH-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0150` | `OBDIA-EVID-001` | Dependencies; Normative References | `OBDIA-IMP-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0151` | `OBDIA-EVID-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0152` | `OBDIA-EVID-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0153` | `OBDIA-EVID-001` | Dependencies; Normative References | `OBDIA-SEC-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0154` | `OBDIA-EVID-001` | Dependencies; Normative References | `OBDIA-AUTH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0155` | `OBDIA-EVID-001` | Dependencies | `OBDIA-AGENT-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0156` | `OBDIA-EVID-001` | Dependencies | `OBDIA-CONN-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0157` | `OBDIA-EVID-001` | Dependencies | `OBDIA-TEST-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0158` | `OBDIA-EVID-001` | Dependencies | `OBDIA-DIAG-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0159` | `OBDIA-EVID-001` | Dependencies | `OBDIA-GH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0160` | `OBDIA-EVID-001` | Dependencies | `OBDIA-VER-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0161` | `OBDIA-EVID-001` | Dependencies | `OBDIA-RISK-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0162` | `OBDIA-EVID-001` | Dependencies | `OBDIA-RSCH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0163` | `OBDIA-EVID-001` | Dependencies | `OBDIA-ASM-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0164` | `OBDIA-EVID-001` | Dependencies | `OBDIA-DEC-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0165` | `OBDIA-EVID-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0175` | `OBDIA-AGENT-001` | Dependencies; Normative References | `OBDIA-IMP-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0176` | `OBDIA-AGENT-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0177` | `OBDIA-AGENT-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0178` | `OBDIA-AGENT-001` | Dependencies; Normative References | `OBDIA-SEC-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0179` | `OBDIA-AGENT-001` | Dependencies; Normative References | `OBDIA-AUTH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0180` | `OBDIA-AGENT-001` | Dependencies; Normative References | `OBDIA-EVID-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0181` | `OBDIA-AGENT-001` | Dependencies | `OBDIA-CONN-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0182` | `OBDIA-AGENT-001` | Dependencies | `OBDIA-CODE-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0183` | `OBDIA-AGENT-001` | Dependencies | `OBDIA-TEST-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0184` | `OBDIA-AGENT-001` | Dependencies | `OBDIA-GH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0185` | `OBDIA-AGENT-001` | Dependencies | `OBDIA-VER-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0186` | `OBDIA-AGENT-001` | Dependencies | `OBDIA-RISK-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0187` | `OBDIA-AGENT-001` | Dependencies | `OBDIA-RSCH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0188` | `OBDIA-AGENT-001` | Dependencies | `OBDIA-ASM-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0189` | `OBDIA-AGENT-001` | Dependencies | `OBDIA-DEC-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0190` | `OBDIA-AGENT-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0200` | `OBDIA-CONN-001` | Dependencies; Normative References | `OBDIA-IMP-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0201` | `OBDIA-CONN-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0202` | `OBDIA-CONN-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0203` | `OBDIA-CONN-001` | Dependencies; Normative References | `OBDIA-REL-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0204` | `OBDIA-CONN-001` | Dependencies; Normative References | `OBDIA-SEC-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0205` | `OBDIA-CONN-001` | Dependencies; Normative References | `OBDIA-AUTH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0206` | `OBDIA-CONN-001` | Dependencies; Normative References | `OBDIA-EVID-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0207` | `OBDIA-CONN-001` | Dependencies; Normative References | `OBDIA-AGENT-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0208` | `OBDIA-CONN-001` | Dependencies | `OBDIA-CODE-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0209` | `OBDIA-CONN-001` | Dependencies | `OBDIA-TEST-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0210` | `OBDIA-CONN-001` | Dependencies | `OBDIA-GH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0211` | `OBDIA-CONN-001` | Dependencies | `OBDIA-VER-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0212` | `OBDIA-CONN-001` | Dependencies | `OBDIA-RISK-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0213` | `OBDIA-CONN-001` | Dependencies | `OBDIA-RSCH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0214` | `OBDIA-CONN-001` | Dependencies | `OBDIA-ASM-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0215` | `OBDIA-CONN-001` | Dependencies | `OBDIA-DEC-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0216` | `OBDIA-CONN-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0226` | `OBDIA-CODE-001` | Dependencies; Normative References | `OBDIA-IMP-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0227` | `OBDIA-CODE-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0228` | `OBDIA-CODE-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0229` | `OBDIA-CODE-001` | Dependencies; Normative References | `OBDIA-REL-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0230` | `OBDIA-CODE-001` | Dependencies; Normative References | `OBDIA-SEC-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0231` | `OBDIA-CODE-001` | Dependencies; Normative References | `OBDIA-AUTH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0232` | `OBDIA-CODE-001` | Dependencies; Normative References | `OBDIA-EVID-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0233` | `OBDIA-CODE-001` | Dependencies; Normative References | `OBDIA-AGENT-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0234` | `OBDIA-CODE-001` | Dependencies; Normative References | `OBDIA-CONN-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0235` | `OBDIA-CODE-001` | Dependencies | `OBDIA-TEST-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0236` | `OBDIA-CODE-001` | Dependencies | `OBDIA-GH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0237` | `OBDIA-CODE-001` | Dependencies | `OBDIA-VER-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0238` | `OBDIA-CODE-001` | Dependencies | `OBDIA-RISK-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0239` | `OBDIA-CODE-001` | Dependencies | `OBDIA-RSCH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0240` | `OBDIA-CODE-001` | Dependencies | `OBDIA-ASM-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0241` | `OBDIA-CODE-001` | Dependencies | `OBDIA-DEC-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0242` | `OBDIA-CODE-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0247` | `OBDIA-TEST-001` | Dependencies; Normative References | `OBDIA-IMP-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0248` | `OBDIA-TEST-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0249` | `OBDIA-TEST-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0250` | `OBDIA-TEST-001` | Dependencies; Normative References | `OBDIA-REL-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0251` | `OBDIA-TEST-001` | Dependencies; Normative References | `OBDIA-SEC-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0252` | `OBDIA-TEST-001` | Dependencies; Normative References | `OBDIA-AUTH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0253` | `OBDIA-TEST-001` | Dependencies; Normative References | `OBDIA-EVID-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0254` | `OBDIA-TEST-001` | Dependencies; Normative References | `OBDIA-AGENT-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0255` | `OBDIA-TEST-001` | Dependencies; Normative References | `OBDIA-CONN-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0256` | `OBDIA-TEST-001` | Dependencies; Normative References | `OBDIA-CODE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0257` | `OBDIA-TEST-001` | Dependencies | `OBDIA-DIAG-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0258` | `OBDIA-TEST-001` | Dependencies | `OBDIA-GH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0259` | `OBDIA-TEST-001` | Dependencies | `OBDIA-VER-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0260` | `OBDIA-TEST-001` | Dependencies | `OBDIA-RISK-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0261` | `OBDIA-TEST-001` | Dependencies | `OBDIA-RSCH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0262` | `OBDIA-TEST-001` | Dependencies | `OBDIA-ASM-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0263` | `OBDIA-TEST-001` | Dependencies | `OBDIA-DEC-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0264` | `OBDIA-TEST-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0273` | `OBDIA-DIAG-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0274` | `OBDIA-DIAG-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0275` | `OBDIA-DIAG-001` | Dependencies; Normative References | `OBDIA-SEC-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0276` | `OBDIA-DIAG-001` | Dependencies; Normative References | `OBDIA-AUTH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0277` | `OBDIA-DIAG-001` | Dependencies; Normative References | `OBDIA-EVID-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0278` | `OBDIA-DIAG-001` | Dependencies; Normative References | `OBDIA-AGENT-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0279` | `OBDIA-DIAG-001` | Dependencies; Normative References | `OBDIA-CONN-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0280` | `OBDIA-DIAG-001` | Dependencies; Normative References | `OBDIA-CODE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0281` | `OBDIA-DIAG-001` | Dependencies; Normative References | `OBDIA-TEST-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0282` | `OBDIA-DIAG-001` | Dependencies | `OBDIA-GH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0283` | `OBDIA-DIAG-001` | Dependencies | `OBDIA-VER-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0284` | `OBDIA-DIAG-001` | Dependencies | `OBDIA-DEC-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0285` | `OBDIA-DIAG-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0292` | `OBDIA-GH-001` | Dependencies; Normative References | `OBDIA-IMP-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0293` | `OBDIA-GH-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0294` | `OBDIA-GH-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0295` | `OBDIA-GH-001` | Dependencies; Normative References | `OBDIA-REL-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0296` | `OBDIA-GH-001` | Dependencies; Normative References | `OBDIA-SEC-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0297` | `OBDIA-GH-001` | Dependencies; Normative References | `OBDIA-EVID-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0298` | `OBDIA-GH-001` | Dependencies; Normative References | `OBDIA-CONN-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0299` | `OBDIA-GH-001` | Dependencies; Normative References | `OBDIA-CODE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0300` | `OBDIA-GH-001` | Dependencies; Normative References | `OBDIA-TEST-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0301` | `OBDIA-GH-001` | Dependencies; Normative References | `OBDIA-DIAG-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0302` | `OBDIA-GH-001` | Dependencies | `OBDIA-VER-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0303` | `OBDIA-GH-001` | Dependencies | `OBDIA-RISK-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0304` | `OBDIA-GH-001` | Dependencies | `OBDIA-RSCH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0305` | `OBDIA-GH-001` | Dependencies | `OBDIA-ASM-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0306` | `OBDIA-GH-001` | Dependencies | `OBDIA-DEC-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0307` | `OBDIA-GH-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0313` | `OBDIA-VER-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0314` | `OBDIA-VER-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0315` | `OBDIA-VER-001` | Dependencies; Normative References | `OBDIA-REL-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0316` | `OBDIA-VER-001` | Dependencies; Normative References | `OBDIA-EVID-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0317` | `OBDIA-VER-001` | Dependencies; Normative References | `OBDIA-TEST-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0318` | `OBDIA-VER-001` | Dependencies; Normative References | `OBDIA-DIAG-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0319` | `OBDIA-VER-001` | Dependencies; Normative References | `OBDIA-GH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0320` | `OBDIA-VER-001` | Dependencies | `OBDIA-RISK-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0321` | `OBDIA-VER-001` | Dependencies | `OBDIA-RSCH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0322` | `OBDIA-VER-001` | Dependencies | `OBDIA-ASM-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0323` | `OBDIA-VER-001` | Dependencies | `OBDIA-DEC-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0324` | `OBDIA-VER-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0331` | `OBDIA-RISK-001` | Dependencies; Normative References | `OBDIA-REL-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0332` | `OBDIA-RISK-001` | Dependencies; Normative References | `OBDIA-SEC-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0333` | `OBDIA-RISK-001` | Dependencies; Normative References | `OBDIA-AUTH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0334` | `OBDIA-RISK-001` | Dependencies; Normative References | `OBDIA-EVID-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0335` | `OBDIA-RISK-001` | Dependencies; Normative References | `OBDIA-AGENT-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0336` | `OBDIA-RISK-001` | Dependencies; Normative References | `OBDIA-CONN-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0337` | `OBDIA-RISK-001` | Dependencies; Normative References | `OBDIA-CODE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0338` | `OBDIA-RISK-001` | Dependencies; Normative References | `OBDIA-TEST-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0339` | `OBDIA-RISK-001` | Dependencies; Normative References | `OBDIA-GH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0340` | `OBDIA-RISK-001` | Dependencies; Normative References | `OBDIA-VER-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0341` | `OBDIA-RISK-001` | Dependencies | `OBDIA-RSCH-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0342` | `OBDIA-RISK-001` | Dependencies | `OBDIA-ASM-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0343` | `OBDIA-RISK-001` | Dependencies | `OBDIA-DEC-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0344` | `OBDIA-RISK-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0352` | `OBDIA-RSCH-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0353` | `OBDIA-RSCH-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0354` | `OBDIA-RSCH-001` | Dependencies; Normative References | `OBDIA-SEC-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0355` | `OBDIA-RSCH-001` | Dependencies; Normative References | `OBDIA-AUTH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0356` | `OBDIA-RSCH-001` | Dependencies; Normative References | `OBDIA-EVID-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0357` | `OBDIA-RSCH-001` | Dependencies; Normative References | `OBDIA-AGENT-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0358` | `OBDIA-RSCH-001` | Dependencies; Normative References | `OBDIA-CONN-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0359` | `OBDIA-RSCH-001` | Dependencies; Normative References | `OBDIA-CODE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0360` | `OBDIA-RSCH-001` | Dependencies; Normative References | `OBDIA-TEST-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0361` | `OBDIA-RSCH-001` | Dependencies; Normative References | `OBDIA-DIAG-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0362` | `OBDIA-RSCH-001` | Dependencies; Normative References | `OBDIA-GH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0363` | `OBDIA-RSCH-001` | Dependencies; Normative References | `OBDIA-VER-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0364` | `OBDIA-RSCH-001` | Dependencies; Normative References | `OBDIA-RISK-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0365` | `OBDIA-RSCH-001` | Dependencies | `OBDIA-ASM-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0366` | `OBDIA-RSCH-001` | Dependencies | `OBDIA-DEC-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0367` | `OBDIA-RSCH-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0377` | `OBDIA-ASM-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0378` | `OBDIA-ASM-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0379` | `OBDIA-ASM-001` | Dependencies; Normative References | `OBDIA-SEC-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0380` | `OBDIA-ASM-001` | Dependencies; Normative References | `OBDIA-AUTH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0381` | `OBDIA-ASM-001` | Dependencies; Normative References | `OBDIA-EVID-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0382` | `OBDIA-ASM-001` | Dependencies; Normative References | `OBDIA-AGENT-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0383` | `OBDIA-ASM-001` | Dependencies; Normative References | `OBDIA-CONN-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0384` | `OBDIA-ASM-001` | Dependencies; Normative References | `OBDIA-CODE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0385` | `OBDIA-ASM-001` | Dependencies; Normative References | `OBDIA-TEST-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0386` | `OBDIA-ASM-001` | Dependencies; Normative References | `OBDIA-DIAG-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0387` | `OBDIA-ASM-001` | Dependencies; Normative References | `OBDIA-GH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0388` | `OBDIA-ASM-001` | Dependencies; Normative References | `OBDIA-VER-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0389` | `OBDIA-ASM-001` | Dependencies; Normative References | `OBDIA-RISK-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0390` | `OBDIA-ASM-001` | Dependencies; Normative References | `OBDIA-RSCH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0391` | `OBDIA-ASM-001` | Dependencies | `OBDIA-DEC-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0392` | `OBDIA-ASM-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0403` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-IMP-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0404` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0405` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0406` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-REL-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0407` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-SEC-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0408` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-AUTH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0409` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-EVID-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0410` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-AGENT-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0411` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-CONN-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0412` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-CODE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0413` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-TEST-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0414` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-DIAG-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0415` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-GH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0416` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-VER-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0417` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-RISK-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0418` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-RSCH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0419` | `OBDIA-DEC-001` | Dependencies; Normative References | `OBDIA-ASM-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0420` | `OBDIA-DEC-001` | Dependencies | `OBDIA-COMP-001` | FORWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0431` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-IMP-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0432` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-STATE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0433` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-NAME-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0434` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-REL-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0435` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-SEC-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0436` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-AUTH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0437` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-EVID-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0438` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-AGENT-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0439` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-CONN-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0440` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-CODE-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0441` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-TEST-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0442` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-DIAG-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0443` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-GH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0444` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-VER-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0445` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-RISK-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0446` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-RSCH-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0447` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-ASM-001` | BACKWARD | PENDING HUMAN REVIEW |
+| `SEM-EDGE-0448` | `OBDIA-COMP-001` | Dependencies; Normative References | `OBDIA-DEC-001` | BACKWARD | PENDING HUMAN REVIEW |
+
+## Required Human Review Dimensions
+
+- Scope compatibility
+- Authority compatibility
+- Lifecycle consistency
+- Security impact
+- Privacy impact
+- Rights impact
+- Legal applicability
+- Normative appropriateness
+
+## Completion Boundary
+
+Wave 1 remains incomplete until every listed item has a named human reviewer, review date, disposition, rationale and evidence reference.
+
+Completion of Wave 1 does not automatically approve candidate.2 or authorize baseline freeze.
