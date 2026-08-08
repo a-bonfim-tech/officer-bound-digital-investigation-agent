@@ -4,7 +4,7 @@
 |---|---|
 | **Document ID** | OBDIA-GLOSS-001 |
 | **Title** | Project Glossary |
-| **Version** | 1.1.0 |
+| **Version** | 1.1.1 |
 | **Status** | Draft |
 | **Classification** | Normative |
 | **Authority** | Project Founder |
@@ -13,9 +13,9 @@
 | **Effective Date** | Not applicable while Draft |
 | **Purpose** | Establish the authoritative project terminology used across the OBDIA Enterprise Architecture Framework. |
 | **Scope** | Terminology governing the 01–30 Knowledge Pack, ADRs, repository documentation, specifications, diagrams, implementation, tests, evidence and research records. |
-| **Dependencies** | `01_CANONICAL_PROJECT_DEFINITION.md`; `MASTER_DOCUMENTATION_CONSTITUTION.md`; `03_RESEARCH_AND_SOURCE_POLICY.md` |
-| **Normative References** | `OBDIA-CANON-001`; `OBDIA-CONST-001`; `OBDIA-RES-001` |
-| **Cross-References** | Knowledge documents 03–30 and all lower-level terminology-dependent artifacts |
+| **Dependencies** | `01_CANONICAL_PROJECT_DEFINITION.md`; `MASTER_DOCUMENTATION_CONSTITUTION.md` |
+| **Normative References** | `OBDIA-CANON-001`; `OBDIA-CONST-001` |
+| **Cross-References** | `03_RESEARCH_AND_SOURCE_POLICY.md`; Knowledge documents 04–30 and all lower-level terminology-dependent artifacts |
 | **Assumptions** | English is the authoritative repository language for normative terms. Legal meaning may depend on jurisdiction and qualified review. |
 | **Constraints** | Definitions may not grant authority, expand project scope, replace legal advice, or weaken canonical security, privacy, ethics or human-accountability boundaries. |
 | **Security Considerations** | Ambiguous terminology can weaken authorization, evidence integrity, privacy controls and auditability; controlled vocabulary is therefore a security and governance control. |
@@ -401,3 +401,4 @@ Version 1.1.0 consolidates the existing glossary without changing the approved p
 |---|---|---|---|---|
 | 1.0.0 | Prior baseline | Initial Baseline | Project origin record | Original glossary containing 42 project definitions. |
 | 1.1.0 | 2026-08-05 | Draft | Documentation Authority; approval reserved to Project Founder | Constitutional consolidation: normalized metadata and lifecycle status, preserved original definitions, added governance rules, stable identifiers, controlled terminology procedures, validation criteria and limitations. |
+| 1.1.1 | 2026-08-08 | Draft | Documentation Authority; approval reserved to Project Founder | Human-ratified correction for `SEM-W1-ITEM-0001`: reclassified `OBDIA-RES-001` from dependency and normative reference to an explicit cross-reference; no project scope, document authority or glossary definitions changed. |
