@@ -1,0 +1,135 @@
+{
+  "delta": {
+    "added_edges": [],
+    "changed_relation_classifications": [
+      {
+        "new_relation_fields": [
+          "Cross-References"
+        ],
+        "old_relation_fields": [
+          "Dependencies",
+          "Normative References"
+        ],
+        "review_id": "SEM-EDGE-0004",
+        "source_identity": "OBDIA-GLOSS-001",
+        "target_identity": "OBDIA-RES-001"
+      }
+    ],
+    "cycle_membership_changed": false,
+    "raw_reference_delta": -1,
+    "removed_edges": [],
+    "structural_edge_delta": 0
+  },
+  "historical_inventory": {
+    "advisory_paths": 73,
+    "backward_edges": 322,
+    "cycle_components": 2,
+    "forward_edges": 96,
+    "governance_anchor_edges": 30,
+    "raw_relation_references": 800,
+    "reciprocal_edge_rows": 184,
+    "relation_field_counts": {
+      "Cross-References": 1,
+      "Dependencies": 447,
+      "Normative References": 352
+    },
+    "unique_structural_edges": 448
+  },
+  "limitations": [
+    "The Constitution is a supplemental governance source and is not Knowledge document 31.",
+    "Explicit Cross-References remain structural semantic relationships when they identify an internal document by filename or document ID.",
+    "Broad prose ranges such as 'Knowledge documents 04–30' are not expanded into individual edges.",
+    "The 73 advisory paths are retained from the historical review package because W1A changed relationship metadata rather than requirement text.",
+    "Machine regeneration does not replace accountable human review of the 242 remaining Wave 1 rows."
+  ],
+  "record": {
+    "baseline_freeze": "BLOCKED",
+    "candidate_baseline": "1.0.0-candidate.2",
+    "constitution_sha256": "ba013979fefd589ccfb505ea5fcbc2c9020ddd91df4c12f838683d83b7bf46bf",
+    "current_wave1_worklist_sha256": "b3fe64d2173da5fb70969583ac4c402cdd9867d0acd9103c676fca0e5087d5c9",
+    "historical_worklist_sha256": "c38b66f08b828edcb52605e31d80080c9d1f6f6c8ac2f7f306ffa3cd8102fa33",
+    "knowledge_document_31_created": false,
+    "knowledge_pack_documents": 30,
+    "record_id": "SEM-INV-REGEN-001",
+    "record_type": "Complete semantic inventory regeneration after W1A",
+    "record_version": "0.1.0",
+    "repository_commit": "efde0491fb0c0c49f3b4612fa0659855cbd221db",
+    "repository_tree": "145ce8321b9efac247f28c4138a5edc1ad847eca",
+    "semantic_source_documents": 31,
+    "status": "Draft",
+    "supplemental_governance_sources": 1,
+    "supplemental_source_id": "OBDIA-CONST-001"
+  },
+  "regenerated_inventory": {
+    "advisory_paths": 73,
+    "backward_edges": 322,
+    "cycle_components": 2,
+    "cycle_members": [
+      [
+        "OBDIA-GLOSS-001",
+        "OBDIA-PUB-001",
+        "OBDIA-RES-001"
+      ],
+      [
+        "OBDIA-AGENT-001",
+        "OBDIA-ASM-001",
+        "OBDIA-AUTH-001",
+        "OBDIA-CODE-001",
+        "OBDIA-COMP-001",
+        "OBDIA-CONN-001",
+        "OBDIA-DEC-001",
+        "OBDIA-DIAG-001",
+        "OBDIA-EVID-001",
+        "OBDIA-GH-001",
+        "OBDIA-IMP-001",
+        "OBDIA-NAME-001",
+        "OBDIA-REL-001",
+        "OBDIA-RISK-001",
+        "OBDIA-RSCH-001",
+        "OBDIA-SEC-001",
+        "OBDIA-STATE-001",
+        "OBDIA-TEST-001",
+        "OBDIA-VER-001"
+      ]
+    ],
+    "forward_edges": 96,
+    "governance_anchor_edges": 30,
+    "raw_relation_references": 799,
+    "reciprocal_edge_rows": 184,
+    "relation_field_counts": {
+      "Cross-References": 2,
+      "Dependencies": 446,
+      "Normative References": 351
+    },
+    "unique_structural_edges": 448
+  },
+  "source_scope": {
+    "numbered_knowledge_pack_documents": 30,
+    "semantic_source_documents": 31,
+    "supplemental_governance_sources": [
+      {
+        "document_id": "OBDIA-CONST-001",
+        "path": "docs/governance/MASTER_DOCUMENTATION_CONSTITUTION.md",
+        "role": "supplemental governance source"
+      }
+    ]
+  },
+  "validation": {
+    "approved_w1a_delta_reflected": true,
+    "complete_semantic_inventory_regeneration": "PASS",
+    "constitution_anchor_reproduced": true,
+    "cycle_structure_consistent": true,
+    "hybrid_metadata_parser": "PASS",
+    "knowledge_pack_complete": true,
+    "normative_dependency_removed": true,
+    "source_scope_validation": "PASS",
+    "structural_edge_set_preserved": true,
+    "wave1_completion": "BLOCKED"
+  },
+  "wave1_state": {
+    "baseline_freeze": "BLOCKED",
+    "pending_human_review_rows": 242,
+    "w1a_completed_rows": 5,
+    "wave_1_complete": false
+  }
+}
