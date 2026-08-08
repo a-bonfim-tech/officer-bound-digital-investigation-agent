@@ -1,0 +1,54 @@
+{
+  "record": {
+    "record_id": "SEM-W1-PROGRESS-001",
+    "record_version": "0.1.0",
+    "status": "Under Review",
+    "classification": "Wave 1 human cycle-review progress record",
+    "candidate_baseline": "1.0.0-candidate.2",
+    "review_wave": "W1-CYCLE-REVIEW",
+    "review_batch": "W1A-COMPONENT-01",
+    "source_repository_commit": "7f7dd59c83e53db75e879c60b69f902984cc539a",
+    "source_worklist": "docs/testing/KNOWLEDGE_PACK_WAVE_1_CYCLE_REVIEW_WORKLIST_CANDIDATE_2.csv",
+    "source_worklist_git_blob": "b2165f8502c28531e4010e0d249830c760cfbd3a",
+    "disposition_artifact": "docs/testing/KNOWLEDGE_PACK_WAVE_1_COMPONENT_01_REVIEW_DISPOSITIONS_CANDIDATE_2.csv",
+    "disposition_artifact_git_blob": "057417ef3a09c4acb9dc8e68551836cdbfa24f0a",
+    "reviewer": "a-bonfim-tech (Project Founder)",
+    "review_date": "2026-08-08",
+    "baseline_freeze": "BLOCKED"
+  },
+  "progress": {
+    "wave_review_items_total": 247,
+    "human_dispositions_recorded": 5,
+    "pending_human_review_items": 242,
+    "current_batch_items": 5,
+    "current_batch_completed": 5,
+    "current_batch_pending": 0,
+    "disposition_counts": {
+      "COMPATIBLE": 3,
+      "COMPATIBLE WITH CONDITIONS": 2
+    },
+    "next_batch": "W1B-COMPONENT-02-BATCH-01",
+    "next_batch_items": 25
+  },
+  "completed_items": [
+    "SEM-W1-ITEM-0001",
+    "SEM-W1-ITEM-0002",
+    "SEM-W1-ITEM-0003",
+    "SEM-W1-ITEM-0004",
+    "SEM-W1-ITEM-0005"
+  ],
+  "conditions": [
+    "OBDIA-GLOSS-001 controls project terminology.",
+    "OBDIA-RES-001 controls research, sources and claim discipline.",
+    "Neither OBDIA-GLOSS-001 nor OBDIA-RES-001 may use their reciprocal dependency to redefine, supersede or expand the other's normative domain.",
+    "Any conflict remains governed by 01_CANONICAL_PROJECT_DEFINITION.md and MASTER_DOCUMENTATION_CONSTITUTION.md."
+  ],
+  "boundaries": [
+    "This progress record does not modify Knowledge documents 02, 03 or 04.",
+    "No document correction or ADR is required by the five recorded dispositions alone.",
+    "Wave 1 is not complete.",
+    "Candidate 1.0.0-candidate.2 remains Draft and is not frozen.",
+    "Baseline freeze remains blocked while 242 Wave 1 items remain pending human review.",
+    "No implementation, control-effectiveness, release, certification, legal-compliance or institutional-adoption conclusion is created."
+  ]
+}
