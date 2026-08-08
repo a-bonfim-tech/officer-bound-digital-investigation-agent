@@ -1,0 +1,46 @@
+{
+  "boundaries": [
+    "Structural reciprocity may remain because Cross-References are part of the dependency graph.",
+    "Structural reciprocity does not recreate the removed normative dependency.",
+    "The historical Wave 1 worklist row remains evidence of the pre-correction candidate state and must not be silently rewritten.",
+    "Closure requires a separate governed validation and closure record."
+  ],
+  "post_correction_semantics": {
+    "current_relation_types": [
+      "Cross-References"
+    ],
+    "glossary_to_research_cross_reference": true,
+    "glossary_to_research_dependency": false,
+    "glossary_to_research_normative_reference": false,
+    "normative_reciprocity": false,
+    "research_to_glossary_dependency": true,
+    "research_to_glossary_normative_reference": true,
+    "structural_reciprocity": true
+  },
+  "pre_correction_semantics": {
+    "normative_relationship": true,
+    "worklist_relation_fields": [
+      "Dependencies",
+      "Normative References"
+    ]
+  },
+  "record": {
+    "ratification_record": "SEM-W1A-RAT-001",
+    "record_type": "SEM-W1-ITEM-0001 post-correction semantic validation",
+    "repository_commit": "d7570514e45b691dee58f5300dbcff43fd2ac5f5",
+    "repository_tree": "d262b2b628bd4ecf001187b833e9eb6577d32407",
+    "review_item": "SEM-W1-ITEM-0001",
+    "source_identity": "OBDIA-GLOSS-001",
+    "source_version": "1.1.1",
+    "target_identity": "OBDIA-RES-001"
+  },
+  "validation": {
+    "baseline_freeze": "BLOCKED",
+    "closure_eligibility": "ELIGIBLE_PENDING_GOVERNED_CLOSURE_RECORD",
+    "documentation_patch_integrity": "PASS",
+    "original_worklist_row_stale": true,
+    "ratified_objective_achieved": true,
+    "semantic_revalidation": "PASS",
+    "wave_1_complete": false
+  }
+}
