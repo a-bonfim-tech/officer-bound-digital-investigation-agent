@@ -31,8 +31,8 @@ Untrusted content -> typed request construction
 | Prompt injection | `TM-REQ-046`–`052`; `AI-RISK-006`, `007` | Untrusted-content boundary | Content cannot alter typed authority; AC-10–12 | No model in initial slice | BLOCKING |
 | Connector misuse/privilege expansion | `TM-REQ-048`; `CONN-REQ-206`–`235`; `AI-RISK-020` | Gate/mock | Allowlist and exact scope; AC-06/07 | Interface absent | BLOCKING |
 | Evidence/audit tampering | `TM-REQ-027`, `058`–`063`; `AI-RISK-012`, `028` | Evidence/audit | SHA-256, immutable links; AC-14–16 | Serialization pending | BLOCKING |
-| Replay/stale decision | Identity/delegation category; `AI-RISK-005` | Gate/clock | Validity, request ID, re-evaluation; AC-03/17 | Nonce design pending | BLOCKING |
-| Malformed context | `TM-REQ-022`; `AUTH-REQ-024` | Validator | Reject before evaluation; AC-09 | Schema pending | BLOCKING |
+| Replay/stale decision | `AUTH-REQ-012`, `AUTH-REQ-053`, `AUTH-REQ-207`; `IMP-REQ-081`; `AI-RISK-005` | Gate/clock | Distinct stale-context and duplicate-request denial/re-evaluation; AC-03/17 | Nonce design pending | BLOCKING |
+| Malformed context | `TM-REQ-022`; `AUTH-REQ-054`; `IMP-REQ-011` | Validator | Reject before evaluation; AC-09 | Schema pending | BLOCKING |
 | Compromised dependency | `TM-REQ-064`–`068`; `AI-RISK-024` | Toolchain | No runtime dependency by default; integrity review | Toolchain pending | BLOCKING |
 | Malicious connector result | `TM-REQ-017`, `047`; `AI-RISK-021` | Result boundary | Schema/size validation, no instruction execution | Result schema pending | BLOCKING |
 | Secret exposure | Supply-chain category; `AI-RISK-019` | Fixtures/repo | Synthetic-only and secret scan; AC-19/20 | Enforcement not tested | BLOCKING |

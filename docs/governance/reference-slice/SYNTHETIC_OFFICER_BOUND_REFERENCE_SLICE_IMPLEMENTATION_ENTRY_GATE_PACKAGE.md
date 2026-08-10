@@ -42,7 +42,7 @@ Rollback: revert/delete bounded artifacts through ordinary Git history to the pr
 
 | ID | Criterion / proposed test |
 |---|---|
-| `AC-01` | Valid synthetic officer+case+scope reaches mock; positive end-to-end fixture |
+| `AC-01` | A valid Synthetic Officer and Synthetic Case, valid Authorization Grant and valid Scoped Delegation are evaluated; the policy returns explicit `ALLOW`; the selected connector is allowlisted and mock-only; only after `ALLOW` the Synthetic Operation executes; only after that authorized operation an Evidence Envelope is generated; and the Audit/Provenance Record binds officer, case, authorization grant, scoped delegation/scope, policy decision, connector, operation and evidence |
 | `AC-02` | Missing authorization DENY; zero connector calls |
 | `AC-03` | Expired authorization DENY; injected clock |
 | `AC-04` | Officer mismatch DENY |
@@ -58,7 +58,7 @@ Rollback: revert/delete bounded artifacts through ordinary Git history to the pr
 | `AC-14` | Operation evidence only after authorized execution |
 | `AC-15` | Evidence modification detectable |
 | `AC-16` | Audit binds officer, case, operation, policy and mock connector |
-| `AC-17` | Replay/stale behavior re-evaluates or denies |
+| `AC-17` | Three distinct cases: a replayed request identifier is rejected with `DENY`, zero connector calls and zero operation execution; stale authorization context is re-evaluated and, unless a fresh explicit `ALLOW` is produced, results in `DENY`, zero connector calls and zero operation execution; authorization state `REVOKED` results in `DENY`, zero connector calls and zero operation execution; each case produces attributable denial/re-evaluation audit evidence |
 | `AC-18` | No real investigative infrastructure required |
 | `AC-19` | No production credential required |
 | `AC-20` | Fixture manifest proves all fixtures synthetic |
@@ -69,13 +69,13 @@ No tests or results exist.
 
 | Principle | Threat/risk | Security/auth requirements | Evidence requirements | AC | Proposed component |
 |---|---|---|---|---|---|
-| `AP-02`, `ARCH-REQ-032` | `TM-REQ-028`, `AI-RISK-002` | `ID-REQ-001`, `AUTH-REQ-001`, `024` | `EVID-REQ-011`, `023` | 04,11 | SyntheticOfficerIdentity, AuthorizationContext |
-| `AP-09` | `AI-RISK-004` | `IMP-REQ-011`, `AUTH-REQ-018`, `024` | `EVID-REQ-036`, `103` | 01–09 | PolicyEvaluator, AuthorizationGate |
-| `AP-11` | `TM-REQ-014`, `057`, `AI-RISK-014` | Case binding in `OBDIA-AUTH-001` | `EVID-REQ-033`, `100` | 05,12,13 | SyntheticCaseContext, case-scoped store abstraction |
-| `AP-13` | `TM-REQ-046`–`052`, `AI-RISK-006`, `007` | Model output cannot authorize | `EVID-REQ-079`, `080` | 10–12 | UntrustedContent, typed request builder |
+| `AP-02`, `ARCH-REQ-032` | `TM-REQ-028`, `AI-RISK-002` | `ID-REQ-001`, `ID-REQ-004`, `AUTH-REQ-001`, `AUTH-REQ-018` | `EVID-REQ-011`, `EVID-REQ-023` | 04,11 | SyntheticOfficerIdentity, AuthorizationContext |
+| `AP-09` | `AI-RISK-004` | `IMP-REQ-011`, `AUTH-REQ-004`, `AUTH-REQ-011`, `AUTH-REQ-012`, `AUTH-REQ-054` | `EVID-REQ-014`, `EVID-REQ-036`, `EVID-REQ-103` | 01–09 | PolicyEvaluator, AuthorizationGate |
+| `AP-11` | `TM-REQ-014`, `057`, `AI-RISK-014` | `AUTH-REQ-020`, `AUTH-REQ-031`, `AUTH-REQ-117` | `EVID-REQ-033`, `EVID-REQ-100` | 05,12,13 | SyntheticCaseContext, case-scoped store abstraction |
+| `AP-13` | `TM-REQ-046`–`052`, `AI-RISK-006`, `007` | `AUTH-REQ-007` | `EVID-REQ-079`, `080` | 10–12 | UntrustedContent, typed request builder |
 | `AP-07` | `AI-RISK-020` | `CONN-REQ-012`, `023`, `206`–`235` | `CONN-REQ-436`–`465` | 06,07 | MockConnector, allowlist |
 | `AP-08` | `TM-REQ-058`–`063`, `AI-RISK-012` | `EVID-REQ-013`, `014` | `EVID-REQ-025`–`060`, `205`–`220` | 14–16 | EvidenceEnvelope, AuditEvent, IntegrityVerifier |
-| `AP-12` | `AI-RISK-005` | `IMP-REQ-175`–`184` | `EVID-REQ-017`, `018` | 03,17 | DeterministicClock, AuthorizationGate |
+| `AP-12` | `AI-RISK-005` | `AUTH-REQ-012`, `AUTH-REQ-053`, `AUTH-REQ-153`, `AUTH-REQ-207`; `IMP-REQ-081` | `EVID-REQ-014` | 03,17 | DeterministicClock, AuthorizationGate |
 
 Requirement IDs above resolve in the repository. Component names are design labels, not implementation.
 
