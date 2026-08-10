@@ -4,7 +4,7 @@
 
 `ADR-0001`
 
-Version: `0.1.0`
+Version: `0.2.0`
 
 Classification: Decision proposal
 
@@ -20,7 +20,7 @@ Base Tree: `e7cfea306926e65524c6e716c158de7df2763f5d`
 
 ## 2. Title
 
-Synthetic Officer-Bound Reference Slice Architecture and Implementation Technology
+Synthetic Officer-Bound Reference Slice Architecture
 
 ## 3. Status
 
@@ -47,30 +47,30 @@ The governing invariant is: **NO TOOL OR CONNECTOR EXECUTION BEFORE A VALID POSI
 
 ## 6. Problem Statement
 
-Select one architecture and technology for the smallest executable slice that can demonstrate officer, case, scope, operation, time and connector binding; deterministic ALLOW/DENY evaluation; fail-closed behavior; and evidence/provenance creation after authorized execution. Production connectors, real identities/cases, CI, network services and deployment are excluded.
+Select the architecture for the smallest executable slice that could demonstrate officer, case, scope, operation, time and connector binding; deterministic ALLOW/DENY evaluation; fail-closed behavior; and evidence/provenance creation after authorized execution. Binding selection of language, runtime, framework, package manager and toolchain is deferred to a later governed implementation decision. Production connectors, real identities/cases, CI, network services and deployment are excluded.
 
 ## 7. Decision
 
 ### Proposed Decision
 
-Use **TypeScript with strict compiler settings on the supported Node.js 24 LTS line**.
+Adopt the technology-neutral **Synthetic Officer-Bound Reference Slice architecture** described in this ADR. This ADR does not select an implementation language, runtime, framework, package manager or toolchain.
 
-If separately authorized, the design will use readonly domain objects; discriminated `ALLOW`/`DENY` outcomes; a pure policy evaluator; an injected deterministic clock; an in-memory mock-connector allowlist; and an authorization-gated orchestrator. Unknown, malformed, expired, revoked, mismatched, unsupported or indeterminate states map to `DENY`. Prompt, model and connector content are untrusted and cannot alter officer, case, delegation, policy, allowlist or authorization outcome.
+If separately authorized, the design will use immutable or readonly-equivalent domain objects; closed, explicit `ALLOW`/`DENY` outcomes; a deterministic policy evaluator; an injected deterministic time authority; an in-memory mock-connector allowlist; and an authorization-gated orchestrator. Unknown, malformed, expired, revoked, mismatched, unsupported or indeterminate states map to `DENY`. Prompt, model and connector content are untrusted and cannot alter officer, case, delegation, policy, allowlist or authorization outcome.
 
-Evidence and audit records are produced only after authorized synthetic execution; denial attempts use separate audit events. SHA-256 covers exact bytes or a documented deterministic representation. No runtime dependency is proposed by default. A repository-approved language profile must fix exact TypeScript, Node.js, package-manager, formatting, linting, typing, static-analysis and testing controls before implementation.
+Evidence and audit records are produced only after authorized synthetic execution; denial attempts use separate audit events. SHA-256 covers exact bytes or a documented deterministic representation. No runtime dependency is authorized. A later governed technology decision must fix exact language, runtime, package-manager, dependency, formatting, linting, typing or equivalent static-analysis, testing, reproducible-build and supply-chain controls before implementation.
 
-This decision is unusable unless later Accepted and every Implementation Entry Gate prerequisite independently passes. It authorizes no code, tests, dependencies, CI, release or merge.
+Architecture disposition, technology selection, bounded-experiment authorization, Implementation Entry Gate disposition and implementation authorization are distinct decisions. This proposal is unusable unless later Accepted and every Implementation Entry Gate prerequisite independently passes. It authorizes no code, tests, dependencies, CI, release or merge.
 
 ## 8. Alternatives Considered
 
 | Alternative | Type/domain modeling | Determinism | Supply-chain exposure | Readability | Relative complexity | Result |
 |---|---|---|---|---|---|---|
-| TypeScript / Node.js 24 LTS | Strong with strict mode and discriminated unions | Strong for pure functions and injected time | Moderate; npm must be constrained | High for agent/tool boundaries | Low-moderate | Recommended proposal |
-| Python with strict tooling | Good; enforcement depends on separate tooling/runtime validation | Strong | Moderate; environment controls required | High | Low | Viable, not selected |
-| Go | Strong structs/interfaces | Strong | Low-moderate | High | Moderate for this slice | Viable, not selected |
-| Defer/status quo | None | No executable validation | None | Preserves documentation-only state | None | Safe but cannot demonstrate invariant |
+| TypeScript / Node.js 24 LTS | Strong with strict mode and discriminated unions | Strong for pure functions and injected time | Moderate; npm must be constrained | High for agent/tool boundaries | Low-moderate | Previously preferred candidate; evaluated, non-binding |
+| Python with strict tooling | Good; enforcement depends on separate tooling/runtime validation | Strong | Moderate; environment controls required | High | Low | Evaluated, non-binding alternative |
+| Go | Strong structs/interfaces | Strong | Low-moderate | High | Moderate for this slice | Evaluated, non-binding alternative |
+| Defer technology selection | Technology-neutral architecture only | No executable validation until a later selection and authorization | No current implementation exposure | Preserves documentation-only state | None currently | Current posture; not an implementation choice |
 
-TypeScript best fits the state-heavy tool-boundary design with lower slice complexity than Go and stronger default compile-time discrimination than ordinary Python execution. Node.js 24 was verified as official Active LTS on 2026-08-10; installed Node.js 26 is not treated as applicability evidence. The choice must be revisited if later dependency or language-profile review identifies unacceptable risk.
+The earlier analysis preferred TypeScript for the state-heavy tool-boundary design, lower anticipated slice complexity than Go and stronger default compile-time discrimination than ordinary Python execution. That preference is preserved as historical evaluation, not as a current selection. Node.js 24 was verified as official Active LTS on 2026-08-10; installed Node.js 26 was not treated as applicability evidence. No alternative is selected by this ADR. A later governed implementation decision must revalidate current lifecycle, security, supply-chain, maintainability and reproducibility evidence before selecting a technology profile.
 
 ## 9. Security Rationale
 
@@ -84,7 +84,9 @@ Only synthetic identities, cases and operations are permitted. Real persons, inv
 
 ## 11. Trade-offs
 
-- TypeScript improves explicit states and reviewability but adds npm/toolchain exposure.
+- TypeScript could improve explicit states and reviewability but would add npm/toolchain exposure; it is not selected.
+- Python or Go could satisfy the architecture with different enforcement, complexity and supply-chain trade-offs; neither is selected.
+- Deferral prevents premature technology binding but postpones executable validation and requires a separate governed selection.
 - No runtime dependencies reduces exposure but may require small deterministic internal validation/serialization helpers.
 - Mock-only operation proves containment, not real connector behavior.
 - In-memory fixtures simplify rollback but do not test distributed persistence.
@@ -92,7 +94,7 @@ Only synthetic identities, cases and operations are permitted. Real persons, inv
 
 ## 12. Consequences
 
-If Accepted and separately authorized, a later plan may create a bounded local TypeScript slice. No model, database, network, production connector, CI or deployment is implied. Any scope expansion requires new or superseding decision and renewed threat/privacy/risk review. No migration exists. Rollback uses ordinary Git history to the pre-implementation governed commit; history rewrite is prohibited.
+If Accepted and separately authorized, a later plan may create a bounded local slice using a technology profile selected by a separate governed decision. No model, database, network, production connector, CI or deployment is implied. Any scope expansion requires new or superseding decision and renewed threat/privacy/risk review. No migration exists. Rollback uses ordinary Git history to the pre-implementation governed commit; history rewrite is prohibited.
 
 ## 13. Risks
 
@@ -102,7 +104,7 @@ If Accepted and separately authorized, a later plan may create a bounded local T
 | Identity/case spoofing | `AI-RISK-002`, `014` | Immutable binding, mismatch tests | Proposed only |
 | Content expands authority | `AI-RISK-006`, `007`, `021` | Content/data separation | Proposed only |
 | Evidence/audit tampering | `AI-RISK-012`, `028` | Integrity and provenance links | Proposed only |
-| Dependency compromise | `AI-RISK-024` | No runtime dependency by default | Proposed only |
+| Dependency compromise | `AI-RISK-024` | Later technology decision must define dependency and supply-chain controls | Proposed only |
 | Mock/live confusion | `AI-RISK-020`, `032` | Mock manifest, no network, claim boundary | Proposed only |
 | False assurance | `AI-RISK-035` | Explicit scope limitations | Proposed only |
 | Role concentration | `AI-RISK-038` | Disclosure and attributable gates | Open limitation |
@@ -111,19 +113,23 @@ Residual risk is unresolved because nothing is implemented or validated. Accepta
 
 ## 14. Validation Criteria
 
-Eligibility requires: approval of AC-01–AC-20; attributable threat/privacy/architecture reviews; a versioned language profile; proof that the connector is unreachable before exact ALLOW; exhaustive DENY mapping; identity/case/scope/time/connector mismatch tests; hostile-content containment; detectable evidence modification; synthetic/network-free fixtures; bidirectional traceability; and an explicit Implementation Entry Gate decision. These are proposed criteria, not test evidence.
+Eligibility requires: approval of AC-01–AC-20; attributable threat/privacy/architecture reviews; a governed and versioned implementation technology profile; proof that the connector is unreachable before exact ALLOW; exhaustive DENY mapping; identity/case/scope/time/connector mismatch tests; hostile-content containment; detectable evidence modification; synthetic/network-free fixtures; bidirectional traceability; and an explicit Implementation Entry Gate decision. These are proposed criteria, not test evidence.
 
 ## 15. Related Documents
 
 - `OBDIA-CANON-001`, `OBDIA-CONST-001`, `OBDIA-ARCH-001`, `OBDIA-ID-001`, `OBDIA-TM-001`, `OBDIA-TRUST-001`, `OBDIA-ADR-001`, `OBDIA-IMP-001`, `OBDIA-SEC-001`, `OBDIA-AUTH-001`, `OBDIA-EVID-001`, `OBDIA-CONN-001`, `OBDIA-CODE-001`, `OBDIA-TEST-001`, `OBDIA-RISK-001`.
 - `docs/architecture/reference-slice/SYNTHETIC_OFFICER_BOUND_REFERENCE_SLICE_THREAT_MODEL_APPLICABILITY_REVIEW.md`.
 - `docs/governance/reference-slice/SYNTHETIC_OFFICER_BOUND_REFERENCE_SLICE_IMPLEMENTATION_ENTRY_GATE_PACKAGE.md`.
-- Official Node.js release schedule, consulted 2026-08-10; external technical evidence only.
+- Official Node.js release schedule, consulted 2026-08-10; historical external technical evidence for an evaluated non-binding alternative only.
 
 ## 16. Review History
 
 | Date | Activity | Result |
 |---|---|---|
 | 2026-08-10 | AI-assisted architecture, security, privacy, evidence, governance and scope-minimization drafting passes | Advisory draft; no human disposition |
+| 2026-08-10 | Formal technical review and correction cycles on frozen commit `b42af7b74c28284cbedc49b8e8645ba7d3265d5b` | Technical review PASS for accountable-human disposition; ADR remained `Proposed` |
+| 2026-08-10 | Accountable-human acceptance intent prepared and staged locally | Pre-effective evidence only; no acceptance commit and no effective status transition |
+| 2026-08-10 | Accountable Human and Project Founder André Luiz Vieira Bonfim issued disposition `CORRECT` | Prior pre-effective acceptance intent superseded; correction class `TECHNOLOGY_SELECTION_DEFERMENT_AND_ARCHITECTURE_IMPLEMENTATION_DECOUPLING`; ADR remains `Proposed` |
+| 2026-08-10 | Controlled technology-neutral correction prepared as version `0.2.0` | Security architecture, requirement mappings, threat model, AC-01–AC-20 and authorization invariant preserved; technology selection deferred; fresh separate review required |
 
-No accepting reviewer, approval, rejection, risk acceptance or status transition exists. Internal role concentration is disclosed; independent external assurance is not claimed.
+No effective acceptance, rejection, risk acceptance or status transition exists. The accountable-human `CORRECT` disposition is a controlled correction instruction, not acceptance of this revised proposal. Internal role concentration is disclosed; independent external assurance is not claimed.
