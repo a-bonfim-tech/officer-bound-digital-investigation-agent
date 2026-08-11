@@ -3,9 +3,10 @@
 | Field | Value |
 |---|---|
 | Contract ID | `OBDIA-CONTRACT-RS-001` |
-| Version | `1.0.0` |
-| Status | `Approved / retained by DEC-CONTRACT-001` |
-| Decision date | `2026-08-11` |
+| Version | `2.0.0` |
+| Status | `Approved corrective specification / retained by DEC-SPEC-001` |
+| Corrective decision date | `2026-08-12` |
+| Historical authority | `DEC-CONTRACT-001` / version `1.0.0` |
 | Accountable Human | André Luiz Vieira Bonfim |
 | Governed baseline | `b07048df9b811a74731b3af90f89356206b9f9ba` |
 | Scope | `ADR_0001_BOUNDED_SYNTHETIC_REFERENCE_SLICE` |
@@ -13,22 +14,25 @@
 
 ## Authority and Boundary
 
-This contract freezes the definition semantics for a later separately authorized implementation. It creates no source code, implementation, schema-validator runtime, dependency, test execution, CI, effectiveness evidence, risk acceptance or Implementation Entry Gate authorization.
+This breaking corrective revision freezes the definition semantics for a later separately authorized implementation. Version `1.0.0` and `DEC-CONTRACT-001` remain immutable historical authority. `DEC-SPEC-001` supersedes only the three inconsistent specification portions identified as `PREIMPL-GAP-001` through `PREIMPL-GAP-003`. It creates no source code, implementation, schema-validator runtime, dependency, test execution, CI, effectiveness evidence, risk acceptance or Implementation Entry Gate authorization.
 
 The governing invariant is: **NO TOOL OR CONNECTOR EXECUTION BEFORE A VALID POSITIVE AUTHORIZATION DECISION.** Model and connector content are untrusted data and cannot authorize.
 
 ```text
 SCHEMA_STRATEGY=JSON_SCHEMA_DRAFT_2020_12_COMPOUND_SCHEMA_PLUS_STRICT_PRE_SCHEMA_DECODER
-SCHEMA_VERSION=1.0.0
+SCHEMA_VERSION=2.0.0
 UNKNOWN_FIELD_POLICY=REJECT_BEFORE_POLICY_EVALUATION
 DUPLICATE_FIELD_POLICY=REJECT_BEFORE_POLICY_EVALUATION
 PRESENCE_SEMANTICS=ABSENT_NULL_EMPTY_STRING_EMPTY_ARRAY_EMPTY_OBJECT_ZERO_FALSE_AND_RAW_EMPTY_ARE_DISTINCT
 STRING_POLICY=EXACT_RAW_VALUE_NO_CASEFOLD_NO_TRIM
 UNICODE_POLICY=VALID_UTF8_REQUIRED_NO_NORMALIZATION_CONTROLS_NUL_AND_UNPAIRED_SURROGATES_REJECTED
-REQUEST_ID_POLICY=REQUIRED_SINGLE_USE_ATOMICALLY_RESERVED_CASE_SCOPED_AND_BOUND_TO_CANONICAL_INPUT_HASH
+REQUEST_ID_UNIQUENESS_DOMAIN=GLOBAL_WITHIN_BOUNDED_REFERENCE_SLICE
+REQUEST_ID_REUSE_ALLOWED=false
+GLOBAL_REQUEST_RESERVATION_INDEX=GLOBAL_ATOMIC_APPEND_ONLY_SINGLE_USE_INDEX_KEYED_ONLY_BY_REQUEST_ID
+CASE_SCOPED_REPLAY_RECORD=CASE_NAMESPACE_LIFECYCLE_RECORD
 NONCE_POLICY=NO_SEPARATE_NONCE_REQUEST_ID_IS_THE_SINGLE_REPLAY_TOKEN
 POLICY_DECISION_MODEL=CLOSED_ALLOW_OR_DENY_ONLY_ERRORS_AND_INDETERMINATE_MAP_TO_DENY
-REPLAY_STORE=CASE_SCOPED_APPEND_ONLY_LOCAL_RECORD_WITH_ATOMIC_RESERVE_BEFORE_EVALUATION
+REPLAY_STORE=GLOBAL_REQUEST_RESERVATION_THEN_CASE_SCOPED_APPEND_ONLY_LIFECYCLE_RECORD_BEFORE_EVALUATION
 CANONICALIZATION_STANDARD=RFC_8785_JCS_WITH_OBDIA_RESTRICTED_JSON_PROFILE
 HASH_ALGORITHM=SHA-256
 NEW_RUNTIME_DEPENDENCY_REQUIRED=false
@@ -45,6 +49,11 @@ RAW_BYTE_LIMIT_VALIDATION
 -> JSON_GRAMMAR_VALIDATION
 -> JSON_SCHEMA_VALIDATION
 -> GOVERNED_SEMANTIC_VALIDATION
+-> GLOBAL_REQUEST_ID_RESERVATION
+-> CASE_SCOPED_REPLAY_RECORD_RESERVATION
+-> AUTHORIZATION_EVALUATION
+-> exact ALLOW
+-> CONNECTOR_INVOCATION
 ```
 
 Unknown schema/object/enum values, unknown or duplicate fields, trailing content, multiple top-level values, wrong types, unexpected null, missing required values, invalid identifiers/timestamps, malformed UTF-8 and oversized input reject before policy evaluation. JSON Schema does not detect duplicate raw object members; that remains a mandatory pre-schema control.
@@ -55,11 +64,11 @@ Security strings are byte-exact: no trimming, case folding, Unicode normalizatio
 
 ## Versioning
 
-Every persisted or integrity-relevant object contains `schema_version` and `object_type`. Version `1.0.0` is the only accepted initial version. Unknown versions reject. No implicit migration, best-effort interpretation or silent coercion is permitted. A breaking change requires a new major version, new governed decision and regenerated golden vectors.
+Every persisted or integrity-relevant object contains `schema_version` and `object_type`. Version `2.0.0` is the only version accepted by this corrective profile. Version `1.0.0` remains historical and is not implicitly migrated. Unknown versions reject. No best-effort interpretation or silent coercion is permitted. A later breaking change requires another major version, governed decision and regenerated golden vectors.
 
 ## Domain Objects
 
-The compound schema defines: `SyntheticOfficerIdentity`, `SyntheticCaseContext`, `AuthorizationGrant`, `ScopedDelegation`, `RequestedAction`, `AuthorizationContext`, `PolicyDecision`, `ConnectorCapability`, `ConnectorRequest`, `ConnectorResult`, `EvidenceEnvelope`, `AuditEvent`, `ProvenanceRecord`, `ReplayRecord` and `FixtureProvenance`. Objects are closed and required fields are explicit.
+The compound schema defines: `SyntheticOfficerIdentity`, `SyntheticCaseContext`, `AuthorizationGrant`, `ScopedDelegation`, `RequestedAction`, `AuthorizationContext`, `PolicyDecision`, `ConnectorCapability`, `ConnectorRequest`, `ConnectorResult`, `EvidenceEnvelope`, `AuditEvent`, `ProvenanceRecord`, `RequestReservationRecord`, `ReplayRecord` and `FixtureProvenance`. Objects are closed and required fields are explicit.
 
 ## Identifier Contract
 
@@ -80,7 +89,11 @@ Identifiers are case-sensitive, immutable, canonical lowercase ASCII prefix plus
 
 ## Request, Replay, Freshness and Revocation
 
-`request_id` is the sole replay token; no separate nonce exists. It is bound to exact case and canonical input hash and atomically reserved before evaluation. Duplicate reservation or replay-store failure produces `DENY`, zero connector calls and zero operation execution.
+`request_id` is the sole replay token; no separate nonce exists. It is globally single-use within the bounded reference slice, bound to the exact case and canonical input hash, and globally atomically reserved before the case-scoped lifecycle record is reserved and before authorization evaluation.
+
+The global reservation index is append-only, keyed only by `request_id`, and authoritative for uniqueness. `RequestReservationRecord` records `schema_version`, `object_type`, `request_id`, `case_id`, `canonical_input_hash` and `reserved_at`. The case-scoped `ReplayRecord` remains authoritative for lifecycle within its case namespace and does not replace or weaken the global reservation.
+
+Any second reservation of the same `request_id`—same case, different case or different canonical input hash—produces `REPLAY_DETECTED`, `DENY`, zero connector calls and zero operation execution. Global-index unavailability, failed atomicity or case-record reservation failure produces `STORAGE_FAILURE`, `DENY`, zero connector calls and zero operation execution. No best-effort replay protection is permitted.
 
 Replay states are closed: `RESERVED`, `DENIED`, `CONNECTOR_INVOKED`, `RESULT_REJECTED`, `COMPLETED`, `INDETERMINATE_OUTCOME`. A record never returns to `RESERVED`.
 
@@ -104,7 +117,7 @@ Every retry requires a new request ID, fresh complete validation, fresh evaluati
 
 ## Storage and Persistence
 
-Storage uses structural case namespaces plus an exact recorded `case_id` match. Cross-case read and write deny. The replay record is local, append-only and atomically reserved. Security-state storage failure fails closed.
+Storage uses a global append-only request-reservation index plus structural case namespaces with an exact recorded `case_id` match. The global uniqueness key is `request_id`, never `(case_id, request_id)`. Cross-case reads and writes of case lifecycle state deny. The case-scoped replay record is local and append-only. Security-state storage failure fails closed.
 
 | Object | Initial classification |
 |---|---|
@@ -143,6 +156,42 @@ UNSUPPORTED_SCHEMA
 OVERSIZED_INPUT
 ```
 
+`ERROR_TAXONOMY_COUNT=17`.
+
+Audit event types are a separate closed vocabulary:
+
+```text
+VALIDATION_REJECTED
+AUTHORIZATION_DENIED
+AUTHORIZATION_ALLOWED
+REPLAY_REJECTED
+STALE_CONTEXT_REJECTED
+REVOKED_GRANT_REJECTED
+CONNECTOR_INVOKED
+CONNECTOR_RESULT_REJECTED
+OPERATION_COMPLETED
+EVIDENCE_CREATED
+INTEGRITY_FAILURE
+STORAGE_FAILURE
+INTERNAL_INVARIANT_FAILURE
+```
+
+`AUDIT_EVENT_TYPE_COUNT=13`. Error codes never serve as event types. The exact mapping is:
+
+| ErrorCode | AuditEventType |
+|---|---|
+| `VALIDATION_ERROR`, `UNSUPPORTED_SCHEMA`, `OVERSIZED_INPUT` | `VALIDATION_REJECTED` |
+| `AUTHORIZATION_DENIED`, `EXPIRED_AUTHORIZATION`, `NOT_YET_VALID_AUTHORIZATION`, `IDENTITY_MISMATCH`, `CASE_MISMATCH`, `SCOPE_MISMATCH`, `CONNECTOR_NOT_ALLOWED` | `AUTHORIZATION_DENIED` |
+| `REVOKED_AUTHORIZATION` | `REVOKED_GRANT_REJECTED` |
+| `REPLAY_DETECTED` | `REPLAY_REJECTED` |
+| `STALE_DECISION` | `STALE_CONTEXT_REJECTED` |
+| `MALFORMED_CONNECTOR_RESULT` | `CONNECTOR_RESULT_REJECTED` |
+| `INTEGRITY_FAILURE` | `INTEGRITY_FAILURE` |
+| `STORAGE_FAILURE` | `STORAGE_FAILURE` |
+| `INTERNAL_INVARIANT_FAILURE` | `INTERNAL_INVARIANT_FAILURE` |
+
+Rejection and failure events require an `error_code`. Success events `AUTHORIZATION_ALLOWED`, `CONNECTOR_INVOKED`, `OPERATION_COMPLETED` and `EVIDENCE_CREATED` prohibit `error_code`; no fictional error is manufactured.
+
 External errors expose only a machine code, correlation ID and minimized diagnostic. They do not expose raw sensitive input, internal paths, stack traces, credentials or secrets. Synthetic minimized audit detail is distinct.
 
 Every pre-ALLOW failure maps to `DENY`, zero connector calls, zero operations, no evidence envelope and an attributable audit where available. Invalid connector output makes the prior `ALLOW` non-reusable, permits no follow-up operation and creates no valid evidence.
@@ -171,7 +220,8 @@ Canonicalization failure means `NO_HASH`, `NO_ALLOW`, `NO_VALID_EVIDENCE`, `FAIL
 ## State Machine and Invariants
 
 ```text
-RECEIVED -> RAW_VALIDATED -> SCHEMA_VALIDATED -> REPLAY_RESERVED
+RECEIVED -> RAW_VALIDATED -> SCHEMA_VALIDATED -> GLOBAL_REQUEST_RESERVED
+-> CASE_REPLAY_RESERVED
 -> AUTHORIZATION_EVALUATED -> ALLOWED -> CONNECTOR_INVOKED
 -> RESULT_VALIDATED -> OPERATION_COMPLETED -> EVIDENCE_CREATED
 ```
@@ -184,7 +234,7 @@ I-02 evidence requires completed authorized operation
 I-03 DENY implies zero connector calls
 I-04 malformed context cannot become valid evaluation context
 I-05 revoked grant is terminal
-I-06 request_id cannot execute twice
+I-06 request_id can be globally reserved only once and can result in at most one execution attempt across all cases in the bounded slice
 I-07 cross-case read/write is denied
 I-08 untrusted content cannot mutate authority
 I-09 invalid connector result cannot create valid evidence
@@ -195,7 +245,7 @@ I-12 INDETERMINATE never equals ALLOW
 
 ## Golden Vectors and Negative Tests
 
-The governed manifest is `testdata/contracts/canonical-vectors-v1.json`. It is specification evidence, not executed validation. Unknown future canonical bytes or digests use `TO_BE_COMPUTED_BY_FUTURE_AUTHORIZED_REFERENCE_ENCODER`; fictional hashes are prohibited.
+The governed version `2.0.0` manifest is `testdata/contracts/canonical-vectors-v1.json`. It is specification evidence, not executed validation. It separates `expected_audit_event_type` from `expected_error_code` and includes cross-case request reuse and fixture-provenance/admission cases. Unknown future canonical bytes or digests use `TO_BE_COMPUTED_BY_FUTURE_AUTHORIZED_REFERENCE_ENCODER`; fictional hashes are prohibited.
 
 Future table-driven negative tests cover missing/expired/revoked authorization, identity/case/scope mismatch, non-allowlisted connector, unknown state, malformed/duplicate/unknown fields, authority mutation, cross-case access, evidence ordering/integrity, duplicate request, stale context and malicious connector output. AC-17a replay, AC-17b stale context and AC-17c revoked grant remain distinct.
 
@@ -222,4 +272,11 @@ tests_executed=false
 implementation_evidence=false
 effectiveness_evidence=false
 risk_accepted=false
+PREIMPL_GAP_001=RESOLVED_AT_SPECIFICATION_LEVEL
+PREIMPL_GAP_002=RESOLVED_AT_SPECIFICATION_LEVEL
+PREIMPL_GAP_003=RESOLVED_AT_SPECIFICATION_LEVEL
+preimplementation_specification_gaps=0
+CONF_BOUNDARY_001=PENDING
+CONF_SUFFICIENCY_001=PENDING
+CONF_ADOPTION_001=PENDING
 ```

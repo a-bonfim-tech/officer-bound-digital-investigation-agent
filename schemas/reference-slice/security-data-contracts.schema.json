@@ -1,8 +1,27 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://obdia.invalid/schemas/reference-slice/security-data-contracts/1.0.0",
+  "$id": "https://obdia.invalid/schemas/reference-slice/security-data-contracts/2.0.0",
   "title": "OBDIA Reference Slice Security Data Contracts",
   "description": "Governed compound schema. Duplicate object-member detection is required at the strict pre-schema raw-input stage and is not claimed as JSON Schema behavior.",
+  "x-obdia-error-audit-map": {
+    "VALIDATION_ERROR": "VALIDATION_REJECTED",
+    "AUTHORIZATION_DENIED": "AUTHORIZATION_DENIED",
+    "EXPIRED_AUTHORIZATION": "AUTHORIZATION_DENIED",
+    "NOT_YET_VALID_AUTHORIZATION": "AUTHORIZATION_DENIED",
+    "REVOKED_AUTHORIZATION": "REVOKED_GRANT_REJECTED",
+    "IDENTITY_MISMATCH": "AUTHORIZATION_DENIED",
+    "CASE_MISMATCH": "AUTHORIZATION_DENIED",
+    "SCOPE_MISMATCH": "AUTHORIZATION_DENIED",
+    "CONNECTOR_NOT_ALLOWED": "AUTHORIZATION_DENIED",
+    "REPLAY_DETECTED": "REPLAY_REJECTED",
+    "STALE_DECISION": "STALE_CONTEXT_REJECTED",
+    "MALFORMED_CONNECTOR_RESULT": "CONNECTOR_RESULT_REJECTED",
+    "INTEGRITY_FAILURE": "INTEGRITY_FAILURE",
+    "STORAGE_FAILURE": "STORAGE_FAILURE",
+    "INTERNAL_INVARIANT_FAILURE": "INTERNAL_INVARIANT_FAILURE",
+    "UNSUPPORTED_SCHEMA": "VALIDATION_REJECTED",
+    "OVERSIZED_INPUT": "VALIDATION_REJECTED"
+  },
   "oneOf": [
     { "$ref": "#/$defs/SyntheticOfficerIdentity" },
     { "$ref": "#/$defs/SyntheticCaseContext" },
@@ -17,11 +36,12 @@
     { "$ref": "#/$defs/EvidenceEnvelope" },
     { "$ref": "#/$defs/AuditEvent" },
     { "$ref": "#/$defs/ProvenanceRecord" },
+    { "$ref": "#/$defs/RequestReservationRecord" },
     { "$ref": "#/$defs/ReplayRecord" },
     { "$ref": "#/$defs/FixtureProvenance" }
   ],
   "$defs": {
-    "SchemaVersion": { "const": "1.0.0" },
+    "SchemaVersion": { "const": "2.0.0" },
     "Timestamp": { "type": "string", "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\\.[0-9]{3}Z$" },
     "Digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
     "OfficerId": { "type": "string", "pattern": "^off_[0-9a-f]{32}$" },
@@ -35,6 +55,29 @@
     "EvidenceId": { "type": "string", "pattern": "^evid_[0-9a-f]{32}$" },
     "AuditEventId": { "type": "string", "pattern": "^evt_[0-9a-f]{32}$" },
     "NonEmptyAscii": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[ -~]+$" },
+    "ErrorCode": {
+      "enum": [
+        "VALIDATION_ERROR", "AUTHORIZATION_DENIED", "EXPIRED_AUTHORIZATION", "NOT_YET_VALID_AUTHORIZATION",
+        "REVOKED_AUTHORIZATION", "IDENTITY_MISMATCH", "CASE_MISMATCH", "SCOPE_MISMATCH",
+        "CONNECTOR_NOT_ALLOWED", "REPLAY_DETECTED", "STALE_DECISION", "MALFORMED_CONNECTOR_RESULT",
+        "INTEGRITY_FAILURE", "STORAGE_FAILURE", "INTERNAL_INVARIANT_FAILURE", "UNSUPPORTED_SCHEMA", "OVERSIZED_INPUT"
+      ]
+    },
+    "AuditEventType": {
+      "enum": [
+        "VALIDATION_REJECTED", "AUTHORIZATION_DENIED", "AUTHORIZATION_ALLOWED", "REPLAY_REJECTED",
+        "STALE_CONTEXT_REJECTED", "REVOKED_GRANT_REJECTED", "CONNECTOR_INVOKED", "CONNECTOR_RESULT_REJECTED",
+        "OPERATION_COMPLETED", "EVIDENCE_CREATED", "INTEGRITY_FAILURE", "STORAGE_FAILURE", "INTERNAL_INVARIANT_FAILURE"
+      ]
+    },
+    "FixtureType": {
+      "enum": [
+        "SYNTHETIC_DOMAIN_FIXTURE", "CANONICAL_SERIALIZATION_VECTOR", "NEGATIVE_TEST_INPUT",
+        "MOCK_CONNECTOR_RESPONSE", "AUTHORIZATION_FIXTURE", "CASE_FIXTURE"
+      ]
+    },
+    "FixtureCreationMethod": { "enum": ["MANUAL_INVENTION", "SYNTHETIC_GENERATOR"] },
+    "FixtureReviewStatus": { "enum": ["PENDING", "APPROVED", "REJECTED"] },
     "Base": {
       "type": "object",
       "properties": {
@@ -160,11 +203,19 @@
       "type": "object",
       "properties": {
         "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "AuditEvent" }, "audit_event_id": { "$ref": "#/$defs/AuditEventId" },
-        "event_type": { "enum": ["AUTHORIZATION_DENIED", "AUTHORIZATION_ALLOWED", "REPLAY_REJECTED", "STALE_CONTEXT_REJECTED", "CONNECTOR_INVOKED", "CONNECTOR_RESULT_REJECTED", "OPERATION_COMPLETED", "EVIDENCE_CREATED", "INTEGRITY_FAILURE", "INTERNAL_INVARIANT_FAILURE"] },
+        "event_type": { "$ref": "#/$defs/AuditEventType" },
         "case_id": { "$ref": "#/$defs/CaseId" }, "request_id": { "$ref": "#/$defs/RequestId" }, "occurred_at": { "$ref": "#/$defs/Timestamp" },
-        "error_code": { "type": "string", "maxLength": 64 }
+        "error_code": { "$ref": "#/$defs/ErrorCode" }
       },
-      "required": ["schema_version", "object_type", "audit_event_id", "event_type", "case_id", "request_id", "occurred_at", "error_code"], "unevaluatedProperties": false
+      "required": ["schema_version", "object_type", "audit_event_id", "event_type", "case_id", "request_id", "occurred_at"],
+      "allOf": [
+        {
+          "if": { "properties": { "event_type": { "enum": ["AUTHORIZATION_ALLOWED", "CONNECTOR_INVOKED", "OPERATION_COMPLETED", "EVIDENCE_CREATED"] } }, "required": ["event_type"] },
+          "then": { "not": { "required": ["error_code"] } },
+          "else": { "required": ["error_code"] }
+        }
+      ],
+      "unevaluatedProperties": false
     },
     "ProvenanceRecord": {
       "type": "object",
@@ -185,14 +236,52 @@
       },
       "required": ["schema_version", "object_type", "case_id", "request_id", "canonical_input_hash", "reserved_at", "state"], "unevaluatedProperties": false
     },
+    "RequestReservationRecord": {
+      "type": "object",
+      "description": "Global append-only single-use reservation keyed only by request_id; it precedes and does not replace the case-scoped ReplayRecord.",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "RequestReservationRecord" },
+        "request_id": { "$ref": "#/$defs/RequestId" }, "case_id": { "$ref": "#/$defs/CaseId" },
+        "canonical_input_hash": { "$ref": "#/$defs/Digest" }, "reserved_at": { "$ref": "#/$defs/Timestamp" }
+      },
+      "required": ["schema_version", "object_type", "request_id", "case_id", "canonical_input_hash", "reserved_at"], "unevaluatedProperties": false
+    },
     "FixtureProvenance": {
       "type": "object",
       "properties": {
         "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "FixtureProvenance" },
-        "fixture_id": { "$ref": "#/$defs/NonEmptyAscii" }, "synthetic": { "const": true }, "generator": { "$ref": "#/$defs/NonEmptyAscii" },
-        "created_at": { "$ref": "#/$defs/Timestamp" }, "content_digest": { "$ref": "#/$defs/Digest" }
+        "fixture_id": { "$ref": "#/$defs/NonEmptyAscii" },
+        "fixture_type": { "$ref": "#/$defs/FixtureType" },
+        "classification": { "const": "SYNTHETIC_FIXTURE" },
+        "synthetic": { "const": true },
+        "creation_method": { "$ref": "#/$defs/FixtureCreationMethod" },
+        "creator_or_generator": { "$ref": "#/$defs/NonEmptyAscii" },
+        "generator_version": { "$ref": "#/$defs/NonEmptyAscii" },
+        "creation_timestamp": { "$ref": "#/$defs/Timestamp" },
+        "source_description": { "$ref": "#/$defs/NonEmptyAscii" },
+        "derived_from_real_person_data": { "const": false },
+        "derived_from_live_case_data": { "const": false },
+        "derived_from_production_export": { "const": false },
+        "derived_from_live_connector": { "const": false },
+        "contains_real_credentials": { "const": false },
+        "content_digest": { "$ref": "#/$defs/Digest" },
+        "review_status": { "$ref": "#/$defs/FixtureReviewStatus" },
+        "reviewer": { "$ref": "#/$defs/NonEmptyAscii" },
+        "review_timestamp": { "$ref": "#/$defs/Timestamp" }
       },
-      "required": ["schema_version", "object_type", "fixture_id", "synthetic", "generator", "created_at", "content_digest"], "unevaluatedProperties": false
+      "required": [
+        "schema_version", "object_type", "fixture_id", "fixture_type", "classification", "synthetic",
+        "creation_method", "creator_or_generator", "generator_version", "creation_timestamp", "source_description",
+        "derived_from_real_person_data", "derived_from_live_case_data", "derived_from_production_export",
+        "derived_from_live_connector", "contains_real_credentials", "content_digest", "review_status"
+      ],
+      "allOf": [
+        {
+          "if": { "properties": { "review_status": { "enum": ["APPROVED", "REJECTED"] } }, "required": ["review_status"] },
+          "then": { "required": ["reviewer", "review_timestamp"] }
+        }
+      ],
+      "unevaluatedProperties": false
     }
   }
 }

@@ -3,9 +3,9 @@
 | Field | Value |
 |---|---|
 | Profile ID | `OBDIA-PRIV-RS-001` |
-| Version | `1.0.0` |
-| Status | `Approved / retained by DEC-PRIV-001` |
-| Decision date | `2026-08-11` |
+| Version | `1.1.0` |
+| Status | `Approved / reconciled by DEC-SPEC-001; substantive authority retained from DEC-PRIV-001` |
+| Corrective decision date | `2026-08-12` |
 | Accountable Human | André Luiz Vieira Bonfim |
 | Governed baseline | `d0c5c6f6dacf7afbcd7515edc97cd06ecccc552e` |
 | Scope | `ADR_0001_BOUNDED_SYNTHETIC_REFERENCE_SLICE` |
@@ -13,7 +13,7 @@
 
 ## Authority and Legal Boundary
 
-This profile freezes privacy and data-governance definitions for the bounded synthetic reference slice. It authorizes no implementation, test execution, executable fixture, dependency, CI, export, external processing, risk acceptance or scope expansion.
+This profile freezes privacy and data-governance definitions for the bounded synthetic reference slice. Version `1.1.0`, retained by `DEC-SPEC-001`, changes only the FixtureProvenance machine-schema alignment, manifest completeness semantics and the AuditEventType/ErrorCode cross-reference. Retention periods, export policy, telemetry policy, scope-expansion triggers and legal/compliance boundaries are unchanged. It authorizes no implementation, test execution, executable fixture, dependency, CI, export, external processing, risk acceptance or scope expansion.
 
 ```text
 GDPR_compliance_claimed=false
@@ -70,18 +70,21 @@ Common allowed fields are `schema_version`, `audit_event_id`, `event_type`, `occ
 
 | Event | Required additional fields | Optional fields | Prohibited fields | Retention class |
 |---|---|---|---|---|
-| `authorization_denied` | decision ID, reason code | grant/delegation IDs | raw context | `SHORT_LIVED_TEST_EVIDENCE` |
-| `authorization_allowed` | decision/grant/delegation IDs | policy version | raw grant | `SHORT_LIVED_TEST_EVIDENCE` |
-| `replay_rejected` | replay code | prior-record digest | request payload | `SHORT_LIVED_TEST_EVIDENCE` |
-| `stale_context_rejected` | evaluated/valid-until times | decision ID | raw context | `SHORT_LIVED_TEST_EVIDENCE` |
-| `revoked_grant_rejected` | grant ID, revoked code | decision ID | grant content | `SHORT_LIVED_TEST_EVIDENCE` |
-| `connector_invoked` | connector/operation IDs | capability version | connector request payload | `SHORT_LIVED_TEST_EVIDENCE` |
-| `connector_result_rejected` | connector/operation IDs, error code | result digest | raw result | `GOVERNED_REVIEW_EVIDENCE` |
-| `operation_completed` | operation/decision IDs | integer duration | result content | `SHORT_LIVED_TEST_EVIDENCE` |
-| `evidence_created` | evidence/operation IDs, digest | provenance digest | embedded envelope | `GOVERNED_REVIEW_EVIDENCE` |
-| `integrity_failure` | object type, digest reference | component version | corrupt raw object | `GOVERNED_REVIEW_EVIDENCE` |
-| `storage_failure` | storage class, error code | component | paths, stack trace | `GOVERNED_REVIEW_EVIDENCE` |
-| `internal_invariant_failure` | invariant ID, error code | correlation ID | raw memory/state | `GOVERNED_REVIEW_EVIDENCE` |
+| `VALIDATION_REJECTED` | error code | object type | raw input | `SHORT_LIVED_TEST_EVIDENCE` |
+| `AUTHORIZATION_DENIED` | decision ID, error code | grant/delegation IDs | raw context | `SHORT_LIVED_TEST_EVIDENCE` |
+| `AUTHORIZATION_ALLOWED` | decision/grant/delegation IDs | policy version | raw grant | `SHORT_LIVED_TEST_EVIDENCE` |
+| `REPLAY_REJECTED` | `REPLAY_DETECTED` | prior-record digest | request payload | `SHORT_LIVED_TEST_EVIDENCE` |
+| `STALE_CONTEXT_REJECTED` | evaluated/valid-until times, `STALE_DECISION` | decision ID | raw context | `SHORT_LIVED_TEST_EVIDENCE` |
+| `REVOKED_GRANT_REJECTED` | grant ID, `REVOKED_AUTHORIZATION` | decision ID | grant content | `SHORT_LIVED_TEST_EVIDENCE` |
+| `CONNECTOR_INVOKED` | connector/operation IDs | capability version | connector request payload | `SHORT_LIVED_TEST_EVIDENCE` |
+| `CONNECTOR_RESULT_REJECTED` | connector/operation IDs, error code | result digest | raw result | `GOVERNED_REVIEW_EVIDENCE` |
+| `OPERATION_COMPLETED` | operation/decision IDs | integer duration | result content | `SHORT_LIVED_TEST_EVIDENCE` |
+| `EVIDENCE_CREATED` | evidence/operation IDs, digest | provenance digest | embedded envelope | `GOVERNED_REVIEW_EVIDENCE` |
+| `INTEGRITY_FAILURE` | object type, digest reference, error code | component version | corrupt raw object | `GOVERNED_REVIEW_EVIDENCE` |
+| `STORAGE_FAILURE` | storage class, error code | component | paths, stack trace | `GOVERNED_REVIEW_EVIDENCE` |
+| `INTERNAL_INVARIANT_FAILURE` | invariant ID, error code | correlation ID | raw memory/state | `GOVERNED_REVIEW_EVIDENCE` |
+
+The closed `AuditEventType` vocabulary has 13 values and is distinct from the 17-value `ErrorCode` vocabulary in security contract/schema `2.0.0`. Rejection and failure events require the exact mapped error code. Success events do not contain fictional error codes.
 
 ## Retention Classes and Exact Lifecycle Rules
 
@@ -135,6 +138,15 @@ FIXTURE_MUTATION_POLICY=DIGEST_CHANGE_REOPENS_PROVENANCE_AND_RETURNS_REVIEW_TO_P
 Admitted types are `SYNTHETIC_DOMAIN_FIXTURE`, `CANONICAL_SERIALIZATION_VECTOR`, `NEGATIVE_TEST_INPUT`, `MOCK_CONNECTOR_RESPONSE`, `AUTHORIZATION_FIXTURE` and `CASE_FIXTURE`.
 
 Every admitted fixture requires `fixture_id`, `schema_version`, `fixture_type`, `classification`, `synthetic`, `creation_method`, `creator_or_generator`, `generator_version`, `creation_timestamp`, `source_description`, prohibited-origin flags, `content_digest`, `review_status`, `reviewer` and `review_timestamp`.
+
+The authoritative machine representation is `FixtureProvenance` schema version `2.0.0`. `creation_method` is closed to `MANUAL_INVENTION` or `SYNTHETIC_GENERATOR`; `review_status` is closed to `PENDING`, `APPROVED` or `REJECTED`. Approved and rejected records require an attributable reviewer and review timestamp. Only `APPROVED` may enter execution; `PENDING` and `REJECTED` are `DO_NOT_EXECUTE`.
+
+```text
+EVERY_EXECUTABLE_FIXTURE_FILE_MUST_HAVE_EXACTLY_ONE_MANIFEST_ENTRY=true
+EVERY_EXECUTABLE_MANIFEST_ENTRY_MUST_RESOLVE_TO_EXACTLY_ONE_FIXTURE_FILE=true
+MANIFEST_DIGEST_MUST_EQUAL_RECOMPUTED_FIXTURE_DIGEST=true
+ORPHAN_DUPLICATE_MISSING_OR_DIGEST_MISMATCH=DO_NOT_EXECUTE
+```
 
 Synthetic classification requires documented human invention or generation solely from synthetic seed; all prohibited-origin flags false; reproduced digest; attributable provenance; and `review_status=APPROVED`. A filename, directory or `synthetic=true` assertion alone is insufficient.
 
@@ -222,4 +234,8 @@ operating_evidence=false
 effectiveness_evidence=false
 risk_accepted=false
 formal_compliance_determined=false
+PREIMPL_GAP_001=RESOLVED_AT_SPECIFICATION_LEVEL
+PREIMPL_GAP_002=RESOLVED_AT_SPECIFICATION_LEVEL
+PREIMPL_GAP_003=RESOLVED_AT_SPECIFICATION_LEVEL
+preimplementation_specification_gaps=0
 ```

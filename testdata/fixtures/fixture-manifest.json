@@ -1,5 +1,6 @@
 {
-  "manifest_version": "1.0.0",
+  "manifest_version": "1.1.0",
+  "fixture_provenance_schema_version": "2.0.0",
   "status": "GOVERNED_INVENTORY_NO_EXECUTABLE_FIXTURES",
   "governed_baseline": "d0c5c6f6dacf7afbcd7515edc97cd06ecccc552e",
   "executable_fixture_count": 0,
@@ -16,11 +17,16 @@
     }
   ],
   "future_fixture_admission_requirements": {
+    "fixture_provenance_object_type": "FixtureProvenance",
     "schema_valid": true,
     "classification_explicit": true,
     "synthetic_provenance_complete": true,
     "content_digest_verified": true,
-    "review_status_required": "APPROVED",
+    "review_status_required_before_execution": "APPROVED",
+    "every_executable_fixture_file_has_exactly_one_manifest_entry": true,
+    "every_executable_manifest_entry_resolves_to_exactly_one_fixture_file": true,
+    "manifest_content_digest_equals_recomputed_fixture_content_digest": true,
+    "orphan_duplicate_missing_or_digest_mismatched_entry_behavior": "DO_NOT_EXECUTE",
     "unknown_missing_or_ambiguous_provenance_behavior": [
       "REJECT",
       "DO_NOT_EXECUTE"
