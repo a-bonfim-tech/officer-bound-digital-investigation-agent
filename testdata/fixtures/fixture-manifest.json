@@ -1,0 +1,29 @@
+{
+  "manifest_version": "1.0.0",
+  "status": "GOVERNED_INVENTORY_NO_EXECUTABLE_FIXTURES",
+  "governed_baseline": "d0c5c6f6dacf7afbcd7515edc97cd06ecccc552e",
+  "executable_fixture_count": 0,
+  "fictional_fixture_provenance_created": false,
+  "actual_fixture_provenance_complete": false,
+  "inventory": [
+    {
+      "path": "testdata/contracts/canonical-vectors-v1.json",
+      "classification": "TEST_VECTOR_SPECIFICATION",
+      "executable_fixture": false,
+      "complete_fixture_provenance_evidence": false,
+      "raw_vector_material_present": false,
+      "status": "SPECIFICATION_NOT_MATERIALIZED"
+    }
+  ],
+  "future_fixture_admission_requirements": {
+    "schema_valid": true,
+    "classification_explicit": true,
+    "synthetic_provenance_complete": true,
+    "content_digest_verified": true,
+    "review_status_required": "APPROVED",
+    "unknown_missing_or_ambiguous_provenance_behavior": [
+      "REJECT",
+      "DO_NOT_EXECUTE"
+    ]
+  }
+}

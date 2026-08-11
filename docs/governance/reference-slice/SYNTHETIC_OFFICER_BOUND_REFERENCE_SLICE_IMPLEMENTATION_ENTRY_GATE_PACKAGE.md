@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Record ID / Version | `IMP-GATE-RS-001` / `0.7.0` |
+| Record ID / Version | `IMP-GATE-RS-001` / `0.8.0` |
 | Status | `Reconciled / BLOCKED` |
 | Classification | Category C, Evidence Level D governance proposal |
 | Owner | Project Founder / Accountable Human |
@@ -29,6 +29,7 @@ This package prepares a later decision and creates no authority. At baseline: ma
 | `IEG-10` rollback/containment | `IMP:80`, `IMP-REQ-175`–`184` | Design below | SATISFIED WITH CONDITIONS | Approve and later test | Security/Implementation | BLOCKING until confirmed |
 | `IEG-11` technology/toolchain | `IMP-C01`, `IMP-C04`, `SEC-C03`, `RES-C01` | Go `1.26.5` selected in `DEC-TECH-001`; exact toolchain, SAST, scanner, SBOM, CI, integrity, network and reproducibility profile approved and retained in `DEC-TOOLCHAIN-001` | SATISFIED | Preserve the frozen profile; execution evidence remains independently required where applicable | Accountable Human / Security / Implementation / Research | Satisfies these profile-definition conditions only; gate remains BLOCKED |
 | `IEG-12` security data contracts | `SEC-C02`, `IMP-C02`, `IMP-C03` | Exact versioned schemas, serialization, presence, replay, storage, error, output-validation, canonicalization, hashing and negative-test specifications approved and retained in `DEC-CONTRACT-001` | PARTIALLY SATISFIED | Execute deterministic validation and negative tests for `SEC-C02`; preserve the frozen contracts | Accountable Human / Security / Implementation | `IMP-C02` and `IMP-C03` satisfied as definition conditions; `SEC-C02` remains partial; gate remains BLOCKED |
+| `IEG-13` privacy/data governance | `PRIV-C01`, `PRIV-C02`, `PRIV-C03` | Exact minimization, logging, retention, disposal, fixture-provenance and material-expansion review profile approved and retained in `DEC-PRIV-001`; current fixture inventory records zero executable fixtures | PARTIALLY SATISFIED | Produce attributable provenance for every future admitted fixture; preserve the continuing expansion-review control | Accountable Human / Privacy-Governance | `PRIV-C01` and `PRIV-C03` satisfied as definition/continuing controls; `PRIV-C02` remains partial; gate remains BLOCKED |
 
 Overall: `BLOCKED`. Branch, commit, Draft PR or merge cannot satisfy the gate (`IMP-REQ-020`).
 
@@ -113,9 +114,10 @@ SEC_C03=SATISFIED
 RES_C01=SATISFIED
 SEC_C01=OPEN
 SEC_C02=PARTIALLY_SATISFIED
-PRIV_C01=OPEN
-PRIV_C02=OPEN
-PRIV_C03=OPEN
+PRIV_C01=SATISFIED
+PRIV_C02=PARTIALLY_SATISFIED
+PRIV_C03=SATISFIED
+PRIV_C03_CONTINUING_OBLIGATION=true
 IMP_C02=SATISFIED
 IMP_C03=SATISFIED
 implementation_entry_gate=BLOCKED
@@ -136,4 +138,4 @@ legal_authority_created=false
 autonomous_investigative_authority_created=false
 ```
 
-Current artifact hashes are derived after retention and reported by the execution result. ADR disposition, specialist reviews, Human Implementation Owner designation, bounded synthetic experiment authorization, Go `1.26.5` technology selection, the exact reproducible toolchain profile and the exact security data contracts are retained prospectively on `2026-08-11`. `IMP-C01` through `IMP-C04`, `SEC-C03` and `RES-C01` are satisfied as definition/profile conditions. `SEC-C02` is partially satisfied because executed deterministic-validation and negative-test evidence does not exist. `SEC-C01` and `PRIV-C01` through `PRIV-C03` remain open. The twelve material threats remain implementation-blocking. Human decisions on risk acceptance, implementation authorization, Ready and merge remain pending. The overall Implementation Entry Gate remains `BLOCKED`.
+Current artifact hashes are derived after retention and reported by the execution result. ADR disposition, specialist reviews, Human Implementation Owner designation, bounded synthetic experiment authorization, Go `1.26.5` technology selection, the exact reproducible toolchain profile, exact security data contracts and exact privacy/data-governance profile are retained prospectively. `IMP-C01` through `IMP-C04`, `SEC-C03`, `RES-C01`, `PRIV-C01` and `PRIV-C03` are satisfied as definition/profile/continuing-control conditions. `SEC-C02` remains partially satisfied because executed deterministic-validation and negative-test evidence does not exist. `PRIV-C02` remains partially satisfied because executable fixture provenance evidence does not exist. `SEC-C01` remains open. The twelve material threats remain implementation-blocking. Human decisions on risk acceptance, implementation authorization, Ready and merge remain pending. The overall Implementation Entry Gate remains `BLOCKED`.
