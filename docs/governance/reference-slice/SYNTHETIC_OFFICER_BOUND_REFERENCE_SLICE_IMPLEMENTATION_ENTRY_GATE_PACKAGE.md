@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Record ID / Version | `IMP-GATE-RS-001` / `0.3.0` |
+| Record ID / Version | `IMP-GATE-RS-001` / `0.4.0` |
 | Status | `Reconciled / BLOCKED` |
 | Classification | Category C, Evidence Level D governance proposal |
 | Owner | Project Founder / Accountable Human |
@@ -17,8 +17,8 @@ This package prepares a later decision and creates no authority. At baseline: ma
 
 | Gate | Requirement | Evidence | Status | Missing/action | Accountable role | Effect |
 |---|---|---|---|---|---|---|
-| `IEG-01` scope | `IMP:71`, `IMP-REQ-013` | Bounded architectural scope accepted in `DEC-ENTRY-001` | SATISFIED FOR ADR | Separate experiment decision still required | Founder | Does not authorize implementation |
-| `IEG-02` architecture/experiment | `IMP:72`, `IMP-REQ-013`, `021` | Architecture accepted; experiment unauthorized | PARTIAL | Separate bounded-experiment authorization | Founder after reviews | BLOCKING |
+| `IEG-01` scope | `IMP:71`, `IMP-REQ-013` | Bounded architectural scope accepted in `DEC-ENTRY-001`; experiment envelope retained in `DEC-ENTRY-003` | SATISFIED | None for bounded scope | Founder | Does not authorize implementation |
+| `IEG-02` architecture/experiment | `IMP:72`, `IMP-REQ-013`, `021` | Architecture accepted; bounded synthetic experiment authorized in `DEC-ENTRY-003` | SATISFIED | None for bounded-experiment authorization | Founder after reviews | Does not authorize implementation |
 | `IEG-03` ADR Accepted | `IMP:73`, `IMP-REQ-014` | ADR-0001 `Accepted`; `ACCEPT_WITH_CONDITIONS` | SATISFIED | Independent post-retention reconciliation | ADR decision authority | Does not authorize implementation |
 | `IEG-04` threat model reviewed | `IMP:74`, `IMP-REQ-015`, `TM-REQ-081`–`085` | Specialist dispositions retained; 12 threats remain blocking | SATISFIED WITH CONDITIONS | Implement, test and evidence treatments | Security Reviewer | BLOCKING |
 | `IEG-05` boundaries | `IMP:75`, `IMP-REQ-017` | Design boundaries defined | SATISFIED WITH CONDITIONS | Human validation | Architecture/Security | BLOCKING until confirmed |
@@ -32,11 +32,11 @@ Overall: `BLOCKED`. Branch, commit, Draft PR or merge cannot satisfy the gate (`
 
 ## Bounded Experiment Authorization Request
 
-**PENDING SEPARATE ACCOUNTABLE-HUMAN AUTHORIZATION**
+**AUTHORIZED WITHIN THE SYNTHETIC BOUNDARY IN `DEC-ENTRY-003`; IMPLEMENTATION NOT AUTHORIZED**
 
 Purpose: demonstrate the officer-bound authorization invariant. Environment: isolated local development. Data and identities: synthetic only. Connectors: named local mocks only. Operations: non-destructive synthetic operations in Accepted ADR-0001. Network: no investigative-service dependency. Real cases, subjects, law-enforcement identities, credentials, production secrets, criminal infrastructure, live Dark Web interaction, exploitation and autonomous legal/investigative authority are prohibited.
 
-Rollback: revert/delete bounded artifacts through ordinary Git history to the pre-implementation commit; no history rewrite. Containment: DENY, halt connector and preserve audit evidence on invariant failure. Expiry, if authorized: earliest of 30 days, material design/toolchain change, scope expansion request or completion of the bounded evidence run. Review triggers include failed security tests, dependencies, network/live connector, real data, identity/case/evidence model or owner changes.
+Rollback: revert/delete bounded artifacts through ordinary Git history to the pre-implementation commit; no history rewrite. Containment: DENY, halt connector and preserve audit evidence on invariant failure. The authorization remains valid until the earliest of explicit accountable-human revocation, material scope or architecture change, data/connector/environment expansion, or a material security finding requiring governance reconsideration. Review triggers include failed security tests, dependencies, network/live connector, real data, identity/case/evidence model or owner changes.
 
 ## Proposed Acceptance Criteria
 
@@ -81,7 +81,7 @@ Requirement IDs above resolve in the repository. Component names are design labe
 
 ## Roles, Risks and Reviews
 
-The ADR decision is retained prospectively in `DEC-ENTRY-001`. Six specialist dispositions are retained in `SPEC-DISP-ADR-0001-001`, with role concentration disclosed and no external-independence claim. André Luiz Vieira Bonfim is prospectively designated Human Implementation Owner in `DEC-ENTRY-002`. This satisfies only the owner prerequisite; the experiment remains a separate decision and the overall gate remains `BLOCKED`. AI analysis remains advisory evidence, not a human disposition or risk acceptance.
+The ADR decision is retained prospectively in `DEC-ENTRY-001`. Six specialist dispositions are retained in `SPEC-DISP-ADR-0001-001`, with role concentration disclosed and no external-independence claim. André Luiz Vieira Bonfim is prospectively designated Human Implementation Owner in `DEC-ENTRY-002`. The bounded synthetic experiment envelope is authorized in `DEC-ENTRY-003`. These satisfy only their respective prerequisites; the overall gate remains `BLOCKED`. AI analysis remains advisory evidence, not a human disposition or risk acceptance.
 
 Existing risks cover the slice; link `AI-RISK-002`, `004`–`007`, `012`, `014`, `019`–`021`, `024`, `027`, `028`, `032`, `035`, `038`. No new risk ID or acceptance is created.
 
@@ -96,7 +96,8 @@ adr_accepted=true
 architecture_approved=true
 human_implementation_owner_designated=true
 HUMAN_IMPLEMENTATION_OWNER=André Luiz Vieira Bonfim
-bounded_experiment_authorized=false
+bounded_experiment_authorized=true
+bounded_experiment_scope=SYNTHETIC_REFERENCE_SLICE_ONLY
 implementation_entry_gate=BLOCKED
 implementation_authorized=false
 implementation_performed=false
@@ -115,4 +116,4 @@ legal_authority_created=false
 autonomous_investigative_authority_created=false
 ```
 
-Current artifact hashes are derived after retention and reported by the execution result. ADR disposition, specialist reviews and the Human Implementation Owner designation are retained prospectively on `2026-08-11`. Human decisions on bounded-experiment authorization, technology selection, risk acceptance, implementation authorization, Ready and merge remain pending. Independent post-retention reconciliation of the owner designation is required.
+Current artifact hashes are derived after retention and reported by the execution result. ADR disposition, specialist reviews, Human Implementation Owner designation and bounded synthetic experiment authorization are retained prospectively on `2026-08-11`. Human decisions on technology selection, risk acceptance, implementation authorization, Ready and merge remain pending. Independent post-retention reconciliation of the experiment authorization is required.
