@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Record ID / Version | `IMP-GATE-RS-001` / `0.9.0` |
+| Record ID / Version | `IMP-GATE-RS-001` / `0.10.0` |
 | Status | `Reconciled / BLOCKED` |
 | Classification | Category C, Evidence Level D governance proposal |
 | Owner | Project Founder / Accountable Human |
@@ -21,12 +21,12 @@ This package prepares a later decision and creates no authority. At baseline: ma
 | `IEG-02` architecture/experiment | `IMP:72`, `IMP-REQ-013`, `021` | Architecture accepted; bounded synthetic experiment authorized in `DEC-ENTRY-003` | SATISFIED | None for bounded-experiment authorization | Founder after reviews | Does not authorize implementation |
 | `IEG-03` ADR Accepted | `IMP:73`, `IMP-REQ-014` | ADR-0001 `Accepted`; `ACCEPT_WITH_CONDITIONS` | SATISFIED | Independent post-retention reconciliation | ADR decision authority | Does not authorize implementation |
 | `IEG-04` threat model reviewed | `IMP:74`, `IMP-REQ-015`, `TM-REQ-081`–`085` | Specialist dispositions retained; 12 threats remain blocking | SATISFIED WITH CONDITIONS | Implement, test and evidence treatments | Security Reviewer | BLOCKING |
-| `IEG-05` boundaries | `IMP:75`, `IMP-REQ-017` | Design boundaries defined | SATISFIED WITH CONDITIONS | `CONF-BOUNDARY-001` attributable human validation | Architecture/Security | BLOCKING until confirmed |
-| `IEG-06` testable security/privacy | `IMP:76` | AC-01–20 plus reconciled contract/schema/privacy specifications | SATISFIED WITH CONDITIONS | `CONF-SUFFICIENCY-001` attributable sufficiency review | Security/Privacy-Governance | BLOCKING until confirmed |
-| `IEG-07` acceptance criteria | `IMP:77`, `IMP-REQ-160` | AC-01–20 | SATISFIED WITH CONDITIONS | `CONF-ADOPTION-001` attributable human adoption | Implementation Reviewer | BLOCKING until adopted |
+| `IEG-05` boundaries | `IMP:75`, `IMP-REQ-017` | `DEC-ENTRY-004` / `CONF-BOUNDARY-001`; combined implementation boundary confirmed | SATISFIED | None for preimplementation boundary confirmation | Architecture/Security | Does not authorize implementation |
+| `IEG-06` testable security/privacy | `IMP:76` | AC-01–20, reconciled contracts/schema, privacy and threat specifications plus `CONF-SUFFICIENCY-001` | SATISFIED | None for preimplementation specification sufficiency | Security/Privacy-Governance | Does not claim tests executed |
+| `IEG-07` acceptance criteria | `IMP:77`, `IMP-REQ-160` | `DEC-ENTRY-004` / `CONF-ADOPTION-001`; AC-01–20 formally adopted | SATISFIED | None for attributable adoption | Implementation Reviewer | Execution evidence remains future work |
 | `IEG-08` owner | `IMP:78` | André Luiz Vieira Bonfim designated Human Implementation Owner in `DEC-ENTRY-002` | SATISFIED | None for owner designation | Founder | Does not authorize implementation |
-| `IEG-09` data/environment | `IMP:79` | Synthetic/local/mock/secret-free proposal | SATISFIED WITH CONDITIONS | Classification approval | Security/Privacy-Governance | BLOCKING until confirmed |
-| `IEG-10` rollback/containment | `IMP:80`, `IMP-REQ-175`–`184` | Design below | SATISFIED WITH CONDITIONS | Approve and later test | Security/Implementation | BLOCKING until confirmed |
+| `IEG-09` data/environment | `IMP:79` | `DEC-PRIV-001`, `DEC-SPEC-001` and `CONF-BOUNDARY-001`; synthetic-only, local isolated non-production, mock-only, secret-free, runtime-network-deny and no-export classifications confirmed | SATISFIED | None for preimplementation classification approval | Security/Privacy-Governance | Expansion remains separately governed |
+| `IEG-10` rollback/containment | `IMP:80`, `IMP-REQ-175`–`184` | `DEC-ENTRY-004`; rollback and containment design approved | SATISFIED WITH CONDITIONS | Execute and evidence rollback/containment effectiveness during later authorized implementation/testing | Security/Implementation | Not a preimplementation design blocker; remains implementation-effectiveness obligation |
 | `IEG-11` technology/toolchain | `IMP-C01`, `IMP-C04`, `SEC-C03`, `RES-C01` | Go `1.26.5` selected in `DEC-TECH-001`; exact toolchain, SAST, scanner, SBOM, CI, integrity, network and reproducibility profile approved and retained in `DEC-TOOLCHAIN-001` | SATISFIED | Preserve the frozen profile; execution evidence remains independently required where applicable | Accountable Human / Security / Implementation / Research | Satisfies these profile-definition conditions only; gate remains BLOCKED |
 | `IEG-12` security data contracts | `SEC-C02`, `IMP-C02`, `IMP-C03` | Corrective contract/schema `2.0.0` retained in `DEC-SPEC-001`; global request reservation, ErrorCode/AuditEventType mapping and vectors reconciled | PARTIALLY SATISFIED | Execute deterministic validation and negative tests for `SEC-C02`; preserve the frozen contracts | Accountable Human / Security / Implementation | Specification gaps resolved; `SEC-C02` remains partial only because executed evidence is absent; gate remains BLOCKED |
 | `IEG-13` privacy/data governance | `PRIV-C01`, `PRIV-C02`, `PRIV-C03` | Privacy profile `1.1.0` and complete FixtureProvenance `2.0.0` admission schema retained through `DEC-SPEC-001`; inventory records zero executable fixtures | PARTIALLY SATISFIED | Produce attributable provenance for every future admitted fixture; preserve the continuing expansion-review control | Accountable Human / Privacy-Governance | Schema/admission gap resolved; `PRIV-C02` remains partial only because actual admitted-fixture provenance evidence is absent; gate remains BLOCKED |
@@ -42,14 +42,30 @@ PREIMPL_GAP_001=RESOLVED_AT_SPECIFICATION_LEVEL
 PREIMPL_GAP_002=RESOLVED_AT_SPECIFICATION_LEVEL
 PREIMPL_GAP_003=RESOLVED_AT_SPECIFICATION_LEVEL
 preimplementation_specification_gaps=0
-CONF_BOUNDARY_001=PENDING
-CONF_SUFFICIENCY_001=PENDING
-CONF_ADOPTION_001=PENDING
-preimplementation_human_confirmations_required=3
-DOCUMENTATION_DESIGN_GATE=BLOCKED_PENDING_HUMAN_CONFIRMATIONS
 ```
 
-Specification-level resolution is not implementation, operating or effectiveness evidence. The three confirmations remain mandatory before any source-code authorization.
+Specification-level resolution is not implementation, operating or effectiveness evidence. The separately issued confirmations are retained below; implementation still requires a distinct future authorization.
+
+## Preimplementation Human Gate Confirmations
+
+`DEC-ENTRY-004`, dated `2026-08-12`, retains the three attributable Accountable-Human confirmations without authorizing implementation:
+
+```text
+PREIMPLEMENTATION_GATE_CONFIRMATIONS_RETAINED=true
+DEC_ENTRY_004_RETAINED=true
+CONF_BOUNDARY_001=CONFIRMED
+CONF_SUFFICIENCY_001=CONFIRMED
+CONF_ADOPTION_001=CONFIRMED
+preimplementation_human_confirmations_required=0
+AC_01_THROUGH_AC_20_FORMALLY_ADOPTED=true
+data_environment_classification_approved=true
+rollback_containment_design_approved=true
+rollback_effectiveness_tested=false
+containment_effectiveness_tested=false
+DOCUMENTATION_DESIGN_GATE=SATISFIED_FOR_BOUNDED_IMPLEMENTATION_DISPOSITION
+```
+
+This means only that documentation and pre-code human confirmations are sufficient for a separate bounded implementation authorization decision. It does not create `DEC-IMPL-001`, authorize implementation, demonstrate security effectiveness or establish production readiness.
 
 ## Bounded Experiment Authorization Request
 
@@ -59,7 +75,7 @@ Purpose: demonstrate the officer-bound authorization invariant. Environment: iso
 
 Rollback: revert/delete bounded artifacts through ordinary Git history to the pre-implementation commit; no history rewrite. Containment: DENY, halt connector and preserve audit evidence on invariant failure. The authorization remains valid until the earliest of explicit accountable-human revocation, material scope or architecture change, data/connector/environment expansion, or a material security finding requiring governance reconsideration. Review triggers include failed security tests, dependencies, network/live connector, real data, identity/case/evidence model or owner changes.
 
-## Proposed Acceptance Criteria
+## Adopted Acceptance Criteria
 
 | ID | Criterion / proposed test |
 |---|---|
@@ -156,10 +172,19 @@ PREIMPL_GAP_001=RESOLVED_AT_SPECIFICATION_LEVEL
 PREIMPL_GAP_002=RESOLVED_AT_SPECIFICATION_LEVEL
 PREIMPL_GAP_003=RESOLVED_AT_SPECIFICATION_LEVEL
 preimplementation_specification_gaps=0
-CONF_BOUNDARY_001=PENDING
-CONF_SUFFICIENCY_001=PENDING
-CONF_ADOPTION_001=PENDING
-DOCUMENTATION_DESIGN_GATE=BLOCKED_PENDING_HUMAN_CONFIRMATIONS
+CONF_BOUNDARY_001=CONFIRMED
+CONF_SUFFICIENCY_001=CONFIRMED
+CONF_ADOPTION_001=CONFIRMED
+preimplementation_human_confirmations_required=0
+AC_01_THROUGH_AC_20_FORMALLY_ADOPTED=true
+IEG_05_BOUNDARIES=SATISFIED
+IEG_06_TESTABLE_SECURITY_PRIVACY=SATISFIED
+IEG_07_ACCEPTANCE_CRITERIA=SATISFIED
+IEG_09_DATA_ENVIRONMENT=SATISFIED
+IEG_10_ROLLBACK_CONTAINMENT=SATISFIED_WITH_CONDITIONS
+rollback_effectiveness_tested=false
+containment_effectiveness_tested=false
+DOCUMENTATION_DESIGN_GATE=SATISFIED_FOR_BOUNDED_IMPLEMENTATION_DISPOSITION
 legal_authority_created=false
 autonomous_investigative_authority_created=false
 ```
