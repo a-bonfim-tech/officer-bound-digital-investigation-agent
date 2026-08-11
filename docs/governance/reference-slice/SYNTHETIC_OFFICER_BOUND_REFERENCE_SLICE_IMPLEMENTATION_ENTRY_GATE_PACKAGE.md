@@ -2,12 +2,12 @@
 
 | Field | Value |
 |---|---|
-| Record ID / Version | `IMP-GATE-RS-001` / `0.1.0` |
-| Status | `Proposed / BLOCKED` |
+| Record ID / Version | `IMP-GATE-RS-001` / `0.2.0` |
+| Status | `Reconciled / BLOCKED` |
 | Classification | Category C, Evidence Level D governance proposal |
 | Owner | Project Founder / Accountable Human |
 | Base | `e98859f7f4d39552a283cbe3ca12bcaa8c57df7f` / tree `e7cfea306926e65524c6e716c158de7df2763f5d` |
-| Proposed ADR | `ADR-0001` — Proposed |
+| Governed ADR | `ADR-0001` — `Accepted`; human disposition `ACCEPT_WITH_CONDITIONS` retained in `DEC-ENTRY-001` on `2026-08-11` |
 
 ## Purpose and Verified Baseline
 
@@ -17,10 +17,10 @@ This package prepares a later decision and creates no authority. At baseline: ma
 
 | Gate | Requirement | Evidence | Status | Missing/action | Accountable role | Effect |
 |---|---|---|---|---|---|---|
-| `IEG-01` scope | `IMP:71`, `IMP-REQ-013` | Proposed bounded scope | PENDING HUMAN DECISION | Approve/correct scope | Founder | BLOCKING |
-| `IEG-02` architecture/experiment | `IMP:72`, `IMP-REQ-013`, `021` | ADR/request proposed | BLOCKED | Accept architecture or authorize experiment | Founder after reviews | BLOCKING |
-| `IEG-03` ADR Accepted | `IMP:73`, `IMP-REQ-014` | ADR-0001 Proposed | BLOCKED | Governed acceptance | ADR decision authority | BLOCKING |
-| `IEG-04` threat model reviewed | `IMP:74`, `IMP-REQ-015`, `TM-REQ-081`–`085` | Review proposed | PENDING HUMAN DECISION | Specialist dispositions | Security Reviewer | BLOCKING |
+| `IEG-01` scope | `IMP:71`, `IMP-REQ-013` | Bounded architectural scope accepted in `DEC-ENTRY-001` | SATISFIED FOR ADR | Separate experiment decision still required | Founder | Does not authorize implementation |
+| `IEG-02` architecture/experiment | `IMP:72`, `IMP-REQ-013`, `021` | Architecture accepted; experiment unauthorized | PARTIAL | Separate bounded-experiment authorization | Founder after reviews | BLOCKING |
+| `IEG-03` ADR Accepted | `IMP:73`, `IMP-REQ-014` | ADR-0001 `Accepted`; `ACCEPT_WITH_CONDITIONS` | SATISFIED | Independent post-retention reconciliation | ADR decision authority | Does not authorize implementation |
+| `IEG-04` threat model reviewed | `IMP:74`, `IMP-REQ-015`, `TM-REQ-081`–`085` | Specialist dispositions retained; 12 threats remain blocking | SATISFIED WITH CONDITIONS | Implement, test and evidence treatments | Security Reviewer | BLOCKING |
 | `IEG-05` boundaries | `IMP:75`, `IMP-REQ-017` | Design boundaries defined | SATISFIED WITH CONDITIONS | Human validation | Architecture/Security | BLOCKING until confirmed |
 | `IEG-06` testable security/privacy | `IMP:76` | AC-01–20 | SATISFIED WITH CONDITIONS | Sufficiency review | Security/Privacy-Governance | BLOCKING until confirmed |
 | `IEG-07` acceptance criteria | `IMP:77`, `IMP-REQ-160` | AC-01–20 | SATISFIED WITH CONDITIONS | Human adoption | Implementation Reviewer | BLOCKING until adopted |
@@ -32,7 +32,7 @@ Overall: `BLOCKED`. Branch, commit, Draft PR or merge cannot satisfy the gate (`
 
 ## Bounded Experiment Authorization Request
 
-**PENDING ACCOUNTABLE-HUMAN AUTHORIZATION**
+**PENDING SEPARATE ACCOUNTABLE-HUMAN AUTHORIZATION**
 
 Purpose: demonstrate the officer-bound authorization invariant. Environment: isolated local development. Data and identities: synthetic only. Connectors: named local mocks only. Operations: non-destructive synthetic operations in Accepted ADR-0001. Network: no investigative-service dependency. Real cases, subjects, law-enforcement identities, credentials, production secrets, criminal infrastructure, live Dark Web interaction, exploitation and autonomous legal/investigative authority are prohibited.
 
@@ -81,18 +81,19 @@ Requirement IDs above resolve in the repository. Component names are design labe
 
 ## Roles, Risks and Reviews
 
-Decision Owner/Founder decides ADR and experiment. Architecture, Security, Privacy/Governance, Implementation and Documentation roles must record their own review. A human Implementation Owner is unassigned and blocking. Founder role concentration must be disclosed; AI is advisory, not owner, approver or risk acceptor.
+The ADR decision is retained prospectively in `DEC-ENTRY-001`. Six specialist dispositions are retained in `SPEC-DISP-ADR-0001-001`, with role concentration disclosed and no external-independence claim. The experiment remains a separate decision. A human Implementation Owner is unassigned and blocking. AI analysis remains advisory evidence, not a human disposition or risk acceptance.
 
 Existing risks cover the slice; link `AI-RISK-002`, `004`–`007`, `012`, `014`, `019`–`021`, `024`, `027`, `028`, `032`, `035`, `038`. No new risk ID or acceptance is created.
 
-Adversarial drafting passes found no scope conflict, implicit allow or real-person requirement. They found no implementation, operating or effectiveness evidence; unresolved serialization, replay and toolchain design; and all human gates pending.
+The retained technical and specialist reviews found no scope conflict, implicit allow or real-person requirement. They found no implementation, operating or effectiveness evidence. Serialization, replay, toolchain, privacy and threat-treatment conditions remain open, and the independent implementation gates remain blocked.
 
 ## Governance Boundary
 
 ```text
-adr_status=Proposed
-adr_accepted=false
-architecture_approved=false
+adr_status=Accepted
+adr_disposition=ACCEPT_WITH_CONDITIONS
+adr_accepted=true
+architecture_approved=true
 bounded_experiment_authorized=false
 implementation_entry_gate=BLOCKED
 implementation_authorized=false
@@ -112,4 +113,4 @@ legal_authority_created=false
 autonomous_investigative_authority_created=false
 ```
 
-Hashes are reported in the PR to avoid self-reference. Human decisions on ADR disposition, specialist review, owner assignment and bounded-experiment authorization remain pending.
+Current artifact hashes are derived after retention and reported by the execution result. ADR disposition and specialist reviews are retained prospectively on `2026-08-11`. Human decisions on Implementation Owner assignment, bounded-experiment authorization, technology selection, risk acceptance, implementation authorization, Ready and merge remain pending. Independent post-retention reconciliation is required.

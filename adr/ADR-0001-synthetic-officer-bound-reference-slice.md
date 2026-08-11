@@ -6,7 +6,7 @@
 
 Version: `0.2.0`
 
-Classification: Decision proposal
+Classification: Decision
 
 Decision Owner: Project Founder / Accountable Human
 
@@ -26,11 +26,15 @@ Synthetic Officer-Bound Reference Slice Architecture
 
 `Accepted`
 
-This status creates no implementation authority. The ADR is not Under Review, Proposed, Rejected, Deprecated or Superseded. Acceptance is limited to the technology-neutral architecture and remains subject to the recorded downstream conditions and independent gates.
+Human Disposition: `ACCEPT_WITH_CONDITIONS`
+
+Governance Effective Date: `2026-08-11`
+
+This status was established prospectively through the retained governance package recorded on `2026-08-11`. It creates no implementation authority. The ADR is not Under Review, Proposed, Rejected, Deprecated or Superseded. Acceptance is limited to the technology-neutral architecture and remains subject to the governed condition register and independent downstream gates.
 
 ## 4. Date
 
-Proposed: `2026-08-10`. Accepted with conditions: `2026-08-10`.
+Proposed: `2026-08-10`. Prospectively Accepted with disposition `ACCEPT_WITH_CONDITIONS`: `2026-08-11`.
 
 ## 5. Context
 
@@ -51,7 +55,7 @@ Select the architecture for the smallest executable slice that could demonstrate
 
 ## 7. Decision
 
-### Proposed Decision
+### Accepted Decision
 
 Adopt the technology-neutral **Synthetic Officer-Bound Reference Slice architecture** described in this ADR. This ADR does not select an implementation language, runtime, framework, package manager or toolchain.
 
@@ -80,7 +84,7 @@ Applicable risks: `AI-RISK-002`, `AI-RISK-004`–`007`, `AI-RISK-012`, `AI-RISK-
 
 ## 10. Privacy Considerations
 
-Only synthetic identities, cases and operations are permitted. Real persons, investigations, law-enforcement identities, credentials, surveillance, live Dark Web interaction and external investigative services are prohibited. Fixtures and logs must contain only fields needed to test binding and must be unmistakably synthetic. Human privacy/fundamental-rights review remains pending.
+Only synthetic identities, cases and operations are permitted. Real persons, investigations, law-enforcement identities, credentials, surveillance, live Dark Web interaction and external investigative services are prohibited. Fixtures and logs must contain only fields needed to test binding and must be unmistakably synthetic. The attributable Privacy/Governance disposition is `PASS_WITH_CONDITIONS`; `PRIV-C01` through `PRIV-C03` remain open and govern implementation or scope expansion as applicable.
 
 ## 11. Trade-offs
 
@@ -94,7 +98,7 @@ Only synthetic identities, cases and operations are permitted. Real persons, inv
 
 ## 12. Consequences
 
-If Accepted and separately authorized, a later plan may create a bounded local slice using a technology profile selected by a separate governed decision. No model, database, network, production connector, CI or deployment is implied. Any scope expansion requires new or superseding decision and renewed threat/privacy/risk review. No migration exists. Rollback uses ordinary Git history to the pre-implementation governed commit; history rewrite is prohibited.
+If separately authorized through independent downstream gates, a later plan may create a bounded local slice using a technology profile selected by a separate governed decision. No model, database, network, production connector, CI or deployment is implied. Any scope expansion requires new or superseding decision and renewed threat/privacy/risk review. No migration exists. Rollback uses ordinary Git history to the pre-implementation governed commit; history rewrite is prohibited.
 
 ## 13. Risks
 
@@ -131,25 +135,27 @@ Eligibility requires: approval of AC-01–AC-20; attributable threat/privacy/arc
 | 2026-08-10 | Accountable-human acceptance intent prepared and staged locally | Pre-effective evidence only; no acceptance commit and no effective status transition |
 | 2026-08-10 | Accountable Human and Project Founder André Luiz Vieira Bonfim issued disposition `CORRECT` | Prior pre-effective acceptance intent superseded; correction class `TECHNOLOGY_SELECTION_DEFERMENT_AND_ARCHITECTURE_IMPLEMENTATION_DECOUPLING`; ADR remains `Proposed` |
 | 2026-08-10 | Controlled technology-neutral correction prepared as version `0.2.0` | Security architecture, requirement mappings, threat model, AC-01–AC-20 and authorization invariant preserved; technology selection deferred; fresh separate review required |
-| 2026-08-10 | Six object-bound human specialist dispositions recorded by André Luiz Vieira Bonfim under `ROLE_CONCENTRATION=true` against HEAD `77ad16819ecc716949ea47035d556bcda478c08c` and ADR SHA-256 `7c471252325ec710abf17c0f60b75046bd9ac43b437c981b6682e89c92dcedb6` | Architecture and Documentation `PASS`; Security, Privacy/Governance, Implementation and Research `PASS_WITH_CONDITIONS`; internal review only, not independent external assurance |
-| 2026-08-10 | Accountable Human and Project Founder André Luiz Vieira Bonfim issued final disposition `ACCEPT_WITH_CONDITIONS` | Technology-neutral architecture accepted; ADR status transitions to `Accepted`; implementation, bounded experiment, technology selection, risk acceptance, Ready, merge, release and publication remain unauthorized |
+| 2026-08-10 | Purported six object-bound human specialist dispositions and final disposition were described in the ADR | Later reconciliation found the aggregated assertion insufficient as retained evidence; no retroactive validation |
+| 2026-08-11 | New read-only technical review of historical immutable object `77ad16819ecc716949ea47035d556bcda478c08c` | `TECH-REVIEW-ADR-0001-001=PASS`; current review, not backdated historical evidence |
+| 2026-08-11 | Six individually identifiable specialist dispositions retained under `ROLE_CONCENTRATION=true` | Architecture and Documentation `PASS`; Security, Privacy/Governance, Implementation and Research `PASS_WITH_CONDITIONS`; internal governance review only |
+| 2026-08-11 | Accountable Human and Project Founder André Luiz Vieira Bonfim issued new final disposition `ACCEPT_WITH_CONDITIONS` in `DEC-ENTRY-001` | ADR transitions prospectively to `Accepted`; implementation, bounded experiment, technology selection, risk acceptance, Ready, merge, release and publication remain unauthorized |
 
 ### 16.1 Accepted Conditions and Review Dates
 
-| ID | Condition | Owner | Governance review deadline | Effect |
-|---|---|---|---|---|
-| `SEC-C01` | Implement and test treatments for all 12 threat classes. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-17` | Mandatory and blocking for implementation/effectiveness evidence, not ADR acceptance |
-| `SEC-C02` | Define schemas, deterministic serialization, replay/nonce and output validation. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-17` | Mandatory and blocking for implementation/effectiveness evidence, not ADR acceptance |
-| `SEC-C03` | Define the supply-chain profile after the future technology selection. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-17` | Mandatory and blocking for implementation/effectiveness evidence, not ADR acceptance |
-| `PRIV-C01` | Define log minimization, retention and disposal. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-17` | Mandatory before applicable implementation, not ADR acceptance |
-| `PRIV-C02` | Demonstrate provenance and synthetic classification of fixtures. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-17` | Mandatory before applicable implementation, not ADR acceptance |
-| `PRIV-C03` | Reopen Privacy/Governance Review for any material expansion of data, identity, connector or environment. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-17` | Mandatory before applicable scope expansion, not ADR acceptance |
-| `IMP-C01` | Issue a separate governed technology decision. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-24` | Mandatory and blocking for implementation, not ADR acceptance |
-| `IMP-C02` | Define schemas and deterministic serialization. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-24` | Mandatory and blocking for implementation, not ADR acceptance |
-| `IMP-C03` | Define nonce/request identifier, storage, errors and replay behavior. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-24` | Mandatory and blocking for implementation, not ADR acceptance |
-| `IMP-C04` | Fix runtime, dependencies, test runner, lint, format, static analysis and CI. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-24` | Mandatory and blocking for implementation, not ADR acceptance |
-| `RES-C01` | Revalidate lifecycle, security, supply chain, maintainability and reproducibility when the future technology-selection decision is made, using current appropriate sources. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-17` | Mandatory before a future technology-selection decision, not ADR acceptance |
+| ID | Condition | Owner | Governance review date | Status | Evidence required | Closure/review mechanism | Effect |
+|---|---|---|---|---|---|---|---|
+| `SEC-C01` | Implement and test treatments for all 12 threat classes. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-17` | Open | Implementation and effectiveness evidence for all threat treatments | Security Reviewer evidence disposition | Blocks implementation/effectiveness claims, not ADR acceptance |
+| `SEC-C02` | Define schemas, deterministic serialization, replay/nonce and output validation. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-17` | Open | Governed schemas and deterministic negative-test evidence | Security and Implementation Reviewer disposition | Blocks implementation/effectiveness claims, not ADR acceptance |
+| `SEC-C03` | Define the supply-chain profile after the future technology selection. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-17` | Open | Exact dependency, integrity and reproducibility profile | Security Reviewer disposition after technology decision | Blocks implementation/effectiveness claims, not ADR acceptance |
+| `PRIV-C01` | Define log minimization, retention and disposal. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-17` | Open | Approved minimization, retention and disposal specification | Privacy/Governance Reviewer disposition | Blocks applicable implementation, not ADR acceptance |
+| `PRIV-C02` | Demonstrate provenance and synthetic classification of fixtures. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-17` | Open | Fixture manifest and provenance evidence | Privacy/Governance Reviewer disposition | Blocks applicable implementation, not ADR acceptance |
+| `PRIV-C03` | Reopen Privacy/Governance Review for any material expansion of data, identity, connector or environment. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-17` | Open | New scope and privacy/governance assessment when triggered | Renewed review on material expansion | Blocks applicable scope expansion, not ADR acceptance |
+| `IMP-C01` | Issue a separate governed technology decision. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-24` | Open | Accepted technology-selection decision | Separate accountable-human disposition | Blocks implementation, not ADR acceptance |
+| `IMP-C02` | Define schemas and deterministic serialization. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-24` | Open | Versioned schemas and serialization specification | Implementation Reviewer disposition | Blocks implementation, not ADR acceptance |
+| `IMP-C03` | Define nonce/request identifier, storage, errors and replay behavior. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-24` | Open | Versioned behavior specification and negative-test plan | Implementation and Security Reviewer disposition | Blocks implementation, not ADR acceptance |
+| `IMP-C04` | Fix runtime, dependencies, test runner, lint, format, static analysis and CI. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-24` | Open | Exact governed toolchain and supply-chain profile | Implementation Reviewer disposition | Blocks implementation, not ADR acceptance |
+| `RES-C01` | Revalidate lifecycle, security, supply chain, maintainability and reproducibility when the future technology-selection decision is made, using current appropriate sources. | André Luiz Vieira Bonfim — Accountable Human | `2026-08-17` | Open | Current authoritative sources and documented comparison | Research Reviewer disposition during technology selection | Blocks future technology selection, not ADR acceptance |
 
 Condition ownership establishes accountability for review, disposition, evidence and escalation; it does not designate a Human Implementation Owner or authorize implementation. Review dates are governance deadlines, not implementation completion or authorization dates. `SEPARATE_TECHNOLOGY_SELECTION_DECISION_REQUIRED=true`.
 
-The accepted scope is exclusively the technology-neutral architecture at the reviewed object above. No risk is accepted. Internal role concentration is disclosed; independent external assurance is not claimed. Human Implementation Owner remains unassigned. Bounded experiment, Implementation Entry Gate, implementation, technology selection, dependencies, CI, source code, Ready, merge, release, tag, publication and visibility change remain unauthorized. `PRMETA-001` remains blocking for any future Ready or merge transition.
+The accepted scope is exclusively the technology-neutral architecture at the reviewed object above. The retained records are `TECH-REVIEW-ADR-0001-001`, `SPEC-DISP-ADR-0001-001` and `DEC-ENTRY-001`. No risk is accepted. Internal role concentration is disclosed; independent external assurance is not claimed. Human Implementation Owner remains unassigned. Bounded experiment, Implementation Entry Gate, implementation, technology selection, dependencies, CI, source code, Ready, merge, release, tag, publication and visibility change remain unauthorized. Independent post-retention reconciliation is required before PR metadata reconciliation or any later readiness decision.

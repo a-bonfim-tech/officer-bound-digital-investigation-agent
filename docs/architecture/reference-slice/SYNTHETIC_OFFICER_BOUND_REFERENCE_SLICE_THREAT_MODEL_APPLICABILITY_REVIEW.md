@@ -3,11 +3,11 @@
 | Field | Value |
 |---|---|
 | Record ID | `TM-REVIEW-RS-001` |
-| Version / Status | `0.1.0` / `Proposed` |
-| Classification | Category C, Evidence Level D review proposal |
+| Version / Status | `0.2.0` / `Reviewed with conditions` |
+| Classification | Governance review evidence |
 | Authority | Review evidence only |
-| Owner / Approval | Security Reviewer / Project Founder after applicable reviews |
-| Reviewed architecture | Proposed `ADR-0001` at base `e98859f7f4d39552a283cbe3ca12bcaa8c57df7f` |
+| Owner / Approval | Security Reviewer / Accountable Human disposition retained `2026-08-11` |
+| Reviewed architecture | `ADR-0001` version `0.2.0` at `77ad16819ecc716949ea47035d556bcda478c08c`; ADR SHA-256 `7c471252325ec710abf17c0f60b75046bd9ac43b437c981b6682e89c92dcedb6` |
 | Implementation | Not Implemented |
 
 ## Scope and Boundaries
@@ -49,12 +49,20 @@ No new baseline threat ID is created. These are derived review items within `TM-
 - Evidence changes: integrity verification fails.
 - Retry uses stale/mismatched decision: re-evaluate or DENY.
 
-Architecture review found no drafting conflict with the synthetic scope. Security review found the right fail-closed design but no implementation proof. Privacy review found no required real-person processing. Evidence review found proposed binding fields but unresolved serialization/storage. Governance review confirmed Proposed/BLOCKED language. Scope review confirmed one policy path, one mock and one evidence path is the minimum useful slice.
+The current object-bound technical review `TECH-REVIEW-ADR-0001-001` found no technical regression in the technology-neutral correction. The attributable Architecture Reviewer disposition is `PASS`. Security and Privacy/Governance dispositions are `PASS_WITH_CONDITIONS`. There is still no implementation or effectiveness proof; serialization, replay, toolchain, minimization and fixture-provenance conditions remain open.
 
-Human Architecture, Security and Privacy/Governance Reviewer dispositions remain required. Critical unresolved threats block implementation. Merge alone does not establish review or approval.
+The human specialist dispositions are retained in `SPEC-DISP-ADR-0001-001`. All 12 unresolved threat classes continue to block implementation. Merge alone does not establish implementation authorization, risk acceptance or control effectiveness.
 
-Current status: `PENDING HUMAN REVIEW`.
+Current status: `HUMAN REVIEW RETAINED — IMPLEMENTATION BLOCKED`.
 
 Repository: a-bonfim-tech/officer-bound-digital-investigation-agent
 
-Version: e98859f7f4d39552a283cbe3ca12bcaa8c57df7f
+Reviewed object: `77ad16819ecc716949ea47035d556bcda478c08c`.
+
+```text
+material_threat_count=12
+material_threats_blocking=12
+implementation_evidence_created=false
+effectiveness_evidence_created=false
+risk_accepted=false
+```
