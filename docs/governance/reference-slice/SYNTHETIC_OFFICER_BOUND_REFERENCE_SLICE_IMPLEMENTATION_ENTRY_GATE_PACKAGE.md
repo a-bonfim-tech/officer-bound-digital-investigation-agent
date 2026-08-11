@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Record ID / Version | `IMP-GATE-RS-001` / `0.4.0` |
+| Record ID / Version | `IMP-GATE-RS-001` / `0.5.0` |
 | Status | `Reconciled / BLOCKED` |
 | Classification | Category C, Evidence Level D governance proposal |
 | Owner | Project Founder / Accountable Human |
@@ -27,6 +27,7 @@ This package prepares a later decision and creates no authority. At baseline: ma
 | `IEG-08` owner | `IMP:78` | André Luiz Vieira Bonfim designated Human Implementation Owner in `DEC-ENTRY-002` | SATISFIED | None for owner designation | Founder | Does not authorize implementation |
 | `IEG-09` data/environment | `IMP:79` | Synthetic/local/mock/secret-free proposal | SATISFIED WITH CONDITIONS | Classification approval | Security/Privacy-Governance | BLOCKING until confirmed |
 | `IEG-10` rollback/containment | `IMP:80`, `IMP-REQ-175`–`184` | Design below | SATISFIED WITH CONDITIONS | Approve and later test | Security/Implementation | BLOCKING until confirmed |
+| `IEG-11` technology selection | `IMP-C01`, `IMP-C04`, `SEC-C03`, `RES-C01` | Binding selection of Go `1.26.5` / `go1.26.5` retained in `DEC-TECH-001` | SATISFIED for technology selection | Retain exact external-tool, integrity, CI and reproducibility evidence; complete the remaining condition reviews | Accountable Human / Security / Implementation / Research | Satisfies `IMP-C01` only; gate remains BLOCKED |
 
 Overall: `BLOCKED`. Branch, commit, Draft PR or merge cannot satisfy the gate (`IMP-REQ-020`).
 
@@ -98,6 +99,17 @@ human_implementation_owner_designated=true
 HUMAN_IMPLEMENTATION_OWNER=André Luiz Vieira Bonfim
 bounded_experiment_authorized=true
 bounded_experiment_scope=SYNTHETIC_REFERENCE_SLICE_ONLY
+technology_selection_authorized=true
+technology_selected=true
+selected_language=Go
+selected_language_version=1.26.5
+selected_toolchain=go1.26.5
+runtime_dependency_policy=STANDARD_LIBRARY_FIRST
+initial_third_party_runtime_dependencies=0
+IMP_C01=SATISFIED
+IMP_C04=PARTIALLY_SATISFIED
+SEC_C03=PARTIALLY_SATISFIED
+RES_C01=PARTIALLY_SATISFIED
 implementation_entry_gate=BLOCKED
 implementation_authorized=false
 implementation_performed=false
@@ -116,4 +128,4 @@ legal_authority_created=false
 autonomous_investigative_authority_created=false
 ```
 
-Current artifact hashes are derived after retention and reported by the execution result. ADR disposition, specialist reviews, Human Implementation Owner designation and bounded synthetic experiment authorization are retained prospectively on `2026-08-11`. Human decisions on technology selection, risk acceptance, implementation authorization, Ready and merge remain pending. Independent post-retention reconciliation of the experiment authorization is required.
+Current artifact hashes are derived after retention and reported by the execution result. ADR disposition, specialist reviews, Human Implementation Owner designation, bounded synthetic experiment authorization and the Go `1.26.5` technology selection are retained prospectively on `2026-08-11`. Technology selection satisfies `IMP-C01` only. `IMP-C04`, `SEC-C03` and `RES-C01` remain partially satisfied pending their exact governed evidence and review requirements. Human decisions on risk acceptance, implementation authorization, Ready and merge remain pending. The overall Implementation Entry Gate remains `BLOCKED`.
