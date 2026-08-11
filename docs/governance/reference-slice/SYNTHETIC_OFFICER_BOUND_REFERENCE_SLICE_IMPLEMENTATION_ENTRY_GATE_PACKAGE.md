@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Record ID / Version | `IMP-GATE-RS-001` / `0.2.0` |
+| Record ID / Version | `IMP-GATE-RS-001` / `0.3.0` |
 | Status | `Reconciled / BLOCKED` |
 | Classification | Category C, Evidence Level D governance proposal |
 | Owner | Project Founder / Accountable Human |
@@ -24,7 +24,7 @@ This package prepares a later decision and creates no authority. At baseline: ma
 | `IEG-05` boundaries | `IMP:75`, `IMP-REQ-017` | Design boundaries defined | SATISFIED WITH CONDITIONS | Human validation | Architecture/Security | BLOCKING until confirmed |
 | `IEG-06` testable security/privacy | `IMP:76` | AC-01–20 | SATISFIED WITH CONDITIONS | Sufficiency review | Security/Privacy-Governance | BLOCKING until confirmed |
 | `IEG-07` acceptance criteria | `IMP:77`, `IMP-REQ-160` | AC-01–20 | SATISFIED WITH CONDITIONS | Human adoption | Implementation Reviewer | BLOCKING until adopted |
-| `IEG-08` owner | `IMP:78` | Role only | PENDING HUMAN DECISION | Assign human owner | Founder | BLOCKING |
+| `IEG-08` owner | `IMP:78` | André Luiz Vieira Bonfim designated Human Implementation Owner in `DEC-ENTRY-002` | SATISFIED | None for owner designation | Founder | Does not authorize implementation |
 | `IEG-09` data/environment | `IMP:79` | Synthetic/local/mock/secret-free proposal | SATISFIED WITH CONDITIONS | Classification approval | Security/Privacy-Governance | BLOCKING until confirmed |
 | `IEG-10` rollback/containment | `IMP:80`, `IMP-REQ-175`–`184` | Design below | SATISFIED WITH CONDITIONS | Approve and later test | Security/Implementation | BLOCKING until confirmed |
 
@@ -81,7 +81,7 @@ Requirement IDs above resolve in the repository. Component names are design labe
 
 ## Roles, Risks and Reviews
 
-The ADR decision is retained prospectively in `DEC-ENTRY-001`. Six specialist dispositions are retained in `SPEC-DISP-ADR-0001-001`, with role concentration disclosed and no external-independence claim. The experiment remains a separate decision. A human Implementation Owner is unassigned and blocking. AI analysis remains advisory evidence, not a human disposition or risk acceptance.
+The ADR decision is retained prospectively in `DEC-ENTRY-001`. Six specialist dispositions are retained in `SPEC-DISP-ADR-0001-001`, with role concentration disclosed and no external-independence claim. André Luiz Vieira Bonfim is prospectively designated Human Implementation Owner in `DEC-ENTRY-002`. This satisfies only the owner prerequisite; the experiment remains a separate decision and the overall gate remains `BLOCKED`. AI analysis remains advisory evidence, not a human disposition or risk acceptance.
 
 Existing risks cover the slice; link `AI-RISK-002`, `004`–`007`, `012`, `014`, `019`–`021`, `024`, `027`, `028`, `032`, `035`, `038`. No new risk ID or acceptance is created.
 
@@ -94,6 +94,8 @@ adr_status=Accepted
 adr_disposition=ACCEPT_WITH_CONDITIONS
 adr_accepted=true
 architecture_approved=true
+human_implementation_owner_designated=true
+HUMAN_IMPLEMENTATION_OWNER=André Luiz Vieira Bonfim
 bounded_experiment_authorized=false
 implementation_entry_gate=BLOCKED
 implementation_authorized=false
@@ -113,4 +115,4 @@ legal_authority_created=false
 autonomous_investigative_authority_created=false
 ```
 
-Current artifact hashes are derived after retention and reported by the execution result. ADR disposition and specialist reviews are retained prospectively on `2026-08-11`. Human decisions on Implementation Owner assignment, bounded-experiment authorization, technology selection, risk acceptance, implementation authorization, Ready and merge remain pending. Independent post-retention reconciliation is required.
+Current artifact hashes are derived after retention and reported by the execution result. ADR disposition, specialist reviews and the Human Implementation Owner designation are retained prospectively on `2026-08-11`. Human decisions on bounded-experiment authorization, technology selection, risk acceptance, implementation authorization, Ready and merge remain pending. Independent post-retention reconciliation of the owner designation is required.
