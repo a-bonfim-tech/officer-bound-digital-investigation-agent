@@ -1,0 +1,93 @@
+name: bounded-reference-slice
+
+on:
+  pull_request:
+    branches: [docs/propose-reference-slice-adr-entry-gate-2026-08]
+  push:
+    branches: [impl/bounded-synthetic-reference-slice-2026-08]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact event revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+
+      - name: Bootstrap exact Go toolchain and frozen tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          tool_root="${RUNNER_TEMP}/obdia-tools"
+          mkdir -p "${tool_root}/bin" "${tool_root}/go"
+          curl --fail --location --proto '=https' --tlsv1.2 -o "${tool_root}/go.tgz" https://go.dev/dl/go1.26.5.linux-amd64.tar.gz
+          echo '5c2c3b16caefa1d968a94c1daca04a7ca301a496d9b086e17ad77bb81393f053  '"${tool_root}/go.tgz" | sha256sum --check --strict
+          tar -xzf "${tool_root}/go.tgz" -C "${tool_root}"
+          curl --fail --location --proto '=https' --tlsv1.2 -o "${tool_root}/gosec.tgz" https://github.com/securego/gosec/releases/download/v2.28.0/gosec_2.28.0_linux_amd64.tar.gz
+          echo 'd7882e505b1ff345d458bf0e893eec8019bc849f861ad73a212869540dd505ff  '"${tool_root}/gosec.tgz" | sha256sum --check --strict
+          tar -xzf "${tool_root}/gosec.tgz" -C "${tool_root}/bin" gosec
+          curl --fail --location --proto '=https' --tlsv1.2 -o "${tool_root}/trufflehog.tgz" https://github.com/trufflesecurity/trufflehog/releases/download/v3.96.0/trufflehog_3.96.0_linux_amd64.tar.gz
+          echo '7105f1cd6577f058a9e39d0578f1a99c8a1e481e4d3512cd8a09acfe22a0fdc0  '"${tool_root}/trufflehog.tgz" | sha256sum --check --strict
+          tar -xzf "${tool_root}/trufflehog.tgz" -C "${tool_root}/bin" trufflehog
+          curl --fail --location --proto '=https' --tlsv1.2 -o "${tool_root}/cyclonedx.tgz" https://github.com/CycloneDX/cyclonedx-gomod/releases/download/v1.10.0/cyclonedx-gomod_1.10.0_linux_amd64.tar.gz
+          echo '5cce8ae99a5181be6a610ea5ed9ca9d596937cc04dc1a8f6f6b5e462d8c9900e  '"${tool_root}/cyclonedx.tgz" | sha256sum --check --strict
+          tar -xzf "${tool_root}/cyclonedx.tgz" -C "${tool_root}/bin" cyclonedx-gomod
+          export PATH="${tool_root}/go/bin:${tool_root}/bin:${PATH}"
+          export GOBIN="${tool_root}/bin" GOENV=off GOTOOLCHAIN=local
+          go install golang.org/x/vuln/cmd/govulncheck@v1.6.0
+          echo "${tool_root}/go/bin" >> "${GITHUB_PATH}"
+          echo "${tool_root}/bin" >> "${GITHUB_PATH}"
+          echo "OBDIA_TOOL_ROOT=${tool_root}" >> "${GITHUB_ENV}"
+
+      - name: Verify identities and refresh vulnerability evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(go version)" = 'go version go1.26.5 linux/amd64'
+          test "$(govulncheck -version | sed -n 's/^Scanner: govulncheck@//p')" = 'v1.6.0'
+          govulncheck ./...
+
+      - name: Deterministic offline validation and security controls
+        shell: bash
+        env:
+          GOENV: off
+          GOTOOLCHAIN: local
+          GOPROXY: off
+          GOSUMDB: off
+          GOVCS: '*:off'
+          GOWORK: off
+          CGO_ENABLED: '0'
+          GOFLAGS: '-mod=readonly'
+        run: |
+          set -euo pipefail
+          evidence="${RUNNER_TEMP}/obdia-evidence"
+          mkdir -p "${evidence}"
+          test ! -d vendor
+          test "$(awk '$1=="require" || $1=="replace" {print}' go.mod | wc -l | tr -d ' ')" = 0
+          test -z "$(gofmt -l .)"
+          go vet ./...
+          go test -count=1 ./...
+          go test ./internal/referenceslice -run '^$' -fuzz '^FuzzStrictRawJSON$' -fuzztime=5s
+          gosec -fmt=json -out="${evidence}/gosec.json" -track-suppressions -nosec-require-rules -nosec-require-justification -tests ./...
+          trufflehog git file://. --no-update --no-verification --results=unverified,unknown --fail --json > "${evidence}/trufflehog.jsonl"
+          snapshot="${RUNNER_TEMP}/sbom-snapshot"
+          mkdir -p "${snapshot}"
+          git archive HEAD | tar -x -C "${snapshot}"
+          git -C "${snapshot}" init --quiet
+          git -C "${snapshot}" config user.name 'OBDIA Evidence Builder'
+          git -C "${snapshot}" config user.email 'noreply@localhost'
+          git -C "${snapshot}" config commit.gpgsign false
+          git -C "${snapshot}" add .
+          git -C "${snapshot}" commit --quiet -m 'ephemeral evidence snapshot'
+          git -C "${snapshot}" tag "v0.0.0-evidence.${GITHUB_SHA:0:12}"
+          cyclonedx-gomod app -json -output-version 1.6 -output "${evidence}/sbom.json" -main cmd/verify "${snapshot}"
+          test "$(jq -r '.bomFormat + ":" + .specVersion' "${evidence}/sbom.json")" = 'CycloneDX:1.6'
+          test "$(jq '.components | length' "${evidence}/sbom.json")" = 0
+          sha256sum "${evidence}"/*
+          test -z "$(git status --porcelain)"

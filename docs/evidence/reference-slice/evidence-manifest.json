@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0.0",
+  "evidence_classification": "BOUNDED_NON_PRODUCTION_TECHNICAL_EVIDENCE",
+  "evidence_subject_commit": "72bf0dbe6686b22e65df9186ca0c68b11ed5033b",
+  "governance_commit": "0695bb9668eb679d2f9897967f24f1cd7a2839e4",
+  "generated_at": "2026-08-12T13:05:22+02:00",
+  "platform": "darwin/arm64",
+  "toolchain": {
+    "go": "go1.26.5",
+    "profile": "GO-TOOLCHAIN-PROFILE-001",
+    "module_file_sha256": "9978256ddc17d63cee6aa2f9fbfb2b104e1d35290780cc44e5e948092e03c61c",
+    "third_party_runtime_dependencies": 0,
+    "third_party_test_dependencies": 0
+  },
+  "integrity": {
+    "source_and_test_hash_list_sha256": "58118dea777d120ebb118b8def69c9ab08293c2dc8b091cb9ab95902f38e311e",
+    "schema_sha256": "0ee6794cd47a4c205a41b831c66ec7470b35139f00ed1bac6ea5f6bee7c334dd",
+    "canonical_vectors_sha256": "6c271fbf77da504e4eb658a203eae2db90503b5332bd436576b964156fc08044",
+    "fixture_manifest_sha256": "87d4d852d76028663e32f2051f3a21c6057713f7ece2bf072c1bfdf6c3b20b98"
+  },
+  "validation": {
+    "gofmt": "PASS",
+    "go_vet": "PASS",
+    "go_test": "PASS",
+    "top_level_test_count": 25,
+    "fuzz_target": "FuzzStrictRawJSON",
+    "fuzz_duration": "3s local; 5s CI",
+    "fuzz_executions_local": 197130,
+    "fuzz_result": "PASS",
+    "repository_diff_after_read_only_validation": "CLEAN"
+  },
+  "acceptance_criteria": {
+    "AC01": "PASS", "AC02": "PASS", "AC03": "PASS", "AC04": "PASS",
+    "AC05": "PASS", "AC06": "PASS", "AC07": "PASS", "AC08": "PASS",
+    "AC09": "PASS", "AC10": "PASS", "AC11": "PASS", "AC12": "PASS",
+    "AC13": "PASS", "AC14": "PASS", "AC15": "PASS", "AC16": "PASS",
+    "AC17a": "PASS", "AC17b": "PASS", "AC17c": "PASS", "AC18": "PASS",
+    "AC19": "PASS", "AC20": "PASS"
+  },
+  "security_controls": {
+    "govulncheck": {
+      "version": "v1.6.0",
+      "result": "PASS",
+      "called_findings": 0,
+      "raw_result_sha256": "972d94fa63aadaacc37a2858aedcd00893bc3f881b125a22306c66e10239999a"
+    },
+    "gosec": {
+      "version": "2.28.0",
+      "result": "PASS_WITH_JUSTIFIED_SUPPRESSIONS",
+      "unsuppressed_findings": 0,
+      "suppressed_source_locations": 5,
+      "raw_result_sha256": "431366c0207ef248216c8aa4c53d4b46a01d39a1edde4665b096c34627488956"
+    },
+    "trufflehog": {
+      "version": "3.96.0",
+      "online_verification": false,
+      "verified_secrets": 0,
+      "unverified_secrets": 0,
+      "result": "PASS",
+      "raw_result_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cyclonedx_gomod": {
+      "version": "1.10.0",
+      "format": "CycloneDX 1.6 JSON",
+      "components": 0,
+      "result": "PASS",
+      "sbom_path": "docs/evidence/reference-slice/sbom.cdx.json",
+      "sbom_sha256": "2d10bb24fe02e585d8e4565c6d5ba0e0abcee264ebcee4328f4544dcf7fa55e7"
+    }
+  },
+  "ci": {
+    "workflow_commit": "72bf0dbe6686b22e65df9186ca0c68b11ed5033b",
+    "push_run_id": 31590034001,
+    "pull_request_run_id": 31590035404,
+    "head_sha": "72bf0dbe6686b22e65df9186ca0c68b11ed5033b",
+    "push_result": "PASS",
+    "pull_request_result": "PASS"
+  },
+  "finding_disposition": {
+    "material_open_findings": 0,
+    "remediation_commits": [
+      "bc289223e12118ba6f7ed11fd4e573ee45f25ef3",
+      "72bf0dbe6686b22e65df9186ca0c68b11ed5033b"
+    ],
+    "gosec_suppressions": "Two bounded conversion sites are preceded by MaxUint16 rejection; one command-execution site accepts only an absolute go/gofmt pair under one GOROOT and fixed arguments. Duplicate analyzer entries arise from test scanning."
+  },
+  "condition_reevaluation": {
+    "SEC_C01": "TECHNICAL_IMPLEMENTATION_AND_SECURITY_EVIDENCE_PRESENT_PENDING_HUMAN_DISPOSITION",
+    "SEC_C02": "TECHNICALLY_SATISFIED_PENDING_HUMAN_DISPOSITION",
+    "PRIV_C02": "PARTIALLY_SATISFIED_NO_EXECUTABLE_FILE_FIXTURE_ADMITTED",
+    "IEG_10_EFFECTIVENESS_EVIDENCE": "BOUNDED_TEST_AND_CI_EVIDENCE_PRESENT_PENDING_HUMAN_DISPOSITION"
+  },
+  "threat_state": {
+    "material_threat_count": 12,
+    "technical_treatment_evidence_present": true,
+    "human_disposition_pending": true,
+    "risk_accepted": false
+  },
+  "fixture_state": {
+    "executable_file_fixture_count": 0,
+    "programmatic_synthetic_test_data_only": true,
+    "new_human_fixture_approval_required": false
+  },
+  "evidence_boundary": {
+    "implementation_evidence": true,
+    "bounded_test_evidence": true,
+    "ci_evidence": true,
+    "production_evidence": false,
+    "formal_compliance_evidence": false,
+    "risk_acceptance": false,
+    "ready_authorized": false,
+    "merge_authorized": false
+  }
+}
