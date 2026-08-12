@@ -111,8 +111,10 @@ func DomainSeparatedPreimage(objectType ObjectType, schemaVersion string, canoni
 	var out bytes.Buffer
 	out.WriteString("OBDIA")
 	out.WriteByte(0)
+	// #nosec G115 -- both lengths are rejected above when they exceed MaxUint16.
 	_ = binary.Write(&out, binary.BigEndian, uint16(len(objectType)))
 	out.WriteString(string(objectType))
+	// #nosec G115 -- both lengths are rejected above when they exceed MaxUint16.
 	_ = binary.Write(&out, binary.BigEndian, uint16(len(schemaVersion)))
 	out.WriteString(schemaVersion)
 	_ = binary.Write(&out, binary.BigEndian, uint64(len(canonical)))
