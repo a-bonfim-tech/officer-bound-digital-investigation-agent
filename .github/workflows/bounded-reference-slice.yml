@@ -2,13 +2,17 @@ name: bounded-reference-slice
 
 on:
   pull_request:
-    branches: [docs/propose-reference-slice-adr-entry-gate-2026-08]
+    branches: [main]
   push:
-    branches: [impl/bounded-synthetic-reference-slice-2026-08]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: bounded-reference-slice-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   verify:
