@@ -7,6 +7,14 @@
 
 An independent cybersecurity research and engineering project exploring a **human-accountable architecture for officer-bound AI agents supporting authorized digital investigations**.
 
+<p align="center">
+  <img
+    src="docs/assets/obdia-security-architecture-hero.png"
+    alt="OBDIA security architecture: Human Authority to Default Deny or Allow, AI Execution, and Tamper-Evident Evidence"
+    width="100%"
+  />
+</p>
+
 > **Current status:** a tested, bounded, synthetic reference slice is implemented and merged. It is a non-production security reference implementation, not an operational law-enforcement system, not a production-ready investigative platform, and not an AI system with independent legal authority.
 
 ## Why OBDIA exists
