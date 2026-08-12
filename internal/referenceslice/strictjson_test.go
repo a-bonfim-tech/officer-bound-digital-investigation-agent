@@ -17,7 +17,7 @@ func TestValidateRawJSON(t *testing.T) {
 		{"simple object", []byte(`{"a":1}`), 64, ""},
 		{"nested object", []byte(`{"a":{"b":[1,true,null]}}`), 64, ""},
 		{"exact byte limit", []byte(`{"a":1}`), len([]byte(`{"a":1}`)), ""},
-		{"over byte limit", []byte(`{"a":1}`), len([]byte(`{"a":1}`))-1, ErrorOversizedInput},
+		{"over byte limit", []byte(`{"a":1}`), len([]byte(`{"a":1}`)) - 1, ErrorOversizedInput},
 		{"zero byte limit", []byte(`{}`), 0, ErrorInternalInvariantFailure},
 		{"invalid UTF-8", []byte{0xff}, 64, ErrorValidation},
 		{"root duplicate", []byte(`{"a":1,"a":2}`), 64, ErrorValidation},

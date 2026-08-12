@@ -149,14 +149,14 @@ type EvidenceEnvelope struct {
 }
 
 type AuditEvent struct {
-	SchemaVersion string          `json:"schema_version"`
-	ObjectType    ObjectType      `json:"object_type"`
-	AuditEventID  AuditEventID    `json:"audit_event_id"`
-	EventType     AuditEventType  `json:"event_type"`
-	CaseID        CaseID          `json:"case_id"`
-	RequestID     RequestID       `json:"request_id"`
-	OccurredAt    Timestamp       `json:"occurred_at"`
-	ErrorCode     *ErrorCode      `json:"error_code,omitempty"`
+	SchemaVersion string         `json:"schema_version"`
+	ObjectType    ObjectType     `json:"object_type"`
+	AuditEventID  AuditEventID   `json:"audit_event_id"`
+	EventType     AuditEventType `json:"event_type"`
+	CaseID        CaseID         `json:"case_id"`
+	RequestID     RequestID      `json:"request_id"`
+	OccurredAt    Timestamp      `json:"occurred_at"`
+	ErrorCode     *ErrorCode     `json:"error_code,omitempty"`
 }
 
 type ProvenanceRecord struct {
@@ -193,20 +193,20 @@ type FixtureProvenance struct {
 	ObjectType                  ObjectType            `json:"object_type"`
 	FixtureID                   NonEmptyASCII         `json:"fixture_id"`
 	FixtureType                 FixtureType           `json:"fixture_type"`
-	Classification             string                `json:"classification"`
-	Synthetic                  bool                  `json:"synthetic"`
-	CreationMethod             FixtureCreationMethod `json:"creation_method"`
-	CreatorOrGenerator         NonEmptyASCII         `json:"creator_or_generator"`
-	GeneratorVersion           NonEmptyASCII         `json:"generator_version"`
-	CreationTimestamp          Timestamp             `json:"creation_timestamp"`
-	SourceDescription          NonEmptyASCII         `json:"source_description"`
-	DerivedFromRealPersonData  bool                  `json:"derived_from_real_person_data"`
-	DerivedFromLiveCaseData    bool                  `json:"derived_from_live_case_data"`
-	DerivedFromProductionExport bool                 `json:"derived_from_production_export"`
-	DerivedFromLiveConnector   bool                  `json:"derived_from_live_connector"`
-	ContainsRealCredentials    bool                  `json:"contains_real_credentials"`
-	ContentDigest              Digest                `json:"content_digest"`
-	ReviewStatus               FixtureReviewStatus   `json:"review_status"`
-	Reviewer                   *NonEmptyASCII        `json:"reviewer,omitempty"`
-	ReviewTimestamp            *Timestamp            `json:"review_timestamp,omitempty"`
+	Classification              string                `json:"classification"`
+	Synthetic                   bool                  `json:"synthetic"`
+	CreationMethod              FixtureCreationMethod `json:"creation_method"`
+	CreatorOrGenerator          NonEmptyASCII         `json:"creator_or_generator"`
+	GeneratorVersion            NonEmptyASCII         `json:"generator_version"`
+	CreationTimestamp           Timestamp             `json:"creation_timestamp"`
+	SourceDescription           NonEmptyASCII         `json:"source_description"`
+	DerivedFromRealPersonData   bool                  `json:"derived_from_real_person_data"`
+	DerivedFromLiveCaseData     bool                  `json:"derived_from_live_case_data"`
+	DerivedFromProductionExport bool                  `json:"derived_from_production_export"`
+	DerivedFromLiveConnector    bool                  `json:"derived_from_live_connector"`
+	ContainsRealCredentials     bool                  `json:"contains_real_credentials"`
+	ContentDigest               Digest                `json:"content_digest"`
+	ReviewStatus                FixtureReviewStatus   `json:"review_status"`
+	Reviewer                    *NonEmptyASCII        `json:"reviewer,omitempty"`
+	ReviewTimestamp             *Timestamp            `json:"review_timestamp,omitempty"`
 }
