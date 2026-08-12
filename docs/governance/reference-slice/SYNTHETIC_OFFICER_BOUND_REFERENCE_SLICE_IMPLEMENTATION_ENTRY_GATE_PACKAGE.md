@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Record ID / Version | `IMP-GATE-RS-001` / `0.11.0` |
+| Record ID / Version | `IMP-GATE-RS-001` / `0.11.1` |
 | Status | `Reconciled / BLOCKED` |
 | Classification | Category C, Evidence Level D governance proposal |
 | Owner | Project Founder / Accountable Human |
@@ -11,7 +11,9 @@
 
 ## Purpose and Verified Baseline
 
-This package prepares a later decision and creates no authority. At baseline: main matched local/remote commit above; worktree was clean; Candidate.2 was Draft/unfrozen; Wave 1 was 105 complete and 142 pending; freeze was BLOCKED; no actual ADR, related branch or open PR existed; examples of `ADR-0001` were not allocations.
+This package records and reconciles Implementation Entry Gate state against separately retained governance authority. The Entry Gate itself creates no implementation authority. Bounded synthetic implementation authority is separately retained in `DEC-IMPL-001`; the global Entry Gate remains `BLOCKED` pending implementation, testing, provenance and effectiveness evidence.
+
+At the original package baseline, main matched the then-local/remote commit; the worktree was clean; Candidate.2 was Draft/unfrozen; Wave 1 was 105 complete and 142 pending; freeze was BLOCKED; no actual ADR, related branch or open PR existed; and examples of `ADR-0001` were not allocations. These are explicitly historical baseline facts, not current authorization state.
 
 ## Implementation Entry Gate
 
@@ -72,9 +74,22 @@ bootstrap_network_authorized=false
 security_tool_execution_authorized=false
 CI_execution_authorized=false
 IEG_10_EFFECTIVENESS_EVIDENCE=PENDING
+runtime_network=DENY
+live_connectors=false
+real_data=false
+CI_creation_authorized=false
+CI_modification_authorized=false
 ```
 
 Implementation must use a new implementation branch and new Draft PR from governed baseline `cd31d0d662f73ed93f47cc167c028a9a34d43626`; it must not be authored directly in PR #48. All detailed boundaries, stop conditions and topology requirements are retained in `DEC-IMPL-001`.
+
+```text
+IMPLEMENTATION_TOPOLOGY=NEW_IMPLEMENTATION_BRANCH_AND_NEW_DRAFT_PR_FROM_GOVERNED_BASELINE
+governed_implementation_baseline=cd31d0d662f73ed93f47cc167c028a9a34d43626
+preferred_implementation_branch=impl/bounded-synthetic-reference-slice-2026-08
+implementation_PR_head=impl/bounded-synthetic-reference-slice-2026-08
+implementation_PR_base=docs/propose-reference-slice-adr-entry-gate-2026-08
+```
 
 ## Preimplementation Specification Reconciliation
 
@@ -87,11 +102,11 @@ PREIMPL_GAP_003=RESOLVED_AT_SPECIFICATION_LEVEL
 preimplementation_specification_gaps=0
 ```
 
-Specification-level resolution is not implementation, operating or effectiveness evidence. The separately issued confirmations are retained below; implementation still requires a distinct future authorization.
+Specification-level resolution is not implementation, operating or effectiveness evidence. A distinct bounded implementation authorization was required and that requirement is now satisfied for the bounded synthetic reference slice by retained `DEC-IMPL-001`. No general, unbounded, production, investigative, security-tool, CI, bootstrap-network or risk authority is created.
 
 ## Preimplementation Human Gate Confirmations
 
-`DEC-ENTRY-004`, dated `2026-08-12`, retains the three attributable Accountable-Human confirmations without authorizing implementation:
+`DEC-ENTRY-004`, dated `2026-08-12`, retains the three attributable Accountable-Human confirmations. `DEC-ENTRY-004` itself did not create `DEC-IMPL-001` and did not authorize implementation:
 
 ```text
 PREIMPLEMENTATION_GATE_CONFIRMATIONS_RETAINED=true
@@ -108,11 +123,18 @@ containment_effectiveness_tested=false
 DOCUMENTATION_DESIGN_GATE=SATISFIED_FOR_BOUNDED_IMPLEMENTATION_DISPOSITION
 ```
 
-This means only that documentation and pre-code human confirmations are sufficient for a separate bounded implementation authorization decision. It does not create `DEC-IMPL-001`, authorize implementation, demonstrate security effectiveness or establish production readiness.
+This means only that documentation and pre-code human confirmations are sufficient for a separate bounded implementation authorization decision. A separate bounded implementation authorization was subsequently issued and retained in `DEC-IMPL-001`. `DEC-ENTRY-004` remains evidence for the preimplementation human-confirmation gates only and does not demonstrate security effectiveness or establish production readiness.
 
 ## Bounded Experiment Authorization Request
 
-**AUTHORIZED WITHIN THE SYNTHETIC BOUNDARY IN `DEC-ENTRY-003`; IMPLEMENTATION NOT AUTHORIZED**
+**`DEC-ENTRY-003` AUTHORIZED THE BOUNDED SYNTHETIC EXPERIMENT ENVELOPE; `DEC-IMPL-001` SUBSEQUENTLY AUTHORIZED BOUNDED IMPLEMENTATION FOR CONTROLLED EVIDENCE GENERATION**
+
+```text
+DEC_ENTRY_003_DOES_NOT_ITSELF_AUTHORIZE_IMPLEMENTATION=true
+DEC_IMPL_001_RETAINED=true
+bounded_implementation_authorized=true
+implementation_authorization_scope=SYNTHETIC_REFERENCE_SLICE_ONLY
+```
 
 Purpose: demonstrate the officer-bound authorization invariant. Environment: isolated local development. Data and identities: synthetic only. Connectors: named local mocks only. Operations: non-destructive synthetic operations in Accepted ADR-0001. Network: no investigative-service dependency. Real cases, subjects, law-enforcement identities, credentials, production secrets, criminal infrastructure, live Dark Web interaction, exploitation and autonomous legal/investigative authority are prohibited.
 
@@ -191,25 +213,63 @@ SEC_C03=SATISFIED
 RES_C01=SATISFIED
 SEC_C01=OPEN
 SEC_C02=PARTIALLY_SATISFIED
+IEG_04_THREAT_TREATMENT=SATISFIED_WITH_CONDITIONS
+IEG_12_SECURITY_DATA_CONTRACTS=PARTIALLY_SATISFIED
+executed_deterministic_validation_evidence=false
+executed_negative_test_evidence=false
 PRIV_C01=SATISFIED
 PRIV_C02=PARTIALLY_SATISFIED
 PRIV_C03=SATISFIED
 PRIV_C03_CONTINUING_OBLIGATION=true
+IEG_13_PRIVACY_DATA_GOVERNANCE=PARTIALLY_SATISFIED
+actual_admitted_executable_fixture_provenance_evidence=false
 IMP_C02=SATISFIED
 IMP_C03=SATISFIED
 implementation_entry_gate=BLOCKED
-implementation_authorized=false
+DEC_IMPL_001_RETAINED=true
+REPOSITORY_BOUNDED_IMPLEMENTATION_AUTHORIZED=true
+bounded_implementation_authorized=true
+controlled_evidence_generation_authorized=true
+implementation_authorization_scope=SYNTHETIC_REFERENCE_SLICE_ONLY
+general_or_unbounded_implementation_authorized=false
+production_implementation_authorized=false
+investigative_use_authorized=false
 implementation_performed=false
 source_code_created=false
+source_code_modified=false
+Go_module_created=false
+fixtures_created=false
 tests_created=false
+tests_executed=false
+deterministic_validation_executed=false
+negative_tests_executed=false
+rollback_effectiveness_tested=false
+containment_effectiveness_tested=false
+security_scanners_executed=false
+tools_installed=false
 ci_created=false
+CI_created=false
+CI_modified=false
 dependencies_installed=false
+implementation_evidence=false
+operating_evidence=false
+effectiveness_evidence=false
+DEC_IMPL_001_RETENTION_IS_NOT_IMPLEMENTATION_EVIDENCE=true
+material_threat_count=12
+material_threats_blocking=12
+threat_mitigation_claimed=false
 risk_accepted=false
+RISK_ACCEPTANCE_AUTHORIZED=false
 candidate2_status=Draft
 candidate2_frozen=false
 wave1_complete=false
 baseline_freeze=BLOCKED
 production_ready=false
+formal_compliance_determined=false
+Ready_authorized=false
+merge_authorized=false
+release_authorized=false
+publication_authorized=false
 compliance_established=false
 PREIMPL_GAP_001=RESOLVED_AT_SPECIFICATION_LEVEL
 PREIMPL_GAP_002=RESOLVED_AT_SPECIFICATION_LEVEL
@@ -224,12 +284,17 @@ IEG_05_BOUNDARIES=SATISFIED
 IEG_06_TESTABLE_SECURITY_PRIVACY=SATISFIED
 IEG_07_ACCEPTANCE_CRITERIA=SATISFIED
 IEG_09_DATA_ENVIRONMENT=SATISFIED
+IEG_11_TECHNOLOGY_TOOLCHAIN=SATISFIED
 IEG_10_ROLLBACK_CONTAINMENT=SATISFIED_WITH_CONDITIONS
+IEG_10_PREIMPLEMENTATION_DESIGN_BLOCKER=false
+rollback_design_approved=true
+containment_design_approved=true
 rollback_effectiveness_tested=false
 containment_effectiveness_tested=false
+IEG_10_EFFECTIVENESS_EVIDENCE=PENDING
 DOCUMENTATION_DESIGN_GATE=SATISFIED_FOR_BOUNDED_IMPLEMENTATION_DISPOSITION
 legal_authority_created=false
 autonomous_investigative_authority_created=false
 ```
 
-Current artifact hashes are derived after retention and reported by the execution result. ADR disposition, specialist reviews, Human Implementation Owner designation, bounded synthetic experiment authorization, Go `1.26.5` technology selection, the exact reproducible toolchain profile, exact security data contracts and exact privacy/data-governance profile are retained prospectively. `IMP-C01` through `IMP-C04`, `SEC-C03`, `RES-C01`, `PRIV-C01` and `PRIV-C03` are satisfied as definition/profile/continuing-control conditions. `SEC-C02` remains partially satisfied because executed deterministic-validation and negative-test evidence does not exist. `PRIV-C02` remains partially satisfied because executable fixture provenance evidence does not exist. `SEC-C01` remains open. The twelve material threats remain implementation-blocking. Human decisions on risk acceptance, implementation authorization, Ready and merge remain pending. The overall Implementation Entry Gate remains `BLOCKED`.
+Current artifact hashes are derived after retention and reported by the execution result. ADR disposition, specialist reviews, Human Implementation Owner designation, bounded synthetic experiment envelope authorization, bounded implementation authorization, Go `1.26.5` technology selection, the exact reproducible toolchain profile, exact security data contracts and exact privacy/data-governance profile are retained prospectively. `IMP-C01` through `IMP-C04`, `SEC-C03`, `RES-C01`, `PRIV-C01` and `PRIV-C03` are satisfied as definition/profile/continuing-control conditions. `SEC-C02` remains partially satisfied because executed deterministic-validation and negative-test evidence does not exist. `PRIV-C02` remains partially satisfied because executable fixture provenance evidence does not exist. `SEC-C01` remains open. The twelve material threats remain implementation-blocking. The Accountable-Human bounded implementation authorization has been issued and retained in `DEC-IMPL-001`; human decisions on risk acceptance, Ready, merge, release and publication remain separate and pending where applicable. The global Implementation Entry Gate remains `BLOCKED` because implementation, test, provenance and effectiveness evidence has not yet been generated and reviewed. `DEC-IMPL-001` separately authorizes only the bounded synthetic work required to generate that evidence.
