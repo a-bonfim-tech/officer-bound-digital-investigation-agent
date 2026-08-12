@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Record ID / Version | `IMP-GATE-RS-001` / `0.11.1` |
+| Record ID / Version | `IMP-GATE-RS-001` / `0.12.0` |
 | Status | `Reconciled / BLOCKED` |
 | Classification | Category C, Evidence Level D governance proposal |
 | Owner | Project Founder / Accountable Human |
@@ -81,15 +81,40 @@ CI_creation_authorized=false
 CI_modification_authorized=false
 ```
 
-Implementation must use a new implementation branch and new Draft PR from governed baseline `cd31d0d662f73ed93f47cc167c028a9a34d43626`; it must not be authored directly in PR #48. All detailed boundaries, stop conditions and topology requirements are retained in `DEC-IMPL-001`.
+The historical `DEC-IMPL-001` decision baseline remains `cd31d0d662f73ed93f47cc167c028a9a34d43626`. The effective operational branch baseline and topology are reconciled separately by `DEC-IMPL-002 R1` below.
+
+## Implementation Baseline and Topology — DEC-IMPL-002
+
+`DEC-IMPL-002 R1`, dated `2026-08-12`, reconciles the future implementation branch baseline and stacked Draft PR topology without expanding `DEC-IMPL-001` authorization:
 
 ```text
-IMPLEMENTATION_TOPOLOGY=NEW_IMPLEMENTATION_BRANCH_AND_NEW_DRAFT_PR_FROM_GOVERNED_BASELINE
-governed_implementation_baseline=cd31d0d662f73ed93f47cc167c028a9a34d43626
+DEC_IMPL_002_RETAINED=true
+DEC_IMPL_002_DECISION_LEVEL_REVISION=R1
+DEC_IMPL_002_HUMAN_DISPOSITION=APPROVED_AS_REVISED
+DEC_IMPL_001_DECISION_BASELINE=cd31d0d662f73ed93f47cc167c028a9a34d43626
+OLD_IMPLEMENTATION_BASELINE_REMAINS_HISTORICAL_DEC_IMPL_001_DECISION_BASELINE=true
+DEC_IMPL_002_PRE_RETENTION_REFERENCE_HEAD=368bd261003626c7c1d8c270ffd465f55f349c36
+PRE_RETENTION_REFERENCE_HEAD_ROLE=REQUIRED_PARENT_OF_DEC_IMPL_002_RETENTION_COMMIT
+EFFECTIVE_IMPLEMENTATION_BRANCH_BASELINE_RULE=USE_EXACT_DEC_IMPL_002_RETENTION_COMMIT
+DEC_IMPL_002_RETENTION_COMMIT=THIS_SIGNED_DEC_IMPL_002_RETENTION_COMMIT
+FROZEN_IMPLEMENTATION_BRANCH_BASELINE=THIS_SIGNED_DEC_IMPL_002_RETENTION_COMMIT
+DEC_IMPL_002_RETENTION_ADVANCE_SELF_TRIGGER=false
+POST_RETENTION_REPOSITORY_ADVANCE_REQUIRES_RECONCILIATION=true
+PR_METADATA_ONLY_CHANGE_TRIGGERS_RECONCILIATION=false
+IMPLEMENTATION_TOPOLOGY=NEW_IMPLEMENTATION_BRANCH_AND_NEW_DRAFT_PR_FROM_DEC_IMPL_002_RETENTION_COMMIT
 preferred_implementation_branch=impl/bounded-synthetic-reference-slice-2026-08
 implementation_PR_head=impl/bounded-synthetic-reference-slice-2026-08
 implementation_PR_base=docs/propose-reference-slice-adr-entry-gate-2026-08
+implementation_PR_draft=true
+OLD_DEC_IMPL_001_BASELINE_ALLOWED_FOR_BRANCH_CREATION=false
+PRE_RETENTION_368bd_BASELINE_ALLOWED_FOR_BRANCH_CREATION=false
+implementation_branch_created=false
+implementation_PR_created=false
 ```
+
+`THIS_SIGNED_DEC_IMPL_002_RETENTION_COMMIT` is the exact signed Git commit containing the effective `DEC-IMPL-002 R1` record and this Entry Gate reconciliation. Git object identity resolves its literal SHA after commit creation; no self-referential amend or second SHA-resolution commit is permitted.
+
+The implementation branch must begin at that exact resolved retention commit. If governance repository-content HEAD advances beyond it before branch initialization, stop and reconcile baseline/topology again. Metadata-only PR changes do not trigger reconciliation.
 
 ## Preimplementation Specification Reconciliation
 
