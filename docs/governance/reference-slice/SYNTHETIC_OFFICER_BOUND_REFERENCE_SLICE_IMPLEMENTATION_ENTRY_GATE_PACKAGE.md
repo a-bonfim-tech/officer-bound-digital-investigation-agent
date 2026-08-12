@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Record ID / Version | `IMP-GATE-RS-001` / `0.10.0` |
+| Record ID / Version | `IMP-GATE-RS-001` / `0.11.0` |
 | Status | `Reconciled / BLOCKED` |
 | Classification | Category C, Evidence Level D governance proposal |
 | Owner | Project Founder / Accountable Human |
@@ -32,6 +32,49 @@ This package prepares a later decision and creates no authority. At baseline: ma
 | `IEG-13` privacy/data governance | `PRIV-C01`, `PRIV-C02`, `PRIV-C03` | Privacy profile `1.1.0` and complete FixtureProvenance `2.0.0` admission schema retained through `DEC-SPEC-001`; inventory records zero executable fixtures | PARTIALLY SATISFIED | Produce attributable provenance for every future admitted fixture; preserve the continuing expansion-review control | Accountable Human / Privacy-Governance | Schema/admission gap resolved; `PRIV-C02` remains partial only because actual admitted-fixture provenance evidence is absent; gate remains BLOCKED |
 
 Overall: `BLOCKED`. Branch, commit, Draft PR or merge cannot satisfy the gate (`IMP-REQ-020`).
+
+## Separate Bounded Implementation Authorization
+
+`DEC-IMPL-001`, dated `2026-08-12`, retains the Accountable-Human authorization for controlled synthetic implementation and evidence generation:
+
+```text
+DEC_IMPL_001_RETAINED=true
+REPOSITORY_BOUNDED_IMPLEMENTATION_AUTHORIZED=true
+bounded_implementation_authorized=true
+controlled_evidence_generation_authorized=true
+implementation_authorization_scope=SYNTHETIC_REFERENCE_SLICE_ONLY
+general_or_unbounded_implementation_authorized=false
+production_implementation_authorized=false
+investigative_use_authorized=false
+GLOBAL_IMPLEMENTATION_ENTRY_GATE=BLOCKED_PENDING_IMPLEMENTATION_AND_EFFECTIVENESS_EVIDENCE
+implementation_entry_gate=BLOCKED
+implementation_performed=false
+```
+
+These states intentionally coexist. The global gate concerns evidence-based completion and readiness; the separate authorization permits only the bounded implementation, fixture authoring and local testing necessary to generate that evidence. Authorization alone closes no condition and provides no implementation or effectiveness evidence.
+
+The authorized environment is synthetic-only, local, isolated and non-production, with allowlisted local mock connectors, runtime network `DENY` and external export prohibited. The supreme invariant remains `NO_TOOL_OR_CONNECTOR_EXECUTION_BEFORE_A_VALID_POSITIVE_AUTHORIZATION_DECISION`.
+
+```text
+source_authoring_authorized=true
+fixture_authoring_authorized=true
+test_authoring_authorized=true
+local_test_execution_authorized=true
+gofmt_authorized=true
+go_vet_authorized=true
+go_test_authorized=true
+testing_F_authorized=true
+initial_third_party_runtime_dependencies=0
+third_party_test_dependencies=0
+runtime_dependency_policy=STANDARD_LIBRARY_FIRST
+Go_1_26_5_bootstrap_authorized=false
+bootstrap_network_authorized=false
+security_tool_execution_authorized=false
+CI_execution_authorized=false
+IEG_10_EFFECTIVENESS_EVIDENCE=PENDING
+```
+
+Implementation must use a new implementation branch and new Draft PR from governed baseline `cd31d0d662f73ed93f47cc167c028a9a34d43626`; it must not be authored directly in PR #48. All detailed boundaries, stop conditions and topology requirements are retained in `DEC-IMPL-001`.
 
 ## Preimplementation Specification Reconciliation
 
