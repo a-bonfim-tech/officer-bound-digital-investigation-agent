@@ -1,0 +1,287 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://obdia.invalid/schemas/reference-slice/security-data-contracts/2.0.0",
+  "title": "OBDIA Reference Slice Security Data Contracts",
+  "description": "Governed compound schema. Duplicate object-member detection is required at the strict pre-schema raw-input stage and is not claimed as JSON Schema behavior.",
+  "x-obdia-error-audit-map": {
+    "VALIDATION_ERROR": "VALIDATION_REJECTED",
+    "AUTHORIZATION_DENIED": "AUTHORIZATION_DENIED",
+    "EXPIRED_AUTHORIZATION": "AUTHORIZATION_DENIED",
+    "NOT_YET_VALID_AUTHORIZATION": "AUTHORIZATION_DENIED",
+    "REVOKED_AUTHORIZATION": "REVOKED_GRANT_REJECTED",
+    "IDENTITY_MISMATCH": "AUTHORIZATION_DENIED",
+    "CASE_MISMATCH": "AUTHORIZATION_DENIED",
+    "SCOPE_MISMATCH": "AUTHORIZATION_DENIED",
+    "CONNECTOR_NOT_ALLOWED": "AUTHORIZATION_DENIED",
+    "REPLAY_DETECTED": "REPLAY_REJECTED",
+    "STALE_DECISION": "STALE_CONTEXT_REJECTED",
+    "MALFORMED_CONNECTOR_RESULT": "CONNECTOR_RESULT_REJECTED",
+    "INTEGRITY_FAILURE": "INTEGRITY_FAILURE",
+    "STORAGE_FAILURE": "STORAGE_FAILURE",
+    "INTERNAL_INVARIANT_FAILURE": "INTERNAL_INVARIANT_FAILURE",
+    "UNSUPPORTED_SCHEMA": "VALIDATION_REJECTED",
+    "OVERSIZED_INPUT": "VALIDATION_REJECTED"
+  },
+  "oneOf": [
+    { "$ref": "#/$defs/SyntheticOfficerIdentity" },
+    { "$ref": "#/$defs/SyntheticCaseContext" },
+    { "$ref": "#/$defs/AuthorizationGrant" },
+    { "$ref": "#/$defs/ScopedDelegation" },
+    { "$ref": "#/$defs/RequestedAction" },
+    { "$ref": "#/$defs/AuthorizationContext" },
+    { "$ref": "#/$defs/PolicyDecision" },
+    { "$ref": "#/$defs/ConnectorCapability" },
+    { "$ref": "#/$defs/ConnectorRequest" },
+    { "$ref": "#/$defs/ConnectorResult" },
+    { "$ref": "#/$defs/EvidenceEnvelope" },
+    { "$ref": "#/$defs/AuditEvent" },
+    { "$ref": "#/$defs/ProvenanceRecord" },
+    { "$ref": "#/$defs/RequestReservationRecord" },
+    { "$ref": "#/$defs/ReplayRecord" },
+    { "$ref": "#/$defs/FixtureProvenance" }
+  ],
+  "$defs": {
+    "SchemaVersion": { "const": "2.0.0" },
+    "Timestamp": { "type": "string", "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\\.[0-9]{3}Z$" },
+    "Digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "OfficerId": { "type": "string", "pattern": "^off_[0-9a-f]{32}$" },
+    "CaseId": { "type": "string", "pattern": "^case_[0-9a-f]{32}$" },
+    "GrantId": { "type": "string", "pattern": "^grant_[0-9a-f]{32}$" },
+    "DelegationId": { "type": "string", "pattern": "^dlg_[0-9a-f]{32}$" },
+    "RequestId": { "type": "string", "pattern": "^req_[0-9a-f]{32}$" },
+    "DecisionId": { "type": "string", "pattern": "^dec_[0-9a-f]{32}$" },
+    "ConnectorId": { "type": "string", "pattern": "^conn_[0-9a-f]{32}$" },
+    "OperationId": { "type": "string", "pattern": "^op_[0-9a-f]{32}$" },
+    "EvidenceId": { "type": "string", "pattern": "^evid_[0-9a-f]{32}$" },
+    "AuditEventId": { "type": "string", "pattern": "^evt_[0-9a-f]{32}$" },
+    "NonEmptyAscii": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[ -~]+$" },
+    "ErrorCode": {
+      "enum": [
+        "VALIDATION_ERROR", "AUTHORIZATION_DENIED", "EXPIRED_AUTHORIZATION", "NOT_YET_VALID_AUTHORIZATION",
+        "REVOKED_AUTHORIZATION", "IDENTITY_MISMATCH", "CASE_MISMATCH", "SCOPE_MISMATCH",
+        "CONNECTOR_NOT_ALLOWED", "REPLAY_DETECTED", "STALE_DECISION", "MALFORMED_CONNECTOR_RESULT",
+        "INTEGRITY_FAILURE", "STORAGE_FAILURE", "INTERNAL_INVARIANT_FAILURE", "UNSUPPORTED_SCHEMA", "OVERSIZED_INPUT"
+      ]
+    },
+    "AuditEventType": {
+      "enum": [
+        "VALIDATION_REJECTED", "AUTHORIZATION_DENIED", "AUTHORIZATION_ALLOWED", "REPLAY_REJECTED",
+        "STALE_CONTEXT_REJECTED", "REVOKED_GRANT_REJECTED", "CONNECTOR_INVOKED", "CONNECTOR_RESULT_REJECTED",
+        "OPERATION_COMPLETED", "EVIDENCE_CREATED", "INTEGRITY_FAILURE", "STORAGE_FAILURE", "INTERNAL_INVARIANT_FAILURE"
+      ]
+    },
+    "FixtureType": {
+      "enum": [
+        "SYNTHETIC_DOMAIN_FIXTURE", "CANONICAL_SERIALIZATION_VECTOR", "NEGATIVE_TEST_INPUT",
+        "MOCK_CONNECTOR_RESPONSE", "AUTHORIZATION_FIXTURE", "CASE_FIXTURE"
+      ]
+    },
+    "FixtureCreationMethod": { "enum": ["MANUAL_INVENTION", "SYNTHETIC_GENERATOR"] },
+    "FixtureReviewStatus": { "enum": ["PENDING", "APPROVED", "REJECTED"] },
+    "Base": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" },
+        "object_type": { "type": "string" }
+      },
+      "required": ["schema_version", "object_type"]
+    },
+    "SyntheticOfficerIdentity": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "SyntheticOfficerIdentity" },
+        "officer_id": { "$ref": "#/$defs/OfficerId" }, "institution_id": { "$ref": "#/$defs/NonEmptyAscii" },
+        "synthetic": { "const": true }, "status": { "enum": ["ACTIVE", "DISABLED"] }
+      },
+      "required": ["schema_version", "object_type", "officer_id", "institution_id", "synthetic", "status"], "unevaluatedProperties": false
+    },
+    "SyntheticCaseContext": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "SyntheticCaseContext" },
+        "case_id": { "$ref": "#/$defs/CaseId" }, "purpose": { "$ref": "#/$defs/NonEmptyAscii" },
+        "classification": { "const": "SYNTHETIC" }, "synthetic": { "const": true }
+      },
+      "required": ["schema_version", "object_type", "case_id", "purpose", "classification", "synthetic"], "unevaluatedProperties": false
+    },
+    "AuthorizationGrant": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "AuthorizationGrant" },
+        "authorization_grant_id": { "$ref": "#/$defs/GrantId" }, "officer_id": { "$ref": "#/$defs/OfficerId" },
+        "case_id": { "$ref": "#/$defs/CaseId" }, "scopes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/NonEmptyAscii" } },
+        "issued_at": { "$ref": "#/$defs/Timestamp" }, "not_before": { "$ref": "#/$defs/Timestamp" }, "expires_at": { "$ref": "#/$defs/Timestamp" },
+        "state": { "enum": ["ACTIVE", "EXPIRED", "REVOKED", "NOT_YET_VALID"] }
+      },
+      "required": ["schema_version", "object_type", "authorization_grant_id", "officer_id", "case_id", "scopes", "issued_at", "not_before", "expires_at", "state"], "unevaluatedProperties": false
+    },
+    "ScopedDelegation": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "ScopedDelegation" },
+        "delegation_id": { "$ref": "#/$defs/DelegationId" }, "authorization_grant_id": { "$ref": "#/$defs/GrantId" },
+        "officer_id": { "$ref": "#/$defs/OfficerId" }, "case_id": { "$ref": "#/$defs/CaseId" },
+        "permitted_actions": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/NonEmptyAscii" } },
+        "permitted_connectors": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/ConnectorId" } },
+        "not_before": { "$ref": "#/$defs/Timestamp" }, "expires_at": { "$ref": "#/$defs/Timestamp" }
+      },
+      "required": ["schema_version", "object_type", "delegation_id", "authorization_grant_id", "officer_id", "case_id", "permitted_actions", "permitted_connectors", "not_before", "expires_at"], "unevaluatedProperties": false
+    },
+    "RequestedAction": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "RequestedAction" },
+        "action": { "$ref": "#/$defs/NonEmptyAscii" }, "target": { "$ref": "#/$defs/NonEmptyAscii" },
+        "parameters": { "type": "array", "items": { "$ref": "#/$defs/NonEmptyAscii" }, "maxItems": 32 }
+      },
+      "required": ["schema_version", "object_type", "action", "target", "parameters"], "unevaluatedProperties": false
+    },
+    "AuthorizationContext": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "AuthorizationContext" },
+        "officer_id": { "$ref": "#/$defs/OfficerId" }, "case_id": { "$ref": "#/$defs/CaseId" },
+        "authorization_grant_id": { "$ref": "#/$defs/GrantId" }, "delegation_id": { "$ref": "#/$defs/DelegationId" },
+        "request_id": { "$ref": "#/$defs/RequestId" }, "connector_id": { "$ref": "#/$defs/ConnectorId" },
+        "action": { "$ref": "#/$defs/RequestedAction" }, "evaluated_at": { "$ref": "#/$defs/Timestamp" }
+      },
+      "required": ["schema_version", "object_type", "officer_id", "case_id", "authorization_grant_id", "delegation_id", "request_id", "connector_id", "action", "evaluated_at"], "unevaluatedProperties": false
+    },
+    "PolicyDecision": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "PolicyDecision" },
+        "decision_id": { "$ref": "#/$defs/DecisionId" }, "decision": { "enum": ["ALLOW", "DENY"] },
+        "officer_id": { "$ref": "#/$defs/OfficerId" }, "case_id": { "$ref": "#/$defs/CaseId" },
+        "authorization_grant_id": { "$ref": "#/$defs/GrantId" }, "delegation_id": { "$ref": "#/$defs/DelegationId" },
+        "request_id": { "$ref": "#/$defs/RequestId" }, "connector_id": { "$ref": "#/$defs/ConnectorId" },
+        "connector_capability_version": { "$ref": "#/$defs/NonEmptyAscii" }, "policy_version": { "$ref": "#/$defs/NonEmptyAscii" },
+        "canonical_input_hash": { "$ref": "#/$defs/Digest" }, "evaluated_at": { "$ref": "#/$defs/Timestamp" }, "decision_valid_until": { "$ref": "#/$defs/Timestamp" }
+      },
+      "required": ["schema_version", "object_type", "decision_id", "decision", "officer_id", "case_id", "authorization_grant_id", "delegation_id", "request_id", "connector_id", "connector_capability_version", "policy_version", "canonical_input_hash", "evaluated_at", "decision_valid_until"], "unevaluatedProperties": false
+    },
+    "ConnectorCapability": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "ConnectorCapability" },
+        "connector_id": { "$ref": "#/$defs/ConnectorId" }, "capability_version": { "$ref": "#/$defs/NonEmptyAscii" },
+        "operation": { "$ref": "#/$defs/NonEmptyAscii" }, "request_schema": { "$ref": "#/$defs/NonEmptyAscii" }, "result_schema": { "$ref": "#/$defs/NonEmptyAscii" }
+      },
+      "required": ["schema_version", "object_type", "connector_id", "capability_version", "operation", "request_schema", "result_schema"], "unevaluatedProperties": false
+    },
+    "ConnectorRequest": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "ConnectorRequest" },
+        "request_id": { "$ref": "#/$defs/RequestId" }, "decision_id": { "$ref": "#/$defs/DecisionId" },
+        "connector_id": { "$ref": "#/$defs/ConnectorId" }, "operation_id": { "$ref": "#/$defs/OperationId" }, "canonical_input_hash": { "$ref": "#/$defs/Digest" }
+      },
+      "required": ["schema_version", "object_type", "request_id", "decision_id", "connector_id", "operation_id", "canonical_input_hash"], "unevaluatedProperties": false
+    },
+    "ConnectorResult": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "ConnectorResult" },
+        "connector_id": { "$ref": "#/$defs/ConnectorId" }, "request_id": { "$ref": "#/$defs/RequestId" }, "operation_id": { "$ref": "#/$defs/OperationId" },
+        "status": { "enum": ["SUCCESS", "FAILURE"] }, "result_data": { "type": "array", "maxItems": 256, "items": { "$ref": "#/$defs/NonEmptyAscii" } }
+      },
+      "required": ["schema_version", "object_type", "connector_id", "request_id", "operation_id", "status", "result_data"], "unevaluatedProperties": false
+    },
+    "EvidenceEnvelope": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "EvidenceEnvelope" },
+        "evidence_id": { "$ref": "#/$defs/EvidenceId" }, "officer_id": { "$ref": "#/$defs/OfficerId" }, "case_id": { "$ref": "#/$defs/CaseId" },
+        "authorization_grant_id": { "$ref": "#/$defs/GrantId" }, "delegation_id": { "$ref": "#/$defs/DelegationId" },
+        "request_id": { "$ref": "#/$defs/RequestId" }, "policy_decision_id": { "$ref": "#/$defs/DecisionId" }, "connector_id": { "$ref": "#/$defs/ConnectorId" },
+        "operation_id": { "$ref": "#/$defs/OperationId" }, "result_digest": { "$ref": "#/$defs/Digest" }, "created_at": { "$ref": "#/$defs/Timestamp" },
+        "provenance_digest": { "$ref": "#/$defs/Digest" }
+      },
+      "required": ["schema_version", "object_type", "evidence_id", "officer_id", "case_id", "authorization_grant_id", "delegation_id", "request_id", "policy_decision_id", "connector_id", "operation_id", "result_digest", "created_at", "provenance_digest"], "unevaluatedProperties": false
+    },
+    "AuditEvent": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "AuditEvent" }, "audit_event_id": { "$ref": "#/$defs/AuditEventId" },
+        "event_type": { "$ref": "#/$defs/AuditEventType" },
+        "case_id": { "$ref": "#/$defs/CaseId" }, "request_id": { "$ref": "#/$defs/RequestId" }, "occurred_at": { "$ref": "#/$defs/Timestamp" },
+        "error_code": { "$ref": "#/$defs/ErrorCode" }
+      },
+      "required": ["schema_version", "object_type", "audit_event_id", "event_type", "case_id", "request_id", "occurred_at"],
+      "allOf": [
+        {
+          "if": { "properties": { "event_type": { "enum": ["AUTHORIZATION_ALLOWED", "CONNECTOR_INVOKED", "OPERATION_COMPLETED", "EVIDENCE_CREATED"] } }, "required": ["event_type"] },
+          "then": { "not": { "required": ["error_code"] } },
+          "else": { "required": ["error_code"] }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "ProvenanceRecord": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "ProvenanceRecord" },
+        "producer": { "$ref": "#/$defs/NonEmptyAscii" }, "producer_version": { "$ref": "#/$defs/NonEmptyAscii" },
+        "source_digests": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/Digest" } },
+        "prior_link_digest": { "$ref": "#/$defs/Digest" }, "created_at": { "$ref": "#/$defs/Timestamp" }
+      },
+      "required": ["schema_version", "object_type", "producer", "producer_version", "source_digests", "prior_link_digest", "created_at"], "unevaluatedProperties": false
+    },
+    "ReplayRecord": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "ReplayRecord" },
+        "case_id": { "$ref": "#/$defs/CaseId" }, "request_id": { "$ref": "#/$defs/RequestId" }, "canonical_input_hash": { "$ref": "#/$defs/Digest" },
+        "reserved_at": { "$ref": "#/$defs/Timestamp" }, "state": { "enum": ["RESERVED", "DENIED", "CONNECTOR_INVOKED", "RESULT_REJECTED", "COMPLETED", "INDETERMINATE_OUTCOME"] }
+      },
+      "required": ["schema_version", "object_type", "case_id", "request_id", "canonical_input_hash", "reserved_at", "state"], "unevaluatedProperties": false
+    },
+    "RequestReservationRecord": {
+      "type": "object",
+      "description": "Global append-only single-use reservation keyed only by request_id; it precedes and does not replace the case-scoped ReplayRecord.",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "RequestReservationRecord" },
+        "request_id": { "$ref": "#/$defs/RequestId" }, "case_id": { "$ref": "#/$defs/CaseId" },
+        "canonical_input_hash": { "$ref": "#/$defs/Digest" }, "reserved_at": { "$ref": "#/$defs/Timestamp" }
+      },
+      "required": ["schema_version", "object_type", "request_id", "case_id", "canonical_input_hash", "reserved_at"], "unevaluatedProperties": false
+    },
+    "FixtureProvenance": {
+      "type": "object",
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/SchemaVersion" }, "object_type": { "const": "FixtureProvenance" },
+        "fixture_id": { "$ref": "#/$defs/NonEmptyAscii" },
+        "fixture_type": { "$ref": "#/$defs/FixtureType" },
+        "classification": { "const": "SYNTHETIC_FIXTURE" },
+        "synthetic": { "const": true },
+        "creation_method": { "$ref": "#/$defs/FixtureCreationMethod" },
+        "creator_or_generator": { "$ref": "#/$defs/NonEmptyAscii" },
+        "generator_version": { "$ref": "#/$defs/NonEmptyAscii" },
+        "creation_timestamp": { "$ref": "#/$defs/Timestamp" },
+        "source_description": { "$ref": "#/$defs/NonEmptyAscii" },
+        "derived_from_real_person_data": { "const": false },
+        "derived_from_live_case_data": { "const": false },
+        "derived_from_production_export": { "const": false },
+        "derived_from_live_connector": { "const": false },
+        "contains_real_credentials": { "const": false },
+        "content_digest": { "$ref": "#/$defs/Digest" },
+        "review_status": { "$ref": "#/$defs/FixtureReviewStatus" },
+        "reviewer": { "$ref": "#/$defs/NonEmptyAscii" },
+        "review_timestamp": { "$ref": "#/$defs/Timestamp" }
+      },
+      "required": [
+        "schema_version", "object_type", "fixture_id", "fixture_type", "classification", "synthetic",
+        "creation_method", "creator_or_generator", "generator_version", "creation_timestamp", "source_description",
+        "derived_from_real_person_data", "derived_from_live_case_data", "derived_from_production_export",
+        "derived_from_live_connector", "contains_real_credentials", "content_digest", "review_status"
+      ],
+      "allOf": [
+        {
+          "if": { "properties": { "review_status": { "enum": ["APPROVED", "REJECTED"] } }, "required": ["review_status"] },
+          "then": { "required": ["reviewer", "review_timestamp"] }
+        }
+      ],
+      "unevaluatedProperties": false
+    }
+  }
+}
