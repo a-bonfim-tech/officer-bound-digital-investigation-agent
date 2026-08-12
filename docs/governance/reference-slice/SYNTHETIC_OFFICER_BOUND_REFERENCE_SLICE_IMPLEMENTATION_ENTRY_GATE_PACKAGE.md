@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Record ID / Version | `IMP-GATE-RS-001` / `0.12.0` |
+| Record ID / Version | `IMP-GATE-RS-001` / `0.13.0` |
 | Status | `Reconciled / BLOCKED` |
 | Classification | Category C, Evidence Level D governance proposal |
 | Owner | Project Founder / Accountable Human |
@@ -50,7 +50,7 @@ production_implementation_authorized=false
 investigative_use_authorized=false
 GLOBAL_IMPLEMENTATION_ENTRY_GATE=BLOCKED_PENDING_IMPLEMENTATION_AND_EFFECTIVENESS_EVIDENCE
 implementation_entry_gate=BLOCKED
-implementation_performed=false
+implementation_performed=true
 ```
 
 These states intentionally coexist. The global gate concerns evidence-based completion and readiness; the separate authorization permits only the bounded implementation, fixture authoring and local testing necessary to generate that evidence. Authorization alone closes no condition and provides no implementation or effectiveness evidence.
@@ -69,8 +69,8 @@ testing_F_authorized=true
 initial_third_party_runtime_dependencies=0
 third_party_test_dependencies=0
 runtime_dependency_policy=STANDARD_LIBRARY_FIRST
-Go_1_26_5_bootstrap_authorized=false
-bootstrap_network_authorized=false
+Go_1_26_5_bootstrap_authorized=true
+bootstrap_network_authorized=true
 security_tool_execution_authorized=false
 CI_execution_authorized=false
 IEG_10_EFFECTIVENESS_EVIDENCE=PENDING
@@ -108,13 +108,79 @@ implementation_PR_base=docs/propose-reference-slice-adr-entry-gate-2026-08
 implementation_PR_draft=true
 OLD_DEC_IMPL_001_BASELINE_ALLOWED_FOR_BRANCH_CREATION=false
 PRE_RETENTION_368bd_BASELINE_ALLOWED_FOR_BRANCH_CREATION=false
-implementation_branch_created=false
-implementation_PR_created=false
+implementation_branch_created=true
+implementation_PR_created=true
 ```
 
 `THIS_SIGNED_DEC_IMPL_002_RETENTION_COMMIT` is the exact signed Git commit containing the effective `DEC-IMPL-002 R1` record and this Entry Gate reconciliation. Git object identity resolves its literal SHA after commit creation; no self-referential amend or second SHA-resolution commit is permitted.
 
-The implementation branch must begin at that exact resolved retention commit. If governance repository-content HEAD advances beyond it before branch initialization, stop and reconcile baseline/topology again. Metadata-only PR changes do not trigger reconciliation.
+The implementation branch began at the exact resolved retention commit `a5dcf5684c8d87ba19011509c6bfd216af4df02d`. This is a historical initialization fact and is not redefined by later governance advances. Metadata-only PR changes do not trigger reconciliation; later retained authority may require an explicit signed forward synchronization.
+
+## Exact Go 1.26.5 Bootstrap Authorization — DEC-TOOLCHAIN-002
+
+`DEC-TOOLCHAIN-002`, dated `2026-08-12`, retains the exact user-scoped Go `1.26.5` Darwin/arm64 bootstrap authorization. Bootstrap execution remains gated on a signed forward synchronization of the already-initialized implementation branch.
+
+```text
+DEC_TOOLCHAIN_002_RETAINED=true
+DEC_TOOLCHAIN_002_HUMAN_DISPOSITION=APPROVED
+REPOSITORY_GO_1_26_5_BOOTSTRAP_AUTHORIZED=true
+Go_1_26_5_bootstrap_authorized=true
+bootstrap_network_authorized=true
+bootstrap_installation_authorized=true
+bootstrap_scope=EXACT_GO_1_26_5_DARWIN_ARM64_ONLY
+bootstrap_purpose=BOUNDED_LOCAL_IMPLEMENTATION_VALIDATION_ONLY
+GO_BOOTSTRAP_ARTIFACT=go1.26.5.darwin-arm64.tar.gz
+GO_BOOTSTRAP_EXPECTED_SHA256=efb87ff28af9a188d0536ef5d42e63dd52ba8263cd7344a993cc48dd11dedb6a
+BOOTSTRAP_NETWORK_AUTHORITY_IS_NOT_RUNTIME_NETWORK_AUTHORITY=true
+runtime_network=DENY
+IMPLEMENTATION_BRANCH_ALREADY_INITIALIZED=true
+FROZEN_IMPLEMENTATION_BRANCH_BASELINE=a5dcf5684c8d87ba19011509c6bfd216af4df02d
+implementation_branch_initial_HEAD=a5dcf5684c8d87ba19011509c6bfd216af4df02d
+implementation_pre_governance_sync_HEAD=814fb98bac3f8afbc23fbe0121584951e7929efd
+post_initialization_governance_sync_required=true
+IMPLEMENTATION_BRANCH_GOVERNANCE_SYNC_REQUIRED=true
+IMPLEMENTATION_BRANCH_GOVERNANCE_SYNC_COMPLETE=false
+future_sync_method=SIGNED_MERGE_COMMIT_FROM_CURRENT_GOVERNANCE_BRANCH
+BOOTSTRAP_EXECUTION_GATE=PENDING_IMPLEMENTATION_BRANCH_GOVERNANCE_SYNC
+bootstrap_execution_ready=false
+rebase_authorized=false
+force_push_authorized=false
+```
+
+The bootstrap sequence is download, SHA-256 verification, archive-member safety inspection, extraction, version verification and GOROOT verification. It is user-scoped and prohibits privileged/system installation, permanent PATH mutation, module downloads, toolchain auto-switching, security-tool acquisition, CI dependency acquisition and application runtime network authority.
+
+Current implementation facts reside on governed implementation branch `impl/bounded-synthetic-reference-slice-2026-08`, not on this governance branch:
+
+```text
+implementation_branch_created=true
+implementation_PR_created=true
+implementation_performed=true
+Go_module_created=true
+source_code_created=true
+tests_created=true
+tests_executed=false
+gofmt_executed=false
+go_vet_executed=false
+go_test_executed=false
+testing_F_executed=false
+security_scanners_executed=false
+CI_executed=false
+VALIDATION_001_INITIAL_ATTEMPT=BLOCKED_TOOLCHAIN_UNAVAILABLE
+VALIDATION_001_INITIAL_ATTEMPT_IMPLEMENTATION_HEAD=814fb98bac3f8afbc23fbe0121584951e7929efd
+VALIDATION_001_LOCAL_GO_PRESENT=false
+VALIDATION_001_TESTS_EXECUTED=false
+implementation_evidence=SOURCE_ARTIFACTS_EXIST_BUT_NOT_EXECUTION_VALIDATED
+operating_evidence=false
+effectiveness_evidence=false
+download_performed=false
+archive_downloaded=false
+archive_sha256_verified=false
+archive_extracted=false
+installation_performed=false
+toolchain_executed=false
+Go_1_26_5_bootstrap_performed=false
+network_bootstrap_performed=false
+```
 
 ## Preimplementation Specification Reconciliation
 
@@ -190,7 +256,7 @@ Rollback: revert/delete bounded artifacts through ordinary Git history to the pr
 | `AC-19` | No production credential required |
 | `AC-20` | Fixture manifest proves all fixtures synthetic |
 
-No tests or results exist.
+Test source exists on the governed implementation branch, but no test, formatting, vet or fuzz execution result exists.
 
 ## Traceability Matrix
 
@@ -259,12 +325,14 @@ implementation_authorization_scope=SYNTHETIC_REFERENCE_SLICE_ONLY
 general_or_unbounded_implementation_authorized=false
 production_implementation_authorized=false
 investigative_use_authorized=false
-implementation_performed=false
-source_code_created=false
+implementation_branch_created=true
+implementation_PR_created=true
+implementation_performed=true
+source_code_created=true
 source_code_modified=false
-Go_module_created=false
+Go_module_created=true
 fixtures_created=false
-tests_created=false
+tests_created=true
 tests_executed=false
 deterministic_validation_executed=false
 negative_tests_executed=false
@@ -276,7 +344,7 @@ ci_created=false
 CI_created=false
 CI_modified=false
 dependencies_installed=false
-implementation_evidence=false
+implementation_evidence=SOURCE_ARTIFACTS_EXIST_BUT_NOT_EXECUTION_VALIDATED
 operating_evidence=false
 effectiveness_evidence=false
 DEC_IMPL_001_RETENTION_IS_NOT_IMPLEMENTATION_EVIDENCE=true
@@ -322,4 +390,4 @@ legal_authority_created=false
 autonomous_investigative_authority_created=false
 ```
 
-Current artifact hashes are derived after retention and reported by the execution result. ADR disposition, specialist reviews, Human Implementation Owner designation, bounded synthetic experiment envelope authorization, bounded implementation authorization, Go `1.26.5` technology selection, the exact reproducible toolchain profile, exact security data contracts and exact privacy/data-governance profile are retained prospectively. `IMP-C01` through `IMP-C04`, `SEC-C03`, `RES-C01`, `PRIV-C01` and `PRIV-C03` are satisfied as definition/profile/continuing-control conditions. `SEC-C02` remains partially satisfied because executed deterministic-validation and negative-test evidence does not exist. `PRIV-C02` remains partially satisfied because executable fixture provenance evidence does not exist. `SEC-C01` remains open. The twelve material threats remain implementation-blocking. The Accountable-Human bounded implementation authorization has been issued and retained in `DEC-IMPL-001`; human decisions on risk acceptance, Ready, merge, release and publication remain separate and pending where applicable. The global Implementation Entry Gate remains `BLOCKED` because implementation, test, provenance and effectiveness evidence has not yet been generated and reviewed. `DEC-IMPL-001` separately authorizes only the bounded synthetic work required to generate that evidence.
+Current artifact hashes are derived after retention and reported by the execution result. ADR disposition, specialist reviews, Human Implementation Owner designation, bounded synthetic experiment envelope authorization, bounded implementation authorization, Go `1.26.5` technology selection, the exact reproducible toolchain profile, exact security data contracts and exact privacy/data-governance profile are retained prospectively. `IMP-C01` through `IMP-C04`, `SEC-C03`, `RES-C01`, `PRIV-C01` and `PRIV-C03` are satisfied as definition/profile/continuing-control conditions. `SEC-C02` remains partially satisfied because executed deterministic-validation and negative-test evidence does not exist. `PRIV-C02` remains partially satisfied because executable fixture provenance evidence does not exist. `SEC-C01` remains open. The twelve material threats remain implementation-blocking. Bounded source and test artifacts exist on PR #49, but validation was blocked because no local Go toolchain was present; no execution or effectiveness evidence exists. The global Implementation Entry Gate therefore remains `BLOCKED`. Human decisions on risk acceptance, Ready, merge, release and publication remain separate and pending.
