@@ -32,11 +32,19 @@ func engine() *Engine {
 	return &Engine{Clock: FixedClock{Value: now}, Store: NewReservationStore()}
 }
 
-func TestAC01ValidFlowAndEvidenceIntegrity(t *testing.T) {
+func TestAC01AC14AC15AC16ValidFlowEvidenceAndAudit(t *testing.T) {
 	in, m := validFlow()
 	out := engine().Execute(in)
 	if out.Decision != PolicyAllow || out.Error != nil || out.Evidence == nil || m.InvocationCount() != 1 {
 		t.Fatalf("valid flow denied: %+v", out.Error)
+	}
+	if len(out.Audit) == 0 {
+		t.Fatal("audit absent")
+	}
+	for _, event := range out.Audit {
+		if event.CaseID != in.Case.CaseID || event.RequestID != in.Request.RequestID {
+			t.Fatal("audit does not bind governed case and request context")
+		}
 	}
 	digest, _, f := IntegrityDigest(out.Evidence, ObjectTypeEvidenceEnvelope)
 	if f != nil || !VerifyIntegrity(out.Evidence, ObjectTypeEvidenceEnvelope, digest) {
@@ -53,7 +61,7 @@ func TestDenialMatrixZeroConnector(t *testing.T) {
 		name   string
 		mutate func(*FlowInput)
 		code   ErrorCode
-	}{{"missing", func(i *FlowInput) { i.Grant = nil }, ErrorAuthorizationDenied}, {"expired", func(i *FlowInput) { i.Grant.State = GrantExpired }, ErrorExpiredAuthorization}, {"revoked", func(i *FlowInput) { i.Grant.State = GrantRevoked }, ErrorRevokedAuthorization}, {"officer", func(i *FlowInput) { i.Context.OfficerID = OfficerID("off_00000000000000000000000000000002") }, ErrorIdentityMismatch}, {"case", func(i *FlowInput) { i.Context.CaseID = CaseID("case_00000000000000000000000000000002") }, ErrorCaseMismatch}, {"scope", func(i *FlowInput) { i.Context.Action.Action = "DENIED_ACTION" }, ErrorScopeMismatch}, {"connector", func(i *FlowInput) { i.Context.ConnectorID = ConnectorID("conn_00000000000000000000000000000002") }, ErrorConnectorNotAllowed}}
+	}{{"AC02_missing_authorization", func(i *FlowInput) { i.Grant = nil }, ErrorAuthorizationDenied}, {"AC03_expired_authorization", func(i *FlowInput) { i.Grant.State = GrantExpired }, ErrorExpiredAuthorization}, {"AC17c_revoked_authorization", func(i *FlowInput) { i.Grant.State = GrantRevoked }, ErrorRevokedAuthorization}, {"AC04_officer_mismatch", func(i *FlowInput) { i.Context.OfficerID = OfficerID("off_00000000000000000000000000000002") }, ErrorIdentityMismatch}, {"AC05_case_mismatch", func(i *FlowInput) { i.Context.CaseID = CaseID("case_00000000000000000000000000000002") }, ErrorCaseMismatch}, {"AC06_scope_mismatch", func(i *FlowInput) { i.Context.Action.Action = "DENIED_ACTION" }, ErrorScopeMismatch}, {"AC07_connector_not_allowlisted", func(i *FlowInput) { i.Context.ConnectorID = ConnectorID("conn_00000000000000000000000000000002") }, ErrorConnectorNotAllowed}, {"AC08_unknown_policy", func(i *FlowInput) { i.PolicyVersion = "unknown" }, ErrorAuthorizationDenied}, {"AC09_malformed_context", func(i *FlowInput) { i.Context.ObjectType = ObjectTypePolicyDecision }, ErrorValidation}}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			in, m := validFlow()
@@ -66,7 +74,7 @@ func TestDenialMatrixZeroConnector(t *testing.T) {
 	}
 }
 
-func TestReplayGlobalAcrossCases(t *testing.T) {
+func TestAC13ReplayGlobalAcrossCases(t *testing.T) {
 	e := engine()
 	in, m := validFlow()
 	if out := e.Execute(in); out.Decision != PolicyAllow {

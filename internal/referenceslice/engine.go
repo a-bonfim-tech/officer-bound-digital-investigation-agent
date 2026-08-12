@@ -180,6 +180,9 @@ func (e *Engine) Execute(in FlowInput) FlowOutcome {
 	if in.Request.RequestID != in.Context.RequestID || in.Request.ConnectorID != in.Context.ConnectorID || in.Request.CanonicalInputHash != digest {
 		return deny(ErrorValidation, "request binding mismatch")
 	}
+	if in.PolicyVersion != "1" {
+		return deny(ErrorAuthorizationDenied, "unknown policy version")
+	}
 	validUntil := ex
 	if dex.Before(validUntil) {
 		validUntil = dex
